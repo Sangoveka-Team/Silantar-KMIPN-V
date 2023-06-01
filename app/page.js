@@ -1,113 +1,144 @@
-import Image from 'next/image'
+import ArrowUp from "@/components/home/ArrowUp";
+import CardLapor from "@/components/home/CardLapor";
+import Footer from "@/components/home/Footer";
+import Image from "next/image";
+import Link from "next/link";
+
+const dataIcons = [
+  {
+    id: 1,
+    img: "icon-1.svg",
+    text: "Anda mendaftar ke laman kami dan membuat laporan.",
+    line: "flex",
+  },
+  {
+    id: 2,
+    img: "icon-2.svg",
+    text: "Anda dapat terus memantau status laporan anda.",
+    line: "flex",
+  },
+  {
+    id: 3,
+    img: "icon-3.svg",
+    text: "Anda dapat mengakses fitur menarik dari kami.",
+    line: "hidden",
+  },
+];
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div>
+      {/* arrow up */}
+      <ArrowUp />
+      {/* arrow up end*/}
+      {/* HERO */}
+      <section id="hero">
+        <div
+          className="hero h-full lg:bg-cover"
+          style={{
+            backgroundImage: `url("/home/hero-bg.png")`,
+          }}
+        >
+          <div className="hero-overlay bg-opacity-10 bg-[rgba(255,255,255,0.35)]"></div>
+          <div className="w-full mt-11 h-[350px] lg:h-[450px] pt-10 lg:pt-20 pl-8 pb-[46px] pr-7 flex flex-col gap-7">
+            <div className="max-w-[220px] lg:max-w-lg lg:text-center lg:w-full lg:mx-auto">
+              <h1 className="text-[32px] text-primary font-bold font-outline-2 lg:text-7xl">
+                SILANTAR
+              </h1>
+              <h2 className="text-lg text-white  inline-block -mt-1 font-bold">
+                Sistem Informasi Laporan Lingkungan Sekitar
+              </h2>
+              <p className="text-[15px] text-black font-bold">
+                Laporan yang anda buat mengenai segala sesuatu masalah didekat
+                anda dengan mudah dilayani disini!
+              </p>
+            </div>
+            <div className="self-end lg:self-center flex gap-[10px]">
+              <a
+                href="#cara-lapor"
+                className="self-center btn-white px-[9px] py-2 text-xl"
+              >
+                Cara melapor?
+              </a>
+              <Link href="/lapor" className="btn-green px-[18px] py-2 text-xl">
+                Lapor!
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+      {/* HERO END */}
+      {/* SILANTAR Section */}
+      <section id="about">
+        <div className="w-full h-full bg-white">
+          <div className="w-[53%] bg-primary lg:w-1/3">
+            <h2 className="text-end pt-[18px] pl-8 pr-2 pb-05 font-bold text-black text-base lg:text-xl">
+              Apasih <span className="text-white">SILANTAR</span> itu?
+            </h2>
+          </div>
+          <div className="flex flex-col pt-3 pb-[14px] px-8 sm:px-20 lg:flex lg:flex-row lg:gap-3 lg:pb-5 lg:items-center">
+            <Image
+              src="/home/image-silantar.svg"
+              width={100}
+              height={100}
+              className="w-full lg:w-1/2 sm:w-[90%] self-center"
+              alt="silantar image"
+            />
+            <p className="mt-2 text-black text-xs lg:w-1/2 sm:text-base lg:text-lg">
+              <span className="text-primary font-bold">SILANTAR</span>, platform
+              berupa website sistem informasi yang dibutuhkan masyarakat untuk
+              melaporkan masalah lingkungan sekitar ke pemerintahan yang
+              bersangkutan. Dengan alur masyarakat-petinggi setempat-dinas, kami
+              berusaha membuat website ini dapat membantu komunikasi dua arah
+              antar masyarakat dan pemerintah.
+            </p>
+          </div>
+          <div className="w-[76%] bg-primary lg:w-1/2 sm:w-2/3 sm:text-end">
+            <h2 className="inline-block pl-8 py-1 pr-2 font-bold text-black text-[15px] sm:text-base lg:text-xl">
+              Kami menjamin <span className="text-white">keamanan</span> data
+              anda
+            </h2>
+          </div>
+          <div className="px-8 sm:pt-4 sm:text-center">
+            <p className="mt-2 text-black text-xs sm:text-sm lg:text-base">
+              Data anda yang diperlukan untuk membuat laporan tidak untuk
+              disalahgunakan dalam bentuk apapun.
+            </p>
+            <div className="w-full flex mt-2 pb-8 justify-center items-center">
+              {dataIcons.map((value) => (
+                <>
+                  <div
+                    key={value.id}
+                    className="w1/3 flex flex-col justify-center items-center gap-1 pt-3"
+                  >
+                    <Image
+                      src={`/icon/${value.img}`}
+                      width={0}
+                      height={0}
+                      className="self-center w-[85px] h-[61px] sm:w-32 lg:w-44"
+                      alt={value.img}
+                    />
+                    <p className="text-black text-xs w-[88px] pt-2 lg:w-36 lg:text-base">
+                      {value.text}
+                    </p>
+                  </div>
+                  <hr
+                    className={`self-start mt-12 sm:mt-[75px] lg:mt-[100px] w-16 max-w-[80px] h-0.5 mx-2 sm:mx-4 lg:mx-6 bg-primary ${value.line}`}
+                  />
+                </>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* SILANTAR Section END */}
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      {/* lapor Section */}
+      <CardLapor />
+      {/* lapor Section END */}
+      {/* footer */}
+      <Footer />
+      {/* footer END */}
+    </div>
+  );
 }
