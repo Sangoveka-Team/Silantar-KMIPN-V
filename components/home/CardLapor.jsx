@@ -8,7 +8,7 @@ const CardLapor = () => {
     <section id="cara-lapor">
       <div className="py-12 bg-white">
         <div className="w-[70%] bg-primary lg:w-1/2 sm:w-2/3 sm:text-end">
-          <h2 className="inline-block pl-8 py-1 pr-2 font-bold text-black text-[15px] sm:text-base lg:text-xl">
+          <h2 className="inline-block pl-8 py-1 pr-2 font-bold text-black text-[0.85rem] sm:text-base lg:text-xl">
             Cara melapor dengan <span className="text-white">SILANTAR</span>
           </h2>
         </div>

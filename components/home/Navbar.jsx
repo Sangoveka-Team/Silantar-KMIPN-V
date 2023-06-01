@@ -11,7 +11,7 @@ const Navbar = () => {
         src={Logo}
         width={0}
         height={0}
-        className="w-[40px] h-[40px] ml-[15px]"
+        className="w-[46px] h-[46px] ml-[15px] translate-y-[0.3125rem]"
         alt="logo silantar"
       />
       <div className="flex gap-[6px] lg:gap-2 items-center justify-between">

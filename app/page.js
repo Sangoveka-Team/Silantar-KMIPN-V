@@ -41,8 +41,8 @@ export default function Home() {
         >
           <div className="hero-overlay bg-opacity-10 bg-[rgba(255,255,255,0.35)]"></div>
           <div className="w-full mt-11 h-[350px] lg:h-[450px] pt-10 lg:pt-20 pl-8 pb-[46px] pr-7 flex flex-col gap-7">
-            <div className="max-w-[220px] lg:max-w-lg lg:text-center lg:w-full lg:mx-auto">
-              <h1 className="text-[32px] text-primary font-bold font-outline-2 lg:text-7xl">
+            <div className="max-w-[220px] lg:max-w  -lg lg:text-center lg:w-full lg:mx-auto">
+              <h1 className="text-shadow-primary shadow-black text-[32px] text-primary font-bold font-outline-2 lg:text-7xl">
                 SILANTAR
               </h1>
               <h2 className="text-lg text-white  inline-block -mt-1 font-bold">
@@ -56,7 +56,7 @@ export default function Home() {
             <div className="self-end lg:self-center flex gap-[10px]">
               <a
                 href="#cara-lapor"
-                className="self-center btn-white px-[9px] py-2 text-xl"
+                className="self-center btn-white px-[9px] py-2 text-xl border-primary"
               >
                 Cara melapor?
               </a>
@@ -72,7 +72,7 @@ export default function Home() {
       <section id="about">
         <div className="w-full h-full bg-white">
           <div className="w-[53%] bg-primary lg:w-1/3">
-            <h2 className="text-end pt-[18px] pl-8 pr-2 pb-05 font-bold text-black text-base lg:text-xl">
+            <h2 className="text-end pt-[18px] pl-8 pr-2 pb-05 font-bold text-black text-[0.9rem] sm:text-base lg:text-xl ">
               Apasih <span className="text-white">SILANTAR</span> itu?
             </h2>
           </div>
@@ -94,7 +94,7 @@ export default function Home() {
             </p>
           </div>
           <div className="w-[76%] bg-primary lg:w-1/2 sm:w-2/3 sm:text-end">
-            <h2 className="inline-block pl-8 py-1 pr-2 font-bold text-black text-[15px] sm:text-base lg:text-xl">
+            <h2 className="inline-block pl-8 py-1 pr-2 font-bold text-black text-[0.85rem] sm:text-base lg:text-xl">
               Kami menjamin <span className="text-white">keamanan</span> data
               anda
             </h2>
