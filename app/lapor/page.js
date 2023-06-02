@@ -3,14 +3,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, {useState} from "react";
+import {listDaerah, listKategori} from "@/data";
 
 const Lapor = () => {
   const [imgLocation, setImgLocation] = useState(null);
   const [selectDaerah, setSelectDaerah] = useState("DEFAULT");
-  const [selectKategori, setSelectKategori] = useState("DEFAULT");
+  const [kategori, setKategori] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleKategori = (e) => {
+    e.target.value == "" ? setDropdown(false) : setDropdown(true);
+    setKategori(e.target.value);
+  };
 
   return (
     <div className="bg-white w-full">
@@ -127,26 +137,38 @@ const Lapor = () => {
                 width={28}
                 height={28}
                 alt="user icon"
+                className="absolute left-0"
               />
-              <select
-                className="self-center select-xs focus:outline-none w-full box-border appearance-none z-10 bg-transparent text-[#808080] relative"
-                defaultValue={"DEFAULT"}
-                value={selectKategori}
-                onChange={(e) => setSelectKategori(e.target.value)}
-              >
-                {/* styling option nya belum */}
-                <option disabled selected value="DEFAULT">
-                  Pilih kategori
-                </option>
-                <option value="pertama">Pertama</option>
-              </select>
-              <Image
-                src="/icon/chevron-down.svg"
-                width={28}
-                height={28}
-                alt="arrow down"
-                className="absolute right-0 top-0 z-0"
-              />
+              <div className="w-full relative pl-[1.688rem]">
+                <input
+                  type="text"
+                  placeholder="Masukkan/upload alamat lokasi..."
+                  className="input-lapor"
+                  onChange={handleKategori}
+                  value={kategori}
+                />
+                <ul
+                  className={`dropdown-header ${
+                    !dropdown ? "hidden" : "block"
+                  } max-h-20 overflow-x-hidden overflow-y-scroll shadow-md rounded-b-md`}
+                >
+                  {listKategori.map((data) => (
+                    // masih belum fix fitur searching nya
+                    <div key={data.id}>
+                      <li
+                        className="dropdown-item"
+                        onClick={() => {
+                          setKategori(data.value);
+                          setDropdown(false);
+                        }}
+                      >
+                        {data.value}
+                      </li>
+                      <hr className="w-full h-[0.063rem] text-[#D9D6D6]" />
+                    </div>
+                  ))}
+                </ul>
+              </div>
             </div>
             <hr className="w-full h-[2px] bg-primary" />
           </div>
@@ -160,26 +182,7 @@ const Lapor = () => {
                 width={28}
                 height={28}
                 alt="user icon"
-              />
-              <select
-                className="self-center select-xs focus:outline-none w-full box-border appearance-none z-10 bg-transparent text-[#808080] relative"
-                defaultValue={"DEFAULT"}
-                value={selectDaerah}
-                onChange={(e) => setSelectDaerah(e.target.value)}
-              >
-                {/* styling option nya belum */}
-                <option disabled selected value="DEFAULT">
-                  Pilih daerah
-                </option>
-                <option value="pertama">Pertama</option>
-                <option value="kedua">kedua</option>
-              </select>
-              <Image
-                src="/icon/chevron-down.svg"
-                width={28}
-                height={28}
-                alt="arrow down"
-                className="absolute right-0 top-0 z-0"
+                className=""
               />
             </div>
             <hr className="w-full h-[2px] bg-primary" />
@@ -206,37 +209,49 @@ const Lapor = () => {
           </div>
           <button type="submit" className="btn-green py-3 w-full">
             Kirim
+            {/* <span className="loading loading-spinner loading-xs"></span> */}
           </button>
         </form>
       </div>
-      {/* modal ketika berhasil mengupload laporan belum jadi :v */}
+      {/* modal open ketika laporan terkirim */}
       {showModal ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+            <div className="relative my-6 mx-10 md:mx-auto  w-[17.25rem]">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Modal Title</h3>
+              <div className="border-0 rounded-xl shadow-xl relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*body*/}
+                <div className="relative py-6 pl-[1.688rem] pr-[2.125rem] flex flex-col">
+                  {/* close button */}
                   <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    type="button"
+                    className="absolute top-2 right-5 font-bold text-2xl"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
+                    x
                   </button>
-                </div>
-                {/*body*/}
-                <div className="relative p-6 flex-auto">
-                  <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    I always felt like I could do anything. That’s the main
-                    thing people are controlled by! Thoughts- their perception
-                    of themselves! They're slowed down by their perception of
-                    themselves. If you're taught you can’t do anything, you
-                    won’t do anything. I was taught I could do everything.
+                  <h2 className="font-bold text-[0.94rem] text-black text-center">
+                    Laporan anda sudah
+                    <span className="text-primary block">dikirim!</span>
+                  </h2>
+                  <Image
+                    src="/lapor/Image-Modal.svg"
+                    width={108}
+                    height={116}
+                    alt="image modal lapor"
+                    className="self-center mt-3 mb-[0.313rem]"
+                  />
+                  <p className="font-bold text-[0.625rem] mb-2">
+                    Terima kasih telah melapor! Untuk mengakses fitur-fitur
+                    website kami yang lainnya, silahkan dengan klik tombol
+                    dibawah ini.
                   </p>
+                  <Link
+                    href="/login"
+                    className="btn-green py-[0.625rem] px-[1.188rem] w-[7.625rem] self-center text-center"
+                  >
+                    Mau daftar!
+                  </Link>
                 </div>
               </div>
             </div>

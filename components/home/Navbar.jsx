@@ -7,13 +7,15 @@ import NavUser from "@/public/icon/user.svg";
 const Navbar = () => {
   return (
     <nav className="flex bg-primary items-center justify-between px-2 py-[7px] shadow-2xl fixed w-full">
-      <Image
-        src={Logo}
-        width={0}
-        height={0}
-        className="w-[46px] h-[46px] ml-[15px] translate-y-[0.3125rem]"
-        alt="logo silantar"
-      />
+      <Link href={"/"}>
+        <Image
+          src={Logo}
+          width={0}
+          height={0}
+          className="w-[46px] h-[46px] ml-[15px] translate-y-[0.3125rem]"
+          alt="logo silantar"
+        />
+      </Link>
       <div className="flex gap-[6px] lg:gap-2 items-center justify-between">
         <button className="px-3 py-[8px] btn-white lg:text-base">
           Tentang

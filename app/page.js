@@ -39,9 +39,9 @@ export default function Home() {
             backgroundImage: `url("/home/hero-bg.png")`,
           }}
         >
-          <div className="hero-overlay bg-opacity-10 bg-[rgba(255,255,255,0.35)]"></div>
+          <div className="hero-overlay bg-opacity-10 bg-[rgba(255,255,255,0.3)]"></div>
           <div className="w-full mt-11 h-[350px] lg:h-[450px] pt-10 lg:pt-20 pl-8 pb-[46px] pr-7 flex flex-col gap-7">
-            <div className="max-w-[220px] lg:max-w  -lg lg:text-center lg:w-full lg:mx-auto">
+            <div className="max-w-[220px] lg:max-w-lg lg:text-center lg:w-full lg:mx-auto">
               <h1 className="text-shadow-primary shadow-black text-[32px] text-primary font-bold font-outline-2 lg:text-7xl">
                 SILANTAR
               </h1>
