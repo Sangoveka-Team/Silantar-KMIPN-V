@@ -2,25 +2,47 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {listDaerah, listKategori} from "@/data";
 
 const Lapor = () => {
+  const [nama, setNama] = useState("");
+  const [telp, setTelp] = useState(null);
   const [imgLocation, setImgLocation] = useState(null);
-  const [selectDaerah, setSelectDaerah] = useState("DEFAULT");
+  const [alamat, setAlamat] = useState("");
   const [kategori, setKategori] = useState("");
+  const [daerah, setDaerah] = useState("");
+  const [deskripsi, setDeskripsi] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+  const [lists, setLists] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowModal(true);
+    // document.querySelector("#kirim-lapor").reset();
+    // const resetForm = () => {
+    //   setNama("");
+    //   setTelp(0);
+    //   setImgLocation(null);
+    //   setAlamat("");
+    //   setKategori("");
+    //   setDaerah("");
+    //   setDeskripsi("");
+    // };
+    // resetForm();
   };
 
   const handleKategori = (e) => {
-    e.target.value == "" ? setDropdown(false) : setDropdown(true);
     setKategori(e.target.value);
   };
+
+  useEffect(() => {
+    let filteringLists = listKategori.filter((data) => {
+      return data.value.toLowerCase().includes(kategori.toLowerCase());
+    });
+    setLists(filteringLists);
+  }, [kategori]);
 
   return (
     <div className="bg-white w-full">
@@ -38,7 +60,11 @@ const Lapor = () => {
             Buat <span className="text-primary">Laporan</span>
           </h1>
         </div>
-        <form className="mt-7 space-y-2" onSubmit={handleSubmit}>
+        <form
+          id="kirim-lapor"
+          className="mt-7 space-y-2"
+          onSubmit={handleSubmit}
+        >
           <div className="flex flex-col gap-1">
             <label className="text-primary font-bold text-sm">Nama Anda</label>
             <div className="flex">
@@ -50,8 +76,10 @@ const Lapor = () => {
               />
               <input
                 type="text"
+                required
                 placeholder="Masukkan nama anda..."
                 className="input-lapor"
+                onChange={(e) => setNama(e.target.value)}
               />
             </div>
             <hr className="w-full h-[2px] bg-primary" />
@@ -66,9 +94,10 @@ const Lapor = () => {
               </span>
               <input
                 type="tel"
-                required={true}
+                required
                 placeholder="Masukkan nomor ponsel anda..."
                 className="input-lapor"
+                onChange={(e) => setTelp(e.target.value)}
               />
             </div>
             <hr className="w-full h-[2px] bg-primary" />
@@ -87,6 +116,7 @@ const Lapor = () => {
               <label className="w-full text-xs text-[#808080] pl-1 select-none cursor-pointer flex items-center">
                 <input
                   type="file"
+                  accept="image/*"
                   placeholder="Upload foto lokasi..."
                   className="hidden"
                   onChange={(e) => setImgLocation(e.target.files[0])}
@@ -121,8 +151,10 @@ const Lapor = () => {
               />
               <input
                 type="text"
+                required
                 placeholder="Masukkan/upload alamat lokasi..."
                 className="input-lapor"
+                onChange={(e) => setAlamat(e.target.value)}
               />
             </div>
             <hr className="w-full h-[2px] bg-primary" />
@@ -142,25 +174,27 @@ const Lapor = () => {
               <div className="w-full relative pl-[1.688rem]">
                 <input
                   type="text"
+                  required
                   placeholder="Masukkan/upload alamat lokasi..."
                   className="input-lapor"
                   onChange={handleKategori}
                   value={kategori}
+                  onFocus={() => setDropdown(true)}
+                  onBlur={() => {
+                    setTimeout(() => setDropdown(false), 100);
+                  }}
                 />
                 <ul
                   className={`dropdown-header ${
                     !dropdown ? "hidden" : "block"
-                  } max-h-20 overflow-x-hidden overflow-y-scroll shadow-md rounded-b-md`}
+                  } max-h-28 overflow-x-hidden overflow-y-scroll shadow-md rounded-b-md`}
                 >
-                  {listKategori.map((data) => (
-                    // masih belum fix fitur searching nya
+                  {lists.map((data) => (
+                    // udah fix
                     <div key={data.id}>
                       <li
                         className="dropdown-item"
-                        onClick={() => {
-                          setKategori(data.value);
-                          setDropdown(false);
-                        }}
+                        onClick={() => setKategori(data.value)}
                       >
                         {data.value}
                       </li>
@@ -198,9 +232,11 @@ const Lapor = () => {
                 height={28}
                 alt="user icon"
                 className="self-start"
+                onChange={(e) => setDeskripsi(e.target.value)}
               />
               <textarea
                 type="text"
+                required
                 placeholder="Berikan deskripsi yang jelas..."
                 className="input-lapor min-h-[4rem] max-h-16"
               />
@@ -235,7 +271,7 @@ const Lapor = () => {
                     <span className="text-primary block">dikirim!</span>
                   </h2>
                   <Image
-                    src="/lapor/Image-Modal.svg"
+                    src="/lapor/image-modal.svg"
                     width={108}
                     height={116}
                     alt="image modal lapor"
