@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {listDaerah, listKategori} from "@/data";
+import Dropdown from "@/components/lapor/Dropdown";
 
 const Lapor = () => {
   const [nama, setNama] = useState("");
@@ -14,35 +15,11 @@ const Lapor = () => {
   const [daerah, setDaerah] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
-  const [lists, setLists] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setShowModal(true);
-    // document.querySelector("#kirim-lapor").reset();
-    // const resetForm = () => {
-    //   setNama("");
-    //   setTelp(0);
-    //   setImgLocation(null);
-    //   setAlamat("");
-    //   setKategori("");
-    //   setDaerah("");
-    //   setDeskripsi("");
-    // };
-    // resetForm();
   };
-
-  const handleKategori = (e) => {
-    setKategori(e.target.value);
-  };
-
-  useEffect(() => {
-    let filteringLists = listKategori.filter((data) => {
-      return data.value.toLowerCase().includes(kategori.toLowerCase());
-    });
-    setLists(filteringLists);
-  }, [kategori]);
 
   return (
     <div className="bg-white w-full">
@@ -171,38 +148,12 @@ const Lapor = () => {
                 alt="user icon"
                 className="absolute left-0"
               />
-              <div className="w-full relative pl-[1.688rem]">
-                <input
-                  type="text"
-                  required
-                  placeholder="Masukkan/upload alamat lokasi..."
-                  className="input-lapor"
-                  onChange={handleKategori}
-                  value={kategori}
-                  onFocus={() => setDropdown(true)}
-                  onBlur={() => {
-                    setTimeout(() => setDropdown(false), 100);
-                  }}
-                />
-                <ul
-                  className={`dropdown-header ${
-                    !dropdown ? "hidden" : "block"
-                  } max-h-28 overflow-x-hidden overflow-y-scroll shadow-md rounded-b-md`}
-                >
-                  {lists.map((data) => (
-                    // udah fix
-                    <div key={data.id}>
-                      <li
-                        className="dropdown-item"
-                        onClick={() => setKategori(data.value)}
-                      >
-                        {data.value}
-                      </li>
-                      <hr className="w-full h-[0.063rem] text-[#D9D6D6]" />
-                    </div>
-                  ))}
-                </ul>
-              </div>
+              <Dropdown
+                listDatas={listKategori}
+                input={kategori}
+                setInput={setKategori}
+                placeholder={"Pilih kategori"}
+              />
             </div>
             <hr className="w-full h-[2px] bg-primary" />
           </div>
@@ -216,7 +167,13 @@ const Lapor = () => {
                 width={28}
                 height={28}
                 alt="user icon"
-                className=""
+                className="absolute left-0"
+              />
+              <Dropdown
+                listDatas={listDaerah}
+                input={daerah}
+                setInput={setDaerah}
+                placeholder={"Pilih daerah"}
               />
             </div>
             <hr className="w-full h-[2px] bg-primary" />

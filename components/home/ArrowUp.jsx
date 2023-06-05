@@ -3,12 +3,12 @@
 import Image from "next/image";
 import React, {useEffect, useState} from "react";
 
-const handleScrollToTop = () => {
-  window.scrollTo({top: 0, behavior: "smooth"});
-};
-
 const ArrowUp = () => {
   const [position, setPosition] = useState(0);
+
+  const handleScrollToTop = () => {
+    window.scrollTo({top: 0, behavior: "smooth"});
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", (e) => {
@@ -18,6 +18,7 @@ const ArrowUp = () => {
       window.removeEventListener("scroll", () => {});
     };
   }, []);
+
   return (
     <div className="relative">
       <button

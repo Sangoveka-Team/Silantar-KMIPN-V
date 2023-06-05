@@ -6,7 +6,7 @@ import NavUser from "@/public/icon/user.svg";
 
 const Navbar = () => {
   return (
-    <nav className="flex bg-primary items-center justify-between px-2 py-[7px] shadow-2xl fixed w-full">
+    <nav className="flex bg-primary items-center justify-between px-2 py-[7px] shadow-xl fixed w-full z-20">
       <Link href={"/"}>
         <Image
           src={Logo}

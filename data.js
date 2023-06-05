@@ -30,10 +30,6 @@ const listDaerah = [
     id: 3,
     value: "Martapura",
   },
-  {
-    id: 4,
-    value: "Pelaihari",
-  },
 ];
 
 export {listKategori, listDaerah};
