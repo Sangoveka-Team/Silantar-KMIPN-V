@@ -2,11 +2,11 @@ import "../globals.css";
 import FooterCopyright from "@/components/home/FooterCopyright";
 
 export const metadata = {
-  title: "Lapor",
+  title: "Sign-in",
   description: "Sistem Informasi Laporan Masyarakat",
 };
 
-export default function LaporLayout({children}) {
+export default function SignInLayout({children}) {
   return (
     <main>
       {children}

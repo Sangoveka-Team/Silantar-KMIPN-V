@@ -20,7 +20,7 @@ const Navbar = () => {
         <button className="px-3 py-[8px] btn-white lg:text-base">
           Tentang
         </button>
-        <Link href="/profile" className="pt-1" as="/profile">
+        <Link href="/sign-in" className="pt-1" as="/sign-in">
           <Image
             src={NavUser}
             width={0}

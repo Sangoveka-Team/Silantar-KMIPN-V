@@ -1,6 +1,5 @@
 import "./globals.css";
 import {Nunito} from "next/font/google";
-import Navbar from "@/components/home/Navbar";
 
 const nunito = Nunito({subsets: ["latin"]});
 
@@ -13,10 +12,7 @@ export default function RootLayout({children}) {
   return (
     <html lang="en" className="scroll-smooth" data-theme="light">
       <body className={nunito.className}>
-        <main>
-          <Navbar />
-          {children}
-        </main>
+        <main>{children}</main>
       </body>
     </html>
   );

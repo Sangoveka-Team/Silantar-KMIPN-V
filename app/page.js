@@ -1,6 +1,7 @@
 import ArrowUp from "@/components/home/ArrowUp";
 import CardLapor from "@/components/home/CardLapor";
 import Footer from "@/components/home/Footer";
+import Navbar from "@/components/home/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,6 +29,7 @@ const dataIcons = [
 export default function Home() {
   return (
     <div>
+      <Navbar />
       {/* arrow up */}
       <ArrowUp />
       {/* arrow up end*/}
