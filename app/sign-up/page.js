@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, {useState} from "react";
 
-const SignIn = () => {
+const SignUp = () => {
   const [isVisible, setIsVisible] = useState(true);
 
   return (
@@ -13,9 +13,29 @@ const SignIn = () => {
       <HeaderAuth />
       <div className="flex flex-col justify-center mt-3 max-w-[360px] mx-auto">
         <h1 className="text-[0.938rem] text-center font-bold">
-          Masuk <span className="text-primary block -mt-1">SILANTAR</span>
+          Daftar <span className="text-primary block -mt-1">SILANTAR</span>
         </h1>
         <form className="mx-[2.625rem] mt-[1.625rem] space-y-2 w-fulls">
+          <div className="flex flex-col">
+            <label className="text-primary font-bold text-sm">
+              Nama Lengkap
+            </label>
+            <div className="flex">
+              <Image
+                src="/icon/user-green.svg"
+                width={28}
+                height={28}
+                alt="user icon"
+              />
+              <input
+                type="text"
+                required
+                placeholder="Masukkan nama lengkap anda..."
+                className="input-lapor"
+              />
+            </div>
+            <hr className="w-full h-[2px] bg-primary" />
+          </div>
           <div className="flex flex-col">
             <label className="text-primary font-bold text-sm">Akun Email</label>
             <div className="flex">
@@ -29,6 +49,26 @@ const SignIn = () => {
                 type="email"
                 required
                 placeholder="Masukkan email anda..."
+                className="input-lapor"
+              />
+            </div>
+            <hr className="w-full h-[2px] bg-primary" />
+          </div>
+          <div className="flex flex-col">
+            <label className="text-primary font-bold text-sm">
+              Nomor Ponsel
+            </label>
+            <div className="flex">
+              <Image
+                src="/icon/phone.svg"
+                width={24}
+                height={24}
+                alt="phone icon"
+              />
+              <input
+                type="tel"
+                required
+                placeholder="Masukkan nomor ponsel anda..."
                 className="input-lapor"
               />
             </div>
@@ -68,18 +108,15 @@ const SignIn = () => {
             <hr className="w-full h-[2px] bg-primary" />
           </div>
           <button type="submit" className="btn-green py-3 w-full">
-            Masuk
+            Daftar
           </button>
           <div className="flex gap-[51px] text-xs font-bold">
             <span>
-              Belum punya akun?{" "}
-              <Link href="/sign-up" className="text-primary">
-                Daftar
+              Sudah punya akun?{" "}
+              <Link href="/sign-in" className="text-primary">
+                Masuk
               </Link>
             </span>
-            <Link href="/forgot-password" className="text-primary">
-              Lupa sandi?
-            </Link>
           </div>
           <div className="flex items-center text-xs font-bold gap-1">
             <Link
@@ -96,4 +133,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
