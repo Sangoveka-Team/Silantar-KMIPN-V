@@ -1,3 +1,5 @@
+import NavbarDashboard from "@/components/dashboard/NavbarDashboard";
+import Sidebar from "@/components/dashboard/Sidebar";
 import "../globals.css";
 
 export const metadata = {
@@ -6,5 +8,13 @@ export const metadata = {
 };
 
 export default function DashboardLayout({children}) {
-  return <main>{children}</main>;
+  return (
+    <section className="bg-[#D9D9D9]">
+      <div className="flex relative">
+        <Sidebar />
+        <NavbarDashboard />
+        {children}
+      </div>
+    </section>
+  );
 }

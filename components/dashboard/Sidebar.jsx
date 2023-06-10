@@ -2,73 +2,127 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import {usePathname, useRouter} from "next/navigation";
 import React, {useState} from "react";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const pathname = usePathname();
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
 
-  // w-[13.438rem]
   return (
     <div
-      className={`bg-primary pt-2 px-3  ${
+      className={`bg-primary pt-2 px-3 z-20 ${
         isOpen ? "w-[13.438rem]" : "w-12"
       } h-screen`}
     >
       <button onClick={() => setIsOpen((prev) => !prev)}>
-        <Image src="/icon/align-left.svg" width={24} height={24} />
+        <Image
+          src="/icon/align-left.svg"
+          width={24}
+          height={24}
+          alt="align-left icon"
+        />
       </button>
       <ul className="flex flex-col gap-5">
         <li>
           <Link href="/dashboard" className="flex items-center gap-[0.313rem]">
-            <Image src="/icon/home-black.svg" width={24} height={24} />
+            <Image
+              src={`/icon/${
+                pathname === "/dashboard" ? "home-black" : "home"
+              }.svg`}
+              width={24}
+              height={24}
+              alt="dashboard icon"
+            />
             <span
-              className={`font-bold text-[0.938rem] text-black ${
-                isOpen ? "block" : "hidden"
-              }`}
+              className={`font-bold text-[0.938rem] ${
+                pathname === "/dashboard" ? "text-black" : "text-white"
+              } ${isOpen ? "block" : "hidden"}`}
             >
               Dashboard
             </span>
           </Link>
         </li>
         <li>
-          <Link href="/dashboard" className="flex items-center gap-[0.313rem]">
-            <Image src="/icon/add.svg" width={24} height={24} />
+          <Link
+            href="/dashboard/tambah-laporan"
+            className="flex items-center gap-[0.313rem]"
+          >
+            <Image
+              src={`/icon/${
+                pathname === "/dashboard/tambah-laporan" ? "add-black" : "add"
+              }.svg`}
+              width={24}
+              height={24}
+              alt="tambah-laporan icon"
+            />
             <span
-              className={`font-bold text-[0.938rem] text-white ${
-                isOpen ? "block" : "hidden"
-              }`}
+              className={`font-bold text-[0.938rem] ${
+                pathname === "/dashboard/tambah-laporan"
+                  ? "text-black"
+                  : "text-white"
+              } ${isOpen ? "block" : "hidden"}`}
             >
-              Buat Laporan
+              Tambah Laporan
             </span>
           </Link>
         </li>
         <li>
-          <Link href="/dashboard" className="flex items-center gap-[0.313rem]">
-            <Image src="/icon/clock.svg" width={24} height={24} />
+          <Link
+            href="/dashboard/riwayat"
+            className="flex items-center gap-[0.313rem]"
+          >
+            <Image
+              src={`/icon/${
+                pathname === "/dashboard/riwayat" ? "clock-black" : "clock"
+              }.svg`}
+              width={24}
+              height={24}
+              alt="riwayat icon"
+            />
             <span
-              className={`font-bold text-[0.938rem] text-white ${
-                isOpen ? "block" : "hidden"
-              }`}
+              className={`font-bold text-[0.938rem] ${
+                pathname === "/dashboard/riwayat" ? "text-black" : "text-white"
+              } ${isOpen ? "block" : "hidden"}`}
             >
               Riwayat Laporan
             </span>
           </Link>
         </li>
         <li>
-          <Link href="/dashboard" className="flex items-center gap-[0.313rem]">
-            <Image src="/icon/user.svg" width={24} height={24} />
+          <Link
+            href="/dashboard/profil"
+            className="flex items-center gap-[0.313rem]"
+          >
+            <Image
+              src={`/icon/${
+                pathname === "/dashboard/profil" ? "user-black" : "user"
+              }.svg`}
+              width={24}
+              height={24}
+              alt="profil icon"
+            />
             <span
-              className={`font-bold text-[0.938rem] text-white ${
-                isOpen ? "block" : "hidden"
-              }`}
+              className={`font-bold text-[0.938rem] ${
+                pathname === "/dashboard/profil" ? "text-black" : "text-white"
+              } ${isOpen ? "block" : "hidden"}`}
             >
               Profil Pengguna
             </span>
           </Link>
         </li>
         <li>
-          <Link href="/dashboard" className="flex items-center gap-[0.313rem]">
-            <Image src="/icon/fold.svg" width={24} height={24} />
+          <button
+            className="flex items-center gap-[0.313rem]"
+            onClick={() => router.push("/sign-in")}
+          >
+            <Image
+              src="/icon/fold.svg"
+              width={24}
+              height={24}
+              alt="log-out icon"
+            />
             <span
               className={`font-bold text-[0.938rem] text-white ${
                 isOpen ? "block" : "hidden"
@@ -76,7 +130,7 @@ const Sidebar = () => {
             >
               Log-Out
             </span>
-          </Link>
+          </button>
         </li>
       </ul>
     </div>

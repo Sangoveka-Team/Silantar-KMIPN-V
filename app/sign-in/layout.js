@@ -8,9 +8,9 @@ export const metadata = {
 
 export default function SignInLayout({children}) {
   return (
-    <main>
+    <section>
       {children}
       <FooterCopyright />
-    </main>
+    </section>
   );
 }

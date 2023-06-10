@@ -8,9 +8,9 @@ export const metadata = {
 
 export default function SignUpLayout({children}) {
   return (
-    <main>
+    <section>
       {children}
       <FooterCopyright />
-    </main>
+    </section>
   );
 }

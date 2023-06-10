@@ -1,12 +1,13 @@
-import NavbarDashboard from "@/components/dashboard/NavbarDashboard";
-import Sidebar from "@/components/dashboard/Sidebar";
+"use client";
+
 import React from "react";
 
 const Dashboard = () => {
   return (
-    <div className="bg-[#D9D9D9] h-64 w-full">
-      {/* <NavbarDashboard /> */}
-      <Sidebar />
+    <div className="mt-10 absolute pl-12">
+      <div className="px-2 py-[0.375rem] w-full">
+        <h1 className="font-bold text-[0.938rem]">Dashboard</h1>
+      </div>
     </div>
   );
 };
