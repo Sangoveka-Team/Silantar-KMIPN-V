@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {usePathname, useRouter} from "next/navigation";
-import React, {useState} from "react";
+import {useState} from "react";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -14,7 +14,7 @@ const Sidebar = () => {
     <div
       className={`bg-primary pt-2 px-3 z-20 ${
         isOpen ? "w-[13.438rem]" : "w-12"
-      } h-screen`}
+      } h-screen absolute`}
     >
       <button onClick={() => setIsOpen((prev) => !prev)}>
         <Image

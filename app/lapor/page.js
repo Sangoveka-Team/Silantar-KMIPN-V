@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, {useState} from "react";
+import {useState} from "react";
 import {listDaerah, listKategori} from "@/data";
 import Dropdown from "@/components/lapor/Dropdown";
 import Navbar from "@/components/home/Navbar";

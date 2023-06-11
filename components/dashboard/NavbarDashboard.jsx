@@ -1,9 +1,8 @@
 import Image from "next/image";
-import React from "react";
 
 const NavbarDashboard = () => {
   return (
-    <div className="flex w-full justify-between items-center py-[0.438rem] pr-[0.375rem] bg-white h-[39px] absolute pl-[54px]">
+    <div className="flex w-full justify-between items-center py-[0.438rem] pr-[0.375rem] bg-white h-[39px] pl-[54px]">
       <div className="flex gap-[0.188rem] items-center">
         <Image
           src="/icon/logo.svg"

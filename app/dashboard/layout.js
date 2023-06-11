@@ -9,8 +9,8 @@ export const metadata = {
 
 export default function DashboardLayout({children}) {
   return (
-    <section className="bg-[#D9D9D9]">
-      <div className="flex relative">
+    <section className="bg-[#D0D0D0]">
+      <div className="relative">
         <Sidebar />
         <NavbarDashboard />
         {children}

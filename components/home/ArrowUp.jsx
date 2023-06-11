@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 
 const ArrowUp = () => {
   const [position, setPosition] = useState(0);

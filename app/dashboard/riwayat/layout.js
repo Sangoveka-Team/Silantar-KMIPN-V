@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default function RiwayatLayout({children}) {
-  return <section>{children}</section>;
+  return <div className="ml-12">{children}</div>;
 }

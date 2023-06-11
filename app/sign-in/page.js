@@ -3,7 +3,7 @@
 import HeaderAuth from "@/components/HeaderAuth";
 import Image from "next/image";
 import Link from "next/link";
-import React, {useState} from "react";
+import {useState} from "react";
 
 const SignIn = () => {
   const [isVisible, setIsVisible] = useState(true);
