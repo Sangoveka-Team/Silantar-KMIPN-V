@@ -79,7 +79,7 @@ const Dashboard = () => {
               <span className="text-[1.563rem] pl-[0.563rem]">0</span>
               <span className="text-[0.938rem]">Belum Diproses</span>
               <Image
-                src="/icon/info.svg"
+                src="/icon/Info.svg"
                 width={40}
                 height={36}
                 alt="vector icon"
@@ -101,7 +101,8 @@ const Dashboard = () => {
         </div>
         {/* statistik end*/}
         {/* poin */}
-        <div className="w-full mt-[0.688rem]">
+        {/* ------poin fiturnya masih belum dipakai------ */}
+        {/* <div className="w-full mt-[0.688rem]">
           <div className="flex items-center">
             <Image
               src="/icon/verified.svg"
@@ -138,11 +139,11 @@ const Dashboard = () => {
               <span>Laporan dengan foto: 15 point</span>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* poin end */}
 
         {/* laporan terakhir */}
-        {/* <div className="w-full mt-[0.438rem]">
+        <div className="w-full mt-[0.438rem]">
           <div className="flex items-center">
             <Image
               src="/icon/clock-green.svg"
@@ -155,7 +156,7 @@ const Dashboard = () => {
               Laporan <span className="text-primary">Terakhir</span>
             </h2>
           </div>
-          <div className="mt-2 flex py-[0.813rem] pl-[0.813rem] pr-[0.625rem] bg-white border-2 border-primary shadow-xl rounded-xl">
+          <div className="mt-2 flex py-[0.813rem] pl-[0.813rem] pr-[0.625rem] bg-white border-2 border-primary shadow-xl rounded-xl w-[18.375rem]">
             <div className="w-[5.063rem] h-[7.375rem] mr-[0.563rem]">
               <Image
                 src="/dashboard/lapor-image.png"
@@ -165,17 +166,52 @@ const Dashboard = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <span className="w-1 h-full bg-[#D9D9D9] block"></span>
+            <hr className="w-[0.063rem] h-[7.375rem] bg-[#D9D9D9]" />
             <div className="ml-[0.563rem] text-[0.5rem]">
-              <p>
-                Kategori Laporan{" "}
-                <span className="line-clamp-1 text-primary">
-                  : Pencemaran Lingkungan
+              <p className="line-clamp-1">
+                Kategori Laporan
+                <span className="pl-[0.313rem]">:</span>
+                <span className="pl-[0.438rem] line-clamp-1 text-primary inline ">
+                  Pencemaran Lingkungan
                 </span>
               </p>
+              <p className="line-clamp-1">
+                Alamat Lokasi
+                <span className="pl-[0.938rem]">:</span>
+                <span className="pl-[0.438rem]  text-primary w-[93px]">
+                  Komp. Gerilya Cermai Satu no 85
+                </span>
+              </p>
+              <p className="line-clamp-1">
+                Tanggal Laporan
+                <span className="pl-[0.375rem]">:</span>
+                <span className="pl-[0.438rem]  text-primary w-[93px]">
+                  06-05-2023
+                </span>
+              </p>
+              <div className="flex">
+                <p className="h-8">Deskripsi Laporan</p>
+                <span className="pl-[0.125rem]">:</span>
+                <span className="pl-[0.438rem]  text-primary w-[93px] line-clamp-3">
+                  Sampah menumpuk disungai, tidak adanya palang pemberitahuan
+                  bahwa adaa
+                </span>
+              </div>
+              <div className="flex">
+                <p className="font-bold">Status</p>
+                <span className="pl-[2.625rem]">:</span>
+                <span className="ml-[0.438rem] bg-[#C6DAFF] text-[#276EF1] rounded-xl px-[0.375rem] py-[0.188rem] text-[0.313rem] font-bold">
+                  Belum Diproses
+                </span>
+              </div>
+              <div className="flex justify-end mt-3">
+                <button className="btn-green text-[0.5rem] rounded-[0.313rem] py-[1px] px-[5px] self-end">
+                  Selengkapnya
+                </button>
+              </div>
             </div>
           </div>
-        </div> */}
+        </div>
         {/* laporan terakhir end*/}
       </div>
     </div>

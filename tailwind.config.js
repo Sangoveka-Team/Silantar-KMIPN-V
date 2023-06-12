@@ -11,9 +11,11 @@ module.exports = {
     extend: {
       backgroundColor: {
         primary: "#00A94A",
+        hoverPrimary: "#009441",
       },
       colors: {
         primary: "#00A94A",
+        hoverPrimary: "#009441",
       },
       textShadow: {
         sm: "0 1px 2px var(--tw-shadow-color)",
