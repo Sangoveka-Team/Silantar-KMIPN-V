@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {usePathname, useRouter} from "next/navigation";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 const Sidebar = () => {
   const pathname = usePathname();

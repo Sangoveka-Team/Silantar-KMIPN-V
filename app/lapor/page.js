@@ -43,7 +43,7 @@ const Lapor = () => {
           </div>
           <form
             id="kirim-lapor"
-            className="mt-7 space-y-2"
+            className="mt-7 flex flex-col gap-[0.625rem]"
             onSubmit={handleSubmit}
           >
             <div className="flex flex-col gap-1">
@@ -220,6 +220,7 @@ const Lapor = () => {
           titleChildren="dikirim!"
           text="Terima kasih telah melapor! Untuk mengakses fitur-fitur website kami yang lainnya, silahkan dengan klik tombol dibawah ini."
           textButton="Mau Daftar!"
+          link={true}
         />
       </div>
     </div>

@@ -8,6 +8,7 @@ const Modal = ({
   titleChildren,
   text,
   textButton,
+  link,
 }) => {
   return (
     <>
@@ -39,12 +40,23 @@ const Modal = ({
                     className="self-center mt-3 mb-[0.313rem]"
                   />
                   <p className="font-bold text-[0.625rem] mb-2">{text}</p>
-                  <Link
-                    href="/sign-up"
-                    className="btn-green py-[0.625rem] px-[1.188rem] w-[7.625rem] self-center text-center"
-                  >
-                    {textButton}
-                  </Link>
+
+                  {link ? (
+                    <Link
+                      href="/sign-up"
+                      className="btn-green py-[0.625rem] px-[1.188rem] w-[7.625rem] self-center text-center"
+                    >
+                      {textButton}
+                    </Link>
+                  ) : (
+                    <button
+                      href="/sign-up"
+                      className="btn-green py-[0.625rem] px-[1.188rem] w-[7.625rem] self-center text-center"
+                      onClick={() => setShowModal(false)}
+                    >
+                      {textButton}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
