@@ -20,36 +20,38 @@ const SignUp = () => {
             <label className="text-primary font-bold text-sm">
               Nama Lengkap
             </label>
-            <div className="flex">
+            <div className="flex relative">
               <Image
                 src="/icon/user-green.svg"
-                width={28}
-                height={28}
+                width={24}
+                height={24}
                 alt="user icon"
+                className="absolute left-0"
               />
               <input
                 type="text"
                 required
                 placeholder="Masukkan nama lengkap anda..."
-                className="input-lapor"
+                className="input-lapor pl-[1.688rem]"
               />
             </div>
             <hr className="w-full h-[2px] bg-primary" />
           </div>
           <div className="flex flex-col">
             <label className="text-primary font-bold text-sm">Akun Email</label>
-            <div className="flex">
+            <div className="flex relative">
               <Image
                 src="/icon/mail.svg"
-                width={28}
-                height={28}
+                width={24}
+                height={24}
                 alt="mail icon"
+                className="absolute left-0"
               />
               <input
                 type="email"
                 required
                 placeholder="Masukkan email anda..."
-                className="input-lapor"
+                className="input-lapor pl-[1.688rem]"
               />
             </div>
             <hr className="w-full h-[2px] bg-primary" />
@@ -58,56 +60,74 @@ const SignUp = () => {
             <label className="text-primary font-bold text-sm">
               Nomor Ponsel
             </label>
-            <div className="flex">
+            <div className="flex relative">
               <Image
                 src="/icon/phone.svg"
-                width={24}
-                height={24}
+                width={20}
+                height={20}
                 alt="phone icon"
+                className="absolute left-0"
               />
               <input
                 type="tel"
                 required
                 placeholder="Masukkan nomor ponsel anda..."
-                className="input-lapor"
+                className="input-lapor pl-[1.625rem]"
               />
             </div>
             <hr className="w-full h-[2px] bg-primary" />
           </div>
           <div className="flex flex-col gap-1">
             <label className="text-primary font-bold text-sm">Kata Sandi</label>
-            <div className="flex">
+            <div className="flex relative">
               <Image
                 src="/icon/lock-close.svg"
-                width={28}
-                height={28}
+                width={24}
+                height={24}
                 alt="password icon"
+                className="absolute left-0"
               />
-              <div className="relative w-full">
+              <div className="relative w-full  pl-6">
                 <input
                   type={!isVisible ? "text" : "password"}
                   required
                   placeholder="Masukkan kata sandi anda..."
                   className="input-lapor"
                 />
-                <button
-                  className="absolute right-0 top-0 z-0"
-                  type="button"
-                  onClick={() => setIsVisible((prev) => !prev)}
-                >
+                <label className="swap absolute right-0 top-0 z-0">
+                  <input
+                    type="checkbox"
+                    onChange={(e) =>
+                      e.target.checked
+                        ? setIsVisible(false)
+                        : setIsVisible(true)
+                    }
+                  />
+                  {/* password visible */}
                   <Image
                     src="/icon/visible.svg"
-                    width={28}
-                    height={28}
+                    width={24}
+                    height={24}
                     alt="visible icon"
-                    className={!isVisible ? "opacity-50" : ""}
+                    className="swap-on"
                   />
-                </button>
+                  {/* password invisible*/}
+                  <Image
+                    src="/icon/invisible.svg"
+                    width={24}
+                    height={24}
+                    alt="invisible icon"
+                    className="swap-off"
+                  />
+                </label>
               </div>
             </div>
             <hr className="w-full h-[2px] bg-primary" />
           </div>
-          <button type="submit" className="btn-green py-3 w-full">
+          <button
+            type="submit"
+            className="btn btn-green btn-xs w-full text-xs h-9"
+          >
             Daftar
           </button>
           <div className="flex gap-[51px] text-xs font-bold">
@@ -121,7 +141,7 @@ const SignUp = () => {
           <div className="flex items-center text-xs font-bold gap-1">
             <Link
               href="/"
-              className="btn-green p-[6px] rounded-xs hover:bg-primary"
+              className="btn btn-green btn-xs h-9 w-9 p-[6px] rounded-xs"
             >
               <Image src="/icon/chevron-left.svg" width={28} height={28} />
             </Link>

@@ -58,11 +58,14 @@ export default function Home() {
             <div className="self-end lg:self-center flex gap-[10px]">
               <a
                 href="#cara-lapor"
-                className="self-center btn-white px-[9px] py-2 text-xl border-primary"
+                className="btn btn-white border-primary hover:border-primary box-border btn-xs w-[123px] h-10 text-[0.938rem]"
               >
                 Cara melapor?
               </a>
-              <Link href="/lapor" className="btn-green px-[18px] py-2 text-xl">
+              <Link
+                href="/lapor"
+                className="btn btn-green btn-xs w-[82px] h-10 text-xl"
+              >
                 Lapor!
               </Link>
             </div>
@@ -117,7 +120,7 @@ export default function Home() {
                       src={`/icon/${value.img}`}
                       width={0}
                       height={0}
-                      className="self-center w-[85px] h-[61px] sm:w-32 lg:w-44"
+                      className="self-center w-[85px] h-[61px] sm:w-32 lg:w-44 pointer-events-none"
                       alt={value.img}
                     />
                     <p className="text-black text-xs w-[88px] pt-2 lg:w-36 lg:text-base">

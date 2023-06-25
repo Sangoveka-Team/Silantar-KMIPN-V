@@ -68,7 +68,9 @@ const Footer = () => {
           type="text"
           className="input w-[101px] h-5 bg-white text-black text-xs"
         />
-        <button className="btn-green py-1 px-3 ">Kirim</button>
+        <button className="btn btn-green btn-xs w-[48px] h-5 text-[0.625rem]">
+          Kirim
+        </button>
       </div>
       <FooterCopyright />
     </footer>

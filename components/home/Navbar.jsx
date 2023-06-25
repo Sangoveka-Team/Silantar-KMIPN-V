@@ -9,22 +9,25 @@ const Navbar = () => {
       <Link href={"/"}>
         <Image
           src={Logo}
-          width={0}
-          height={0}
-          className="w-[46px] h-[46px] ml-[15px] translate-y-[0.3125rem]"
+          width={35}
+          height={35}
+          className="ml-[15px] translate-y-[0.3125rem]"
           alt="logo silantar"
         />
       </Link>
       <div className="flex gap-[6px] lg:gap-2 items-center justify-between">
-        <button className="px-3 py-[8px] btn-white lg:text-base">
+        <a
+          href="#"
+          className="btn btn-xs h-7 w-[61px] text-[0.625rem] btn-white lg:text-base"
+        >
           Tentang
-        </button>
+        </a>
         <Link href="/sign-in" className="pt-1" as="/sign-in">
           <Image
             src={NavUser}
-            width={0}
-            height={0}
-            className="w-[35px] lg:w-10 lg:h-10"
+            width={24}
+            height={24}
+            className="lg:w-10 lg:h-10 -mt-1"
             alt="user image"
           />
         </Link>
