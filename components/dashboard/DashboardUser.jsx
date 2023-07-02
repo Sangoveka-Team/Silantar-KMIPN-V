@@ -6,16 +6,11 @@ const DashboardUser = () => {
     <div className="px-2 py-[0.375rem] w-full relative">
       <h1 className="font-bold text-[0.938rem]">Dashboard</h1>
       <DropdownInfo
-        title="Di Dashboard ini anda dapat memantau status laporan yang anda buat,
-        yang sedang diproses, sudah selesai, ataupun tertolak. Anda juga
-        dapat mengelola akun anda."
-        headingGreen={true}
-        headingGreenText={{
-          title: "Selamat datang di dashboard anda,",
-          name: "Aryo Suryono",
-        }}
-        titleWidth={213}
+        title="Selamat datang di dashboard anda, Aryo Suryono!"
+        text="Di Dashboard ini anda dapat memantau status laporan yang anda buat, yang sedang diproses, sudah selesai, ataupun tertolak. Anda juga dapat mengelola akun anda."
+        width={280}
       />
+
       {/* statistik */}
       <div className="w-full mt-11">
         <div className="flex items-center">
@@ -81,43 +76,43 @@ const DashboardUser = () => {
       {/* poin */}
       {/* ------poin fiturnya masih belum dipakai------ */}
       {/* <div className="w-full mt-[0.688rem]">
-    <div className="flex items-center">
-      <Image
-        src="/icon/verified.svg"
-        width={19}
-        height={16}
-        alt="Point icon"
-        className="inline"
-      />
-      <h2 className="font-bold text-xs">
-        Poin <span className="text-primary">Laporan</span>
-      </h2>
-    </div>
-    <div className="py-4 pl-4 pr-[1.438rem] bg-white border-2 border-primary rounded-xl flex flex-col w-[18.375rem] mt-2">
-      <button className="self-end text-primary">Selengkapnya</button>
-      <div className="font-bold -mt-2">
-        <Image
-          src="/icon/award.svg"
-          width={24}
-          height={24}
-          alt="Point icon"
-          className="inline"
-        />
-        <span className="text-xs">
-          Poin anda: <span className="text-primary">65</span>
-        </span>
-        <p className="text-[0.625rem] pl-[0.313rem] pt-[0.188rem] w-[13.375rem]">
-          Anda dapat melakukan penukaran poin-poin dengan
-          menghubungi/mendatangi kelurahan terdekat. Pastikan bukti berupa
-          foto dashboard anda.
-        </p>
-      </div>
-      <div className="text-[0.625rem] text-[#808080] flex flex-col text-end -mt-[0.375rem]">
-        <span>Laporan tanpa foto: 10 point</span>
-        <span>Laporan dengan foto: 15 point</span>
-      </div>
-    </div>
-  </div> */}
+        <div className="flex items-center">
+          <Image
+            src="/icon/verified.svg"
+            width={19}
+            height={16}
+            alt="Point icon"
+            className="inline"
+          />
+          <h2 className="font-bold text-xs">
+            Poin <span className="text-primary">Laporan</span>
+          </h2>
+        </div>
+        <div className="py-4 pl-4 pr-[1.438rem] bg-white border-2 border-primary rounded-xl flex flex-col w-[18.375rem] mt-2">
+          <button className="self-end text-primary">Selengkapnya</button>
+          <div className="font-bold -mt-2">
+            <Image
+              src="/icon/award.svg"
+              width={24}
+              height={24}
+              alt="Point icon"
+              className="inline"
+            />
+            <span className="text-xs">
+              Poin anda: <span className="text-primary">65</span>
+            </span>
+            <p className="text-[0.625rem] pl-[0.313rem] pt-[0.188rem] w-[13.375rem]">
+              Anda dapat melakukan penukaran poin-poin dengan
+              menghubungi/mendatangi kelurahan terdekat. Pastikan bukti berupa
+              foto dashboard anda.
+            </p>
+          </div>
+          <div className="text-[0.625rem] text-[#808080] flex flex-col text-end -mt-[0.375rem]">
+            <span>Laporan tanpa foto: 10 point</span>
+            <span>Laporan dengan foto: 15 point</span>
+          </div>
+        </div>
+      </div> */}
       {/* poin end */}
 
       {/* laporan terakhir */}
@@ -183,7 +178,7 @@ const DashboardUser = () => {
               </span>
             </div>
             <div className="flex justify-end mt-3">
-              <button className="btn-green text-[0.5rem] rounded-[0.313rem] py-[1px] px-[5px] self-end">
+              <button className="btn btn-green btn-xs text-[0.5rem] rounded-[0.313rem] py-1 px-[6px] w-[66px]">
                 Selengkapnya
               </button>
             </div>

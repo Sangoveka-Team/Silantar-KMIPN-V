@@ -2,7 +2,7 @@ import DashboardUser from "@/components/dashboard/DashboardUser";
 
 const Dashboard = () => {
   return (
-    <div className="ml-12">
+    <div>
       <DashboardUser />
     </div>
   );

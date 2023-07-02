@@ -22,7 +22,7 @@ const TambahLaporan = () => {
   };
 
   return (
-    <div className="pt-[0.375rem] pl-2 pr-[0.375rem]">
+    <div className="pt-[0.375rem] pl-2 pr-[0.375rem] relative">
       <Modal
         setShowModal={setShowModal}
         showModal={showModal}
@@ -35,12 +35,11 @@ const TambahLaporan = () => {
         Buat <span className="text-primary">Laporan</span>
       </h1>
       <DropdownInfo
-        heading="Halaman membuat laporan!"
-        title="Di Dashboard ini anda dapat memantau status laporan yang anda buat,
+        title="Halaman membuat laporan!"
+        text="Di Dashboard ini anda dapat memantau status laporan yang anda buat,
         yang sedang diproses, sudah selesai, ataupun tertolak. Anda juga
         dapat mengelola akun anda."
-        headingWidth={165}
-        titleWidth={213}
+        width={183}
       />
 
       <div className="mt-[3.25rem] flex flex-col gap-[0.938rem]">

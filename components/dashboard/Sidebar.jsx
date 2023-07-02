@@ -16,19 +16,19 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`bg-primary pt-2 px-3 z-20 ${
+      className={`bg-primary pt-2 px-3 z-[999] ${
         isOpen ? "w-[13.438rem]" : "w-12"
-      } h-full absolute`}
+      } h-full fixed`}
     >
-      <button onClick={() => setIsOpen((prev) => !prev)}>
+      <Link href="/">
         <Image
-          src="/icon/align-left.svg"
-          width={24}
-          height={24}
-          alt="align-left icon"
+          src="/logo-silantar.svg"
+          width={25}
+          height={25}
+          alt="logo icon"
         />
-      </button>
-      <ul className="flex flex-col gap-5">
+      </Link>
+      <ul className="flex flex-col gap-5 mt-2">
         <li>
           <Link href="/dashboard" className="flex items-center gap-[0.313rem]">
             <Image

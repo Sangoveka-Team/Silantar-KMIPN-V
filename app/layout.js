@@ -1,7 +1,11 @@
 import "./globals.css";
-import {Nunito} from "next/font/google";
+import {Nunito, Poppins} from "next/font/google";
 
 const nunito = Nunito({subsets: ["latin"]});
+// const poppins = Poppins({
+//   subsets: ["latin"],
+//   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+// });
 
 export const metadata = {
   title: "SILANTAR",

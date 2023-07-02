@@ -11,9 +11,9 @@ export const metadata = {
 export default function DashboardLayout({children}) {
   return (
     <section className="bg-[#D0D0D0]">
-      <div className="relative min-h-[800px]">
+      <Sidebar />
+      <div className="relative min-h-[800px] pl-12 overflow-hidden">
         <AddButton />
-        <Sidebar />
         <NavbarDashboard />
         {children}
         <footer className="bg-[#808080] pl-[55px] text-white text-[0.5rem] h-[1.313rem] flex items-center  absolute bottom-0 w-full z-0">

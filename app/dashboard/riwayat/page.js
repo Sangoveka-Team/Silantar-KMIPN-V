@@ -9,12 +9,18 @@ const Riwayat = () => {
       <h1 className="text-[0.938rem] font-bold">
         Riwayat <span className="text-primary">Laporan</span>
       </h1>
-      <DropdownInfo
+      {/* <DropdownInfo
         heading="Halaman riwayat laporan anda!"
         title="Anda dapat melihat kembali laporan-laporan yang telah anda buat
           sebelumnya dan melihat detail-detailnya!"
         titleWidth={183}
-        headingWidth={183}
+        width={203}
+        right={true}
+      /> */}
+      <DropdownInfo
+        title="Halaman riwayat laporan anda!"
+        text="Anda dapat melihat kembali laporan-laporan yang telah anda buat sebelumnya dan melihat detail-detailnya!"
+        width={195}
       />
       <DropdownLaporan />
       <div className="mt-[75px] w-full flex gap-[0.375rem]">
@@ -84,7 +90,7 @@ const Riwayat = () => {
             </span>
           </div>
           <div className="flex justify-end mt-3">
-            <button className="btn-green text-[0.5rem] rounded-[0.313rem] py-[1px] px-[5px] self-end">
+            <button className="btn btn-green btn-xs text-[0.5rem] rounded-[0.313rem] py-1 px-[6px] h-[19px] w-[66px]">
               Selengkapnya
             </button>
           </div>
@@ -142,7 +148,7 @@ const Riwayat = () => {
               </span>
             </div>
             <div className="flex justify-end mt-3">
-              <button className="btn-green text-[0.5rem] rounded-[0.313rem] py-[1px] px-[5px] self-end">
+              <button className="btn btn-green btn-xs text-[0.5rem] rounded-[0.313rem] py-1 px-[6px] h-[19px] w-[66px]">
                 Selengkapnya
               </button>
             </div>
@@ -197,7 +203,7 @@ const Riwayat = () => {
               </span>
             </div>
             <div className="flex justify-end mt-3">
-              <button className="btn-green text-[0.5rem] rounded-[0.313rem] py-[1px] px-[5px] self-end">
+              <button className="btn btn-green btn-xs text-[0.5rem] rounded-[0.313rem] py-1 px-[6px] h-[19px] w-[66px]">
                 Selengkapnya
               </button>
             </div>
