@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import {useState} from "react";
+import Modal from "../Modal";
 
 const FormProfil = () => {
   const [img, setImg] = useState(null);
@@ -9,14 +10,22 @@ const FormProfil = () => {
   const [tel, setTel] = useState("083982478246");
   const [email, setEmail] = useState("Aryo.S@gmail.com");
   const [password, setPassword] = useState("barangja");
+  const [showModal, setShowModal] = useState(false);
 
   const handleImage = (e) => {
     const data = e.target.files[0];
     setImg(URL.createObjectURL(data));
+    setShowModal(true);
   };
 
   return (
-    <div className="mt-[49px] py-3 px-[9px] w-[294px] bg-white border border-primary rounded-[5px] xs:mx-auto">
+    <div className="mt-[49px] py-3 px-[9px] w-[294px] bg-white border border-primary rounded-[5px] xs:mx-auto sm:mx-16">
+      <Modal
+        setShowModal={setShowModal}
+        showModal={showModal}
+        titleChildren="Tersimpan!"
+        textButton="Bagus!"
+      />
       <div className="flex justify-center w-full">
         <div className="avatar relative">
           <label className="absolute w-[117px] overflow-hidden z-50 h-full rounded-full flex items-center justify-center cursor-pointer">

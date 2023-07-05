@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="flex gap-[6px] lg:gap-2 items-center justify-between">
         <a
           href="#"
-          className="btn btn-xs h-7 w-[61px] text-[0.625rem] btn-white lg:text-base"
+          className="btn btn-xs h-7 w-[61px] text-[0.625rem] btn-white"
         >
           Tentang
         </a>

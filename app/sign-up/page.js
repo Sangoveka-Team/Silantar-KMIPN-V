@@ -1,12 +1,18 @@
 "use client";
 
 import HeaderAuth from "@/components/HeaderAuth";
+import {useUserContext} from "@/contexts/UserContext";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import {useState} from "react";
 
 const SignUp = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const {session, setSession} = useUserContext();
+  if (session) {
+    redirect("/dashboard");
+  }
 
   return (
     <div className="max-w-xl mx-auto w-full h-[640px]">

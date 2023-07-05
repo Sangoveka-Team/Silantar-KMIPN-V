@@ -1,5 +1,6 @@
 import "./globals.css";
 import {Nunito, Poppins} from "next/font/google";
+import {UserContextProvider} from "@/contexts/UserContext";
 
 const nunito = Nunito({subsets: ["latin"]});
 // const poppins = Poppins({
@@ -16,7 +17,9 @@ export default function RootLayout({children}) {
   return (
     <html lang="en" className="scroll-smooth" data-theme="light">
       <body className={nunito.className}>
-        <main>{children}</main>
+        <main>
+          <UserContextProvider>{children}</UserContextProvider>
+        </main>
       </body>
     </html>
   );

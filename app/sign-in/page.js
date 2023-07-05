@@ -1,12 +1,18 @@
 "use client";
 
 import HeaderAuth from "@/components/HeaderAuth";
+import {useUserContext} from "@/contexts/UserContext";
 import Image from "next/image";
 import Link from "next/link";
+import {redirect} from "next/navigation";
 import {useState} from "react";
 
 const SignIn = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const {session, setSession} = useUserContext();
+  if (session) {
+    redirect("/dashboard");
+  }
 
   return (
     <div className="max-w-xl mx-auto w-full h-[640px]">
@@ -84,6 +90,12 @@ const SignIn = () => {
           </div>
           <button
             type="submit"
+            onClick={() =>
+              setSession({
+                user: false,
+                superAdmin: true,
+              })
+            }
             className="btn btn-xs btn-green w-full text-xs h-9"
           >
             Masuk

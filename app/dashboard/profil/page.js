@@ -3,8 +3,8 @@ import FormProfil from "@/components/profil/FormProfil";
 
 const Profil = () => {
   return (
-    <div className="p-2 relative">
-      <h1 className="font-bold text-[0.938rem]">
+    <div className="p-2 relative sm:max-w-xl sm:mx-auto">
+      <h1 className="font-bold text-[0.938rem] sm:text-2xl">
         Profil <span className="text-primary">Pengguna</span>
       </h1>
       <DropdownInfo

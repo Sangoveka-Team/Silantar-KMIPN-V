@@ -36,7 +36,7 @@ const DropdownStatus = () => {
   const [text, setText] = useState("Status");
   return (
     <div className="relative">
-      <div className="box-border absolute left-2 z-10">
+      <div className="box-border absolute left-2 z-10 sm:top-1">
         <div className="text-[0.5rem] bg-white border border-[#808080] w-[5.375rem] rounded-md font-bold text-[#808080] ">
           <button
             className="w-full text-start py-[0.125rem] pl-2 pr-[5px]"

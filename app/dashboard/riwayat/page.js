@@ -5,8 +5,8 @@ import Image from "next/image";
 
 const Riwayat = () => {
   return (
-    <div className="py-[0.375rem] px-2">
-      <h1 className="text-[0.938rem] font-bold">
+    <div className="py-[0.375rem] px-2 relative sm:max-w-xl sm:mx-auto">
+      <h1 className="text-[0.938rem] font-bold sm:text-2xl">
         Riwayat <span className="text-primary">Laporan</span>
       </h1>
       {/* <DropdownInfo
@@ -24,13 +24,13 @@ const Riwayat = () => {
       />
       <DropdownLaporan />
       <div className="mt-[75px] w-full flex gap-[0.375rem]">
-        <h3 className="text-xs font-bold">Hari ini</h3>
+        <h3 className="text-xs font-bold sm:text-base">Hari ini</h3>
         <DropdownStatus />
-        <div className="ml-24 flex items-center w-[84px] text-[8px] py-[0.125rem] pl-[5px] pr-1 bg-white rounded-md border border-[#808080]">
+        <div className="ml-24 flex items-center w-[84px] text-[8px] py-[0.125rem] pl-[5px] pr-1 bg-white rounded-md border border-[#808080] sm:h-[18px] sm:mt-1">
           <input
             type="text"
             placeholder="Cari laporan"
-            className="bg-transparent focus:border-none focus:outline-none w-full "
+            className="bg-transparent focus:border-none focus:outline-none w-full"
           />
           <Image
             src="/icon/search.svg"
@@ -98,7 +98,7 @@ const Riwayat = () => {
       </div>
       {/* laporan */}
       <div className="my-2">
-        <h3 className="text-xs text-black font-bold">Kemarin</h3>
+        <h3 className="text-xs text-black font-bold sm:text-base">Kemarin</h3>
         <div className="mt-2 flex py-[0.813rem] pl-[0.813rem] pr-[0.625rem] bg-white border-2 border-primary shadow-xl rounded-xl w-[18.375rem]">
           <div className="w-[5.063rem] h-[7.375rem] mr-[0.563rem]">
             <Image

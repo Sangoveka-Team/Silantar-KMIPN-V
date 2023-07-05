@@ -22,7 +22,7 @@ const TambahLaporan = () => {
   };
 
   return (
-    <div className="pt-[0.375rem] pl-2 pr-[0.375rem] relative">
+    <div className="pt-[0.375rem] pl-2 pr-[0.375rem] relative sm:max-w-xl sm:mx-auto">
       <Modal
         setShowModal={setShowModal}
         showModal={showModal}
@@ -31,7 +31,7 @@ const TambahLaporan = () => {
         text="Terima kasih telah melapor! Untuk mengakses fitur-fitur website kami yang lainnya, silahkan dengan klik tombol dibawah ini."
         textButton="Oke!"
       />
-      <h1 className="text-[0.938rem] font-bold">
+      <h1 className="text-[0.938rem] font-bold sm:text-2xl">
         Buat <span className="text-primary">Laporan</span>
       </h1>
       <DropdownInfo
@@ -43,7 +43,7 @@ const TambahLaporan = () => {
       />
 
       <div className="mt-[3.25rem] flex flex-col gap-[0.938rem]">
-        <div className="flex items-center">
+        <div className="flex items-center sm:gap-1">
           <Image
             src="/icon/clipboard.svg"
             width={19}
@@ -51,7 +51,7 @@ const TambahLaporan = () => {
             alt="clipboard icon"
             className="inline h-[16px]"
           />
-          <h2 className="text-xs font-bold">
+          <h2 className="text-xs font-bold sm:text-base">
             Isi <span className="text-primary">formulir</span> dibawah ini
           </h2>
         </div>
@@ -180,7 +180,10 @@ const TambahLaporan = () => {
             </div>
             <hr className="w-full h-[2px] bg-primary" />
           </div>
-          <button type="submit" className="btn-green py-3 w-full mt-[0.938rem]">
+          <button
+            type="submit"
+            className="btn btn-green btn-xs h-9 mt-[0.938rem]"
+          >
             Kirim
           </button>
         </form>

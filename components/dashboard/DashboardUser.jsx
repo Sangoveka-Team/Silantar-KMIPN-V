@@ -3,8 +3,8 @@ import DropdownInfo from "./DropdownInfo";
 
 const DashboardUser = () => {
   return (
-    <div className="px-2 py-[0.375rem] w-full relative">
-      <h1 className="font-bold text-[0.938rem]">Dashboard</h1>
+    <div className="px-2 py-[0.375rem] w-full relative sm:max-w-xl sm:mx-auto">
+      <h1 className="font-bold text-[0.938rem] sm:text-2xl">Dashboard</h1>
       <DropdownInfo
         title="Selamat datang di dashboard anda, Aryo Suryono!"
         text="Di Dashboard ini anda dapat memantau status laporan yang anda buat, yang sedang diproses, sudah selesai, ataupun tertolak. Anda juga dapat mengelola akun anda."
@@ -13,15 +13,15 @@ const DashboardUser = () => {
 
       {/* statistik */}
       <div className="w-full mt-11">
-        <div className="flex items-center">
+        <div className="flex items-center sm:gap-1">
           <Image
             src="/icon/bar-chart-2.svg"
             width={19}
             height={16}
             alt="statisik icon"
-            className="inline"
+            className="inline -mt-1"
           />
-          <h2 className="font-bold text-xs self">
+          <h2 className="font-bold text-xs self sm:text-base">
             Statistik <span className="text-primary">Laporan</span> Anda
           </h2>
         </div>
@@ -117,15 +117,15 @@ const DashboardUser = () => {
 
       {/* laporan terakhir */}
       <div className="w-full mt-[0.438rem]">
-        <div className="flex items-center">
+        <div className="flex items-center sm:gap-1">
           <Image
             src="/icon/clock-green.svg"
             width={15}
             height={15}
             alt="clock icon"
-            className="inline"
+            className="inline -mt-[2px]"
           />
-          <h2 className="font-bold text-xs pl-[0.125rem]">
+          <h2 className="font-bold text-xs pl-[0.125rem] sm:text-base">
             Laporan <span className="text-primary">Terakhir</span>
           </h2>
         </div>

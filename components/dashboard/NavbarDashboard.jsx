@@ -43,7 +43,7 @@ const NavbarDashboard = () => {
         </div>
       </div>
       <div className="flex items-center gap-[5px]">
-        <h1 className="text-xs font-medium">aryo suryono</h1>
+        <h1 className="text-xs font-medium sm:text-base">Aryo Suryono</h1>
         <Image
           src="/dashboard/fake-user.png"
           width={28}

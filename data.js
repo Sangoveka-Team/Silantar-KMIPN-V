@@ -229,4 +229,31 @@ const listDaerah = [
   },
 ];
 
-export {listKategori, listDaerah};
+const userRole = [
+  {
+    access: "dashboard",
+    link: "/dashboard",
+    icon: "home",
+    iconActive: "home-black",
+  },
+  {
+    access: "tambah-laporan",
+    link: "/dashboard/tambah-laporan",
+    icon: "add",
+    iconActive: "add-black",
+  },
+  {
+    access: "riwayat",
+    link: "/dashboard/riwayat",
+    icon: "clock",
+    iconActive: "clock-black",
+  },
+  {
+    access: "profil",
+    link: "/dashboard/profil",
+    icon: "user",
+    iconActive: "user-black",
+  },
+];
+
+export {listKategori, listDaerah, userRole};
