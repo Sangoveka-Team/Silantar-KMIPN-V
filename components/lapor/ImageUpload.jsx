@@ -14,7 +14,7 @@ const ImageUpload = () => {
       URL.createObjectURL(file)
     );
 
-    setImgLocation(URLImageArray);
+    setImgLocation((prev) => prev.concat(URLImageArray));
   };
 
   const handleResetImage = () => {
@@ -76,6 +76,19 @@ const ImageUpload = () => {
                     id={`slide${index}`}
                     className="carousel-item relative w-full"
                   >
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-circle btn-ghost text-white absolute right-2 top-2 bg-[#DC3545] hover:bg-[#a0232f]"
+                      onClick={() => {
+                        setImgLocation(
+                          imgLocation.filter((img) => img !== image)
+                        );
+                        document.getElementById("input-file-laporan").value =
+                          "";
+                      }}
+                    >
+                      ✕
+                    </button>
                     <Image
                       src={image}
                       width={0}
@@ -109,16 +122,23 @@ const ImageUpload = () => {
                 ))}
             </div>
           </div>
-
           <div className="modal-action flex flex-col">
-            <input
-              id="input-file-laporan"
-              type="file"
-              accept="image/*"
-              className="file-input w-full max-w-xs mx-auto border border-black"
-              multiple={true}
-              onChange={handleUploadImage}
-            />
+            <div className="flex items-center justify-center gap-4">
+              <label className="w-[120px] btn btn-white btn-xs py-1 px-3 h-[40px] rounded-md bg-[#2B3440] text-[#ced3da] hover:bg-[#21272e] hover:text-[#ced3da]">
+                <input
+                  id="input-file-laporan"
+                  type="file"
+                  accept="image/*"
+                  className="file-input w-full max-w-xs mx-auto border border-black hidden"
+                  multiple={true}
+                  onChange={handleUploadImage}
+                />
+                Upload Foto
+              </label>
+              <p className="inline font-bold">
+                Jumlah Foto : {imgLocation.length}
+              </p>
+            </div>
 
             {imgLocation.length > 0 && (
               <div className="flex gap-2 w-full mt-2 justify-center items-center">

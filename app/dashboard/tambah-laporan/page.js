@@ -6,6 +6,7 @@ import Image from "next/image";
 import {useState} from "react";
 import Modal from "@/components/Modal";
 import DropdownInfo from "@/components/dashboard/DropdownInfo";
+import ImageUpload from "@/components/lapor/ImageUpload";
 
 const TambahLaporan = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +60,8 @@ const TambahLaporan = () => {
           className="w-[18.375rem] bg-white border border-primary rounded-md shadow-lg px-[9px] pt-[11px] pb-[14px] flex flex-col gap-[0.625rem]"
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col gap-1">
+          <ImageUpload />
+          {/* <div className="flex flex-col gap-1">
             <label className="text-primary font-bold text-sm">
               Foto Lokasi (Opsional)
             </label>
@@ -94,7 +96,7 @@ const TambahLaporan = () => {
               </label>
             </div>
             <hr className="w-full h-[2px] bg-primary" />
-          </div>
+          </div> */}
           <div className="flex flex-col gap-1">
             <label className="text-primary font-bold text-sm">
               Alamat Lokasi
