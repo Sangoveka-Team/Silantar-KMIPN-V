@@ -4,7 +4,7 @@ import HeaderAuth from "@/components/HeaderAuth";
 import {useUserContext} from "@/contexts/UserContext";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import {redirect} from "next/navigation";
 import {useState} from "react";
 
 const SignUp = () => {
@@ -115,7 +115,7 @@ const SignUp = () => {
                     width={24}
                     height={24}
                     alt="visible icon"
-                    className="swap-on"
+                    className="swap-off"
                   />
                   {/* password invisible*/}
                   <Image
@@ -123,7 +123,7 @@ const SignUp = () => {
                     width={24}
                     height={24}
                     alt="invisible icon"
-                    className="swap-off"
+                    className="swap-on"
                   />
                 </label>
               </div>

@@ -2,6 +2,7 @@ import DropdownInfo from "@/components/dashboard/DropdownInfo";
 import DropdownLaporan from "@/components/dashboard/DropdownLaporan";
 import DropdownStatus from "@/components/dashboard/DropdownStatus";
 import Image from "next/image";
+import Link from "next/link";
 
 const Riwayat = () => {
   return (
@@ -9,14 +10,6 @@ const Riwayat = () => {
       <h1 className="text-[0.938rem] font-bold sm:text-2xl">
         Riwayat <span className="text-primary">Laporan</span>
       </h1>
-      {/* <DropdownInfo
-        heading="Halaman riwayat laporan anda!"
-        title="Anda dapat melihat kembali laporan-laporan yang telah anda buat
-          sebelumnya dan melihat detail-detailnya!"
-        titleWidth={183}
-        width={203}
-        right={true}
-      /> */}
       <DropdownInfo
         title="Halaman riwayat laporan anda!"
         text="Anda dapat melihat kembali laporan-laporan yang telah anda buat sebelumnya dan melihat detail-detailnya!"
@@ -90,9 +83,12 @@ const Riwayat = () => {
             </span>
           </div>
           <div className="flex justify-end mt-3">
-            <button className="btn btn-green btn-xs text-[0.5rem] rounded-[0.313rem] py-1 px-[6px] h-[19px] w-[66px]">
+            <Link
+              href="/dashboard/riwayat/SILT130505239493"
+              className="btn btn-green btn-xs text-[0.5rem] rounded-[0.313rem] py-1 px-[6px] h-[19px] w-[66px]"
+            >
               Selengkapnya
-            </button>
+            </Link>
           </div>
         </div>
       </div>

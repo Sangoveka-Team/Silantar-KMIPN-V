@@ -1,7 +1,6 @@
 import AddButton from "@/components/dashboard/AddButton";
 import NavbarDashboard from "@/components/dashboard/NavbarDashboard";
 import Sidebar from "@/components/dashboard/Sidebar";
-import {redirect} from "next/navigation";
 import "../globals.css";
 
 export const metadata = {

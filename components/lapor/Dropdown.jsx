@@ -14,6 +14,7 @@ const Dropdown = ({listDatas, input, setInput, placeholder}) => {
   }, [input]);
 
   return (
+    // pl-[1.688rem]
     <div className="dropdown w-full relative pl-[1.688rem]">
       <input
         tabIndex={0}
@@ -34,7 +35,7 @@ const Dropdown = ({listDatas, input, setInput, placeholder}) => {
         tabIndex={0}
         className={`dropdown-content ${
           !dropdown ? "hidden" : "block"
-        } z-[1] menu shadow bg-white w-full mt-2 -ml-[1.688rem] p-0 max-h-40 overflow-y-scroll`}
+        } z-[1] menu shadow bg-white w-full mt-2 p-0 max-h-40 overflow-y-scroll -ml-[1.688rem]`}
       >
         {lists.map((data, index) => (
           // datanya masih manual
@@ -46,7 +47,7 @@ const Dropdown = ({listDatas, input, setInput, placeholder}) => {
               setDropdown(false);
             }}
           >
-            <a className="rounded-none py-[5px] pl-8 active:bg-base-300 active:text-primary">
+            <a className="rounded-none py-[5px] active:bg-base-300 active:text-primary">
               {data.value}
             </a>
             <hr className="w-full h-0 p-0 text-[#D9D6D6]" />

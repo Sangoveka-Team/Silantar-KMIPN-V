@@ -1,13 +1,17 @@
 "use client";
 
+import {useUserContext} from "@/contexts/UserContext";
 import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 
 const AddButton = () => {
   const pathname = usePathname();
+  const {session, useSession} = useUserContext();
+  if (!session.user) {
+    return <></>;
+  }
   return (
-    // btn-green py-2 pl-[0.875rem] pr-[1.563rem] fixed bottom-[2.188rem] right-[0.438rem] rounded-3xl items-center font-medium text-[0.938rem] hover:bg-hoverPrimary hover:text-white shadow-xl z-50
     <Link
       href="/dashboard/tambah-laporan"
       className={`${

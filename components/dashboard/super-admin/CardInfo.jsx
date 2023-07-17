@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const CardInfo = () => {
   return (
-    <div className="flex gap-5 flex-wrap">
+    <div className="flex gap-5 flex-wrap mt-[17px]">
       <div className="bg-primary w-[250px] h-[148px] px-4 pt-[30px] pb-[40px] flex rounded-2xl relative">
         <div className="text-white font-bold">
           <div className="text-[32px]">50</div>

@@ -15,7 +15,6 @@ const FormProfil = () => {
   const handleImage = (e) => {
     const data = e.target.files[0];
     setImg(URL.createObjectURL(data));
-    setShowModal(true);
   };
 
   return (
@@ -32,7 +31,7 @@ const FormProfil = () => {
             <input
               type="file"
               accept="image/*"
-              className="opacity-0"
+              className="opacity-0 hidden"
               onChange={handleImage}
             />
           </label>

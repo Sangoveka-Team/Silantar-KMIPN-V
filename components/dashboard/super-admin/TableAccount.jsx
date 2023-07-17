@@ -1,20 +1,187 @@
 "use client";
 
 import Image from "next/image";
-import {useState} from "react";
+import Link from "next/link";
+import {useEffect, useState} from "react";
+
+const dummyDataAkun = [
+  {
+    id: "SILT0910390",
+    image: "/dashboard/3.jpg",
+    nama: "Bhakti Ramadhani",
+    level: "Super Admin",
+    jabatan: "Developer SILANTAR",
+    daerah: "-",
+  },
+  {
+    id: "SILT09125124",
+    image: "/dashboard/3.jpg",
+    nama: "Ricko",
+    level: "User",
+    jabatan: "Pelapor",
+    daerah: "-",
+  },
+];
 
 const TableAccount = () => {
   const [search, setSearch] = useState("");
+  const [listAkun, setListAkun] = useState([]);
+  const [email, setEmail] = useState("");
+  const [nama, setNama] = useState("");
+  const [level, setLevel] = useState("Pilih level pengguna");
+  const [jabatan, setJabatan] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleFilterLevel = (e) => {
+    let filtering = dummyDataAkun.filter((filter) =>
+      e.target.value.includes(filter.level)
+    );
+    setListAkun(filtering);
+  };
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    // console.log(dummyDataAkun);
+    // let filtering = dummyDataAkun.filter((filter) => {
+    //   e.target.value.includes(filter.nama.toLowerCase());
+    // });
+    // if (search.length !== 0) {
+    //   setListAkun(filtering);
+    // }
+    // setListAkun(dummyDataAkun);
+  };
+
+  useEffect(() => {
+    setListAkun(dummyDataAkun);
+  }, []);
+
+  const handleTambahAkun = (e) => {
+    e.preventDefault();
+    setListAkun([
+      ...listAkun,
+      {
+        id: "SILT0193",
+        image: "/dashboard/3.jpg",
+        nama: nama,
+        level: level,
+        jabatan: jabatan,
+        daerah: "-",
+      },
+    ]);
+    setEmail("");
+    setNama("");
+    setLevel("Pilih level pengguna");
+    setJabatan("");
+    setPassword("");
+    const modal = document.querySelector(".modal-toggle");
+    modal.checked = false;
+  };
 
   return (
     <div className="mt-[21px] bg-white rounded-xl">
+      {/* modal */}
+      <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box pt-8 pl-[40px] pr-[45px]">
+          <label
+            htmlFor="my_modal_6"
+            className="btn btn-sm btn-circle btn-ghost text-black absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          <form className="flex flex-col gap-2" onSubmit={handleTambahAkun}>
+            <div className="flex flex-col">
+              <label className="font-bold text-black text-xl">
+                Akun <span className="text-primary">Email</span>
+              </label>
+              <input
+                type="email"
+                placeholder="Masukkan alamat email..."
+                required
+                className="input input-xs px-3 py-[7px] h-[42px] text-lg border-[#808080] placeholder:text-lg placeholder:font-medium focus:outline-none focus:border-primary"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="font-bold text-black text-xl">
+                Nama <span className="text-primary">Lengkap</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Masukkan nama lengkap..."
+                required
+                className="input input-xs px-3 py-[7px] h-[42px] text-lg border-[#808080] placeholder:text-lg placeholder:font-medium focus:outline-none focus:border-primary"
+                onChange={(e) => setNama(e.target.value)}
+                value={nama}
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="font-bold text-black text-xl">
+                Akun <span className="text-primary">Level</span>
+              </label>
+              <select
+                className="select select-xs select-bordered w-full px-3 py-[7px] h-[42px] text-lg border-[#808080] focus:outline-none focus:border-primary"
+                onChange={(e) => setLevel(e.target.value)}
+              >
+                <option disabled selected>
+                  Pilih level pengguna
+                </option>
+                <option>User</option>
+                <option>Super Admin</option>
+                <option>Admin Instansi</option>
+                <option>Admin Pejabat</option>
+              </select>
+            </div>
+            <div className="flex flex-col">
+              <label className="font-bold text-black text-xl">
+                Nama <span className="text-primary">Jabatan</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Masukkan nama jabatan..."
+                required
+                className="input input-xs px-3 py-[7px] h-[42px] text-lg border-[#808080] placeholder:text-lg placeholder:font-medium focus:outline-none focus:border-primary"
+                onChange={(e) => setJabatan(e.target.value)}
+                value={jabatan}
+              />
+            </div>
+            <div className="flex flex-col">
+              <label className="font-bold text-black text-xl">
+                Kata <span className="text-primary">Sandi</span>
+              </label>
+              <input
+                type="password"
+                required
+                placeholder="Masukkan kata sandi..."
+                className="input input-xs px-3 py-[7px] h-[42px] text-lg border-[#808080] placeholder:text-lg placeholder:font-medium focus:outline-none focus:border-primary"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+            </div>
+            <div className="mt-[29px] w-full text-end">
+              <button
+                type="submit"
+                className="btn btn-white btn-sm ml-[30px] py-[9px] px-[33px] h-[46px] shadow-sm rounded-md text-xl font-medium border-primary border-2 hover:border-primary"
+              >
+                Buat
+              </button>
+            </div>
+          </form>
+          <div className="modal-action"></div>
+        </div>
+      </div>
+      {/* modal */}
       <div className="py-8 px-[30px]">
-        <div className="flex justify-between items-center">
-          <div className="flex gap-[14px] items-center">
+        <div className="flex md:flex-row flex-col justify-between items-center gap-5">
+          <div className="flex md:flex-row flex-col gap-[14px] items-center">
             <h2 className="font-bold text-[22px]">
               Akun <span className="text-primary">Pengguna</span>
             </h2>
-            <button className="btn btn-green btn-xs py-[9px] px-3 h-auto rounded-xl gap-1">
+            <label
+              htmlFor="my_modal_6"
+              className="btn btn-green btn-xs py-[9px] px-3 h-auto rounded-xl gap-1"
+            >
               <Image
                 src="/icon/add.svg"
                 width={24}
@@ -22,25 +189,28 @@ const TableAccount = () => {
                 alt="add icon"
               />
               Tambah User
-            </button>
+            </label>
           </div>
           <div className="flex gap-[17px]">
             <div>
-              <select className="select select-bordered border-[#808080] text-[#808080] w-full max-w-xs rounded-2xl">
+              <select
+                className="select select-bordered border-[#808080] text-[#808080] rounded-2xl"
+                onChange={handleFilterLevel}
+              >
                 <option disabled selected>
                   Level
                 </option>
-                <option>User</option>
-                <option>Admin</option>
-                <option>Pejabat Setempat</option>
+                <option>Super Admin</option>
+                <option>Admin Instansi</option>
+                <option>Admin Pejabat</option>
               </select>
             </div>
             <div className="relative">
               <input
                 type="text"
-                placeholder="Cari laporan....."
+                placeholder="Cari akun..."
                 className="input input-bordered w-full max-w-xs rounded-2xl border-[#808080] text-[#808080]"
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={handleSearch}
               />
               <Image
                 src="/icon/search-normal.svg"
@@ -70,31 +240,34 @@ const TableAccount = () => {
               </thead>
               <tbody>
                 {/* row 1 */}
-                <tr>
-                  <th className="flex gap-[15px] items-center">
-                    <div className="avatar">
-                      <div className="w-[50px] h-[50px] rounded-lg">
-                        <Image
-                          src="/dashboard/3.jpg"
-                          width={50}
-                          height={50}
-                          alt="avatar icon"
-                        />
+                {listAkun.map((data, index) => (
+                  <tr key={index}>
+                    <th className="flex gap-[15px] items-center">
+                      <div className="avatar">
+                        <div className="w-[50px] h-[50px] rounded-lg">
+                          <Image
+                            src={data.image}
+                            width={50}
+                            height={50}
+                            alt="avatar icon"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <span className="font-semibold text-sm">
-                      Bhakti Ramadhani
-                    </span>
-                  </th>
-                  <td>Super Admin</td>
-                  <td>Developer SILANTAR</td>
-                  <td>-</td>
-                  <td>
-                    <button className="btn btn-green btn-xs py-[9px] px-3 h-auto">
-                      Selengkapnya
-                    </button>
-                  </td>
-                </tr>
+                      <span className="font-semibold text-sm">{data.nama}</span>
+                    </th>
+                    <td>{data.level}</td>
+                    <td>{data.jabatan}</td>
+                    <td>{data.daerah}</td>
+                    <td className="text-center">
+                      <Link
+                        href={`/dashboard/akun/${data.id}`}
+                        className="btn btn-green btn-xs py-[9px] px-3 h-auto"
+                      >
+                        Selengkapnya
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

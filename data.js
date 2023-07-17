@@ -229,6 +229,25 @@ const listDaerah = [
   },
 ];
 
+const listRole = [
+  {
+    id: 1,
+    value: "User",
+  },
+  {
+    id: 2,
+    value: "Super Admin",
+  },
+  {
+    id: 3,
+    value: "Admin Instansi",
+  },
+  {
+    id: 4,
+    value: "Admin Pejabat",
+  },
+];
+
 const userRole = [
   {
     access: "dashboard",
@@ -256,4 +275,64 @@ const userRole = [
   },
 ];
 
-export {listKategori, listDaerah, userRole};
+const superAdminRole = [
+  {
+    access: "dashboard",
+    link: "/dashboard",
+    icon: "home",
+    iconActive: "home-black",
+  },
+  {
+    access: "Semua Laporan",
+    link: "/dashboard/laporan",
+    icon: "bar-chart-2-white",
+    iconActive: "bar-chart-2-black",
+  },
+
+  {
+    access: "Profil",
+    link: "/dashboard/profil",
+    icon: "user",
+    iconActive: "user-black",
+  },
+];
+
+const adminInstansiRole = [
+  {
+    access: "dashboard",
+    link: "/dashboard",
+    icon: "home",
+    iconActive: "home-black",
+  },
+
+  {
+    access: "Profil",
+    link: "/dashboard/profil",
+    icon: "user",
+    iconActive: "user-black",
+  },
+];
+const adminPejabatRole = [
+  {
+    access: "dashboard",
+    link: "/dashboard",
+    icon: "home",
+    iconActive: "home-black",
+  },
+  {
+    access: "Profil",
+    link: "/dashboard/profil",
+    icon: "user",
+    iconActive: "user-black",
+  },
+];
+
+export {
+  listKategori,
+  listDaerah,
+  userRole,
+  superAdminRole,
+  listRole,
+  adminInstansiRole,
+  adminPejabatRole,
+};

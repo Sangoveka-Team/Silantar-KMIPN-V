@@ -5,8 +5,11 @@ const UserContext = createContext({});
 
 export const UserContextProvider = ({children}) => {
   const [session, setSession] = useState({
+    isAuth: true,
     user: false,
     superAdmin: true,
+    adminInstansi: false,
+    adminPejabat: false,
   });
 
   return (

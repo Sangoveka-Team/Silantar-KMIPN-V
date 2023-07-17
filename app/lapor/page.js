@@ -7,11 +7,11 @@ import {listDaerah, listKategori} from "@/data";
 import Dropdown from "@/components/lapor/Dropdown";
 import Navbar from "@/components/home/Navbar";
 import Modal from "@/components/Modal";
+import ImageUpload from "@/components/lapor/ImageUpload";
 
 const Lapor = () => {
   const [nama, setNama] = useState("");
   const [telp, setTelp] = useState(null);
-  const [imgLocation, setImgLocation] = useState(null);
   const [alamat, setAlamat] = useState("");
   const [kategori, setKategori] = useState("");
   const [daerah, setDaerah] = useState("");
@@ -89,44 +89,7 @@ const Lapor = () => {
               </div>
               <hr className="w-full h-[2px] bg-primary" />
             </div>
-            <div className="flex flex-col gap-1">
-              <label className="text-primary font-bold text-sm">
-                Foto Lokasi (Opsional)
-              </label>
-              <div className="flex items-center">
-                <Image
-                  src="/icon/camera-2.svg"
-                  width={24}
-                  height={24}
-                  alt="user icon"
-                  className="pointer-events-none"
-                />
-                <label className="w-full text-xs text-[#808080] pl-1 select-none cursor-pointer flex items-center">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    placeholder="Upload foto lokasi..."
-                    className="hidden"
-                    onChange={(e) => setImgLocation(e.target.files[0])}
-                  />
-                  {!imgLocation ? (
-                    "Upload foto lokasi..."
-                  ) : (
-                    <>
-                      {imgLocation.name}
-                      <Image
-                        src="/icon/check.svg"
-                        width={24}
-                        height={24}
-                        alt="check icon"
-                        className="pointer-events-none"
-                      />
-                    </>
-                  )}
-                </label>
-              </div>
-              <hr className="w-full h-[2px] bg-primary" />
-            </div>
+            <ImageUpload />
             <div className="flex flex-col gap-1">
               <label className="text-primary font-bold text-sm">
                 Alamat Lokasi

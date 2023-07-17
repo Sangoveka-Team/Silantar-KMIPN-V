@@ -1,10 +1,15 @@
 "use client";
 
 import {useUserContext} from "@/contexts/UserContext";
-import {userRole} from "@/data";
+import {
+  adminInstansiRole,
+  adminPejabatRole,
+  superAdminRole,
+  userRole,
+} from "@/data";
 import Image from "next/image";
 import Link from "next/link";
-import {usePathname, useRouter} from "next/navigation";
+import {redirect, usePathname, useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 
 const Sidebar = () => {
@@ -19,8 +24,15 @@ const Sidebar = () => {
   }, [pathname]);
 
   useEffect(() => {
-    setRole(userRole);
+    session.superAdmin && setRole(superAdminRole);
+    session.user && setRole(userRole);
+    session.adminInstansi && setRole(adminInstansiRole);
+    session.adminPejabat && setRole(adminPejabatRole);
   }, []);
+
+  if (!session.isAuth) {
+    redirect("/sign-in");
+  }
 
   return (
     <div
@@ -64,8 +76,12 @@ const Sidebar = () => {
           <button
             className="flex items-center gap-[0.313rem]"
             onClick={() => {
-              // router.push("/sign-in");
-              setSession(false);
+              setSession({
+                isAuth: false,
+                user: false,
+                superAdmin: false,
+                adminInstansi: false,
+              });
             }}
           >
             <Image

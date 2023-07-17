@@ -10,7 +10,8 @@ import {useState} from "react";
 const SignIn = () => {
   const [isVisible, setIsVisible] = useState(true);
   const {session, setSession} = useUserContext();
-  if (session) {
+  console.log(session);
+  if (session.isAuth) {
     redirect("/dashboard");
   }
 
@@ -73,7 +74,7 @@ const SignIn = () => {
                     width={24}
                     height={24}
                     alt="visible icon"
-                    className="swap-on"
+                    className="swap-off"
                   />
                   {/* password invisible*/}
                   <Image
@@ -81,7 +82,7 @@ const SignIn = () => {
                     width={24}
                     height={24}
                     alt="invisible icon"
-                    className="swap-off"
+                    className="swap-on"
                   />
                 </label>
               </div>
@@ -90,12 +91,14 @@ const SignIn = () => {
           </div>
           <button
             type="submit"
-            onClick={() =>
+            onClick={(e) => {
+              e.preventDefault();
               setSession({
+                isAuth: true,
                 user: false,
                 superAdmin: true,
-              })
-            }
+              });
+            }}
             className="btn btn-xs btn-green w-full text-xs h-9"
           >
             Masuk
