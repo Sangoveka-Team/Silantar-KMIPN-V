@@ -1,18 +1,38 @@
+"use client";
+
 import Image from "next/image";
-import DropdownInfo from "./DropdownInfo";
 
 const DashboardUser = () => {
   return (
     <div className="px-2 py-[0.375rem] w-full relative sm:max-w-xl sm:mx-auto">
       <h1 className="font-bold text-[0.938rem] sm:text-2xl">Dashboard</h1>
-      <DropdownInfo
-        title="Selamat datang di dashboard anda, Aryo Suryono!"
-        text="Di Dashboard ini anda dapat memantau status laporan yang anda buat, yang sedang diproses, sudah selesai, ataupun tertolak. Anda juga dapat mengelola akun anda."
-        width={280}
-      />
-
+      <div className="w-full relative">
+        <details
+          id="dropdown-dashboard"
+          className="collapse bg-white flex flex-col items-center border-2 border-primary rounded-xl max-w-[276px] absolute right-0 z-[99]"
+        >
+          <summary className="collapse-title text-[10px] py-2 px-3 font-bold min-h-[33px] h-auto relative">
+            Selamat datang di dashboard anda,{" "}
+            <span className="text-primary">Aryo Suryono!</span>
+            <Image
+              src="/icon/dropdown.svg"
+              width={24}
+              height={24}
+              alt="dropdown icon"
+              className="absolute right-0 top-1"
+            />
+          </summary>
+          <div className="collapse-content pt-0 pb-2 px-3">
+            <p className="text-[8px] font-normal">
+              Di Dashboard ini anda dapat memantau status laporan yang anda
+              buat, yang sedang diproses, sudah selesai, ataupun tertolak. Anda
+              juga dapat mengelola akun anda.
+            </p>
+          </div>
+        </details>
+      </div>
       {/* statistik */}
-      <div className="w-full mt-11">
+      <div className="w-full mt-[45px]">
         <div className="flex items-center sm:gap-1">
           <Image
             src="/icon/bar-chart-2.svg"

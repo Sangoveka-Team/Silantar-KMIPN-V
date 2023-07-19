@@ -5,7 +5,6 @@ import Dropdown from "@/components/lapor/Dropdown";
 import Image from "next/image";
 import {useState} from "react";
 import Modal from "@/components/Modal";
-import DropdownInfo from "@/components/dashboard/DropdownInfo";
 import ImageUpload from "@/components/lapor/ImageUpload";
 
 const TambahLaporan = () => {
@@ -35,15 +34,29 @@ const TambahLaporan = () => {
       <h1 className="text-[0.938rem] font-bold sm:text-2xl">
         Buat <span className="text-primary">Laporan</span>
       </h1>
-      <DropdownInfo
-        title="Halaman membuat laporan!"
-        text="Di Dashboard ini anda dapat memantau status laporan yang anda buat,
-        yang sedang diproses, sudah selesai, ataupun tertolak. Anda juga
-        dapat mengelola akun anda."
-        width={183}
-      />
-
-      <div className="mt-[3.25rem] flex flex-col gap-[0.938rem]">
+      <div className="w-full relative">
+        <details
+          id="dropdown-dashboard"
+          className="collapse bg-white flex flex-col items-center border-2 border-primary rounded-xl max-w-[183px] absolute right-0 z-[99]"
+        >
+          <summary className="collapse-title text-[10px] py-2 px-3 font-bold min-h-[33px] h-auto relative">
+            Halaman membuat laporan!
+            <Image
+              src="/icon/dropdown.svg"
+              width={24}
+              height={24}
+              alt="dropdown icon"
+              className="absolute right-0 top-1"
+            />
+          </summary>
+          <div className="collapse-content pt-0 pb-2 px-3">
+            <p className="text-[8px] font-normal">
+              lorem ipsum dolor sit amet, consectetur adip
+            </p>
+          </div>
+        </details>
+      </div>
+      <div className="mt-[45px] flex flex-col gap-[0.938rem]">
         <div className="flex items-center sm:gap-1">
           <Image
             src="/icon/clipboard.svg"
@@ -61,42 +74,6 @@ const TambahLaporan = () => {
           onSubmit={handleSubmit}
         >
           <ImageUpload />
-          {/* <div className="flex flex-col gap-1">
-            <label className="text-primary font-bold text-sm">
-              Foto Lokasi (Opsional)
-            </label>
-            <div className="flex items-center">
-              <Image
-                src="/icon/camera-2.svg"
-                width={28}
-                height={28}
-                alt="user icon"
-              />
-              <label className="w-full text-xs text-[#808080] pl-1 select-none cursor-pointer flex items-center">
-                <input
-                  type="file"
-                  accept="image/*"
-                  placeholder="Upload foto lokasi..."
-                  className="hidden"
-                  onChange={(e) => setImgLocation(e.target.files[0])}
-                />
-                {!imgLocation ? (
-                  "Upload foto lokasi..."
-                ) : (
-                  <>
-                    {imgLocation.name}
-                    <Image
-                      src="/icon/check.svg"
-                      width={24}
-                      height={24}
-                      alt="check icon"
-                    />
-                  </>
-                )}
-              </label>
-            </div>
-            <hr className="w-full h-[2px] bg-primary" />
-          </div> */}
           <div className="flex flex-col gap-1">
             <label className="text-primary font-bold text-sm">
               Alamat Lokasi

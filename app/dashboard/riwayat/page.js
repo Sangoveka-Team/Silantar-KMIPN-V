@@ -1,4 +1,3 @@
-import DropdownInfo from "@/components/dashboard/DropdownInfo";
 import DropdownLaporan from "@/components/dashboard/DropdownLaporan";
 import DropdownStatus from "@/components/dashboard/DropdownStatus";
 import Image from "next/image";
@@ -10,11 +9,29 @@ const Riwayat = () => {
       <h1 className="text-[0.938rem] font-bold sm:text-2xl">
         Riwayat <span className="text-primary">Laporan</span>
       </h1>
-      <DropdownInfo
-        title="Halaman riwayat laporan anda!"
-        text="Anda dapat melihat kembali laporan-laporan yang telah anda buat sebelumnya dan melihat detail-detailnya!"
-        width={195}
-      />
+      <div className="w-full relative">
+        <details
+          id="dropdown-dashboard"
+          className="collapse bg-white flex flex-col items-center border-2 border-primary rounded-xl max-w-[203px] absolute right-0 z-[99]"
+        >
+          <summary className="collapse-title text-[10px] py-2 px-3 font-bold min-h-[33px] h-auto relative">
+            Halaman riwayat laporan anda!
+            <Image
+              src="/icon/dropdown.svg"
+              width={24}
+              height={24}
+              alt="dropdown icon"
+              className="absolute right-0 top-1"
+            />
+          </summary>
+          <div className="collapse-content pt-0 pb-2 px-3">
+            <p className="text-[8px] font-normal">
+              Anda dapat melihat kembali laporan-laporan yang telah anda buat
+              sebelumnya dan melihat detail-detailnya!
+            </p>
+          </div>
+        </details>
+      </div>
       <DropdownLaporan />
       <div className="mt-[75px] w-full flex gap-[0.375rem]">
         <h3 className="text-xs font-bold sm:text-base">Hari ini</h3>

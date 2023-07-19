@@ -1,4 +1,5 @@
 "use client";
+import ShowImageRiwayat from "@/components/riwayat/ShowImageRiwayat";
 import Image from "next/image";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
@@ -11,8 +12,11 @@ const RiwayatDetail = ({params}) => {
         Riwayat <span className="text-primary">Laporan</span>
       </h1>
       <div className="bg-white border-[1.5px] border-primary rounded-2xl py-[2px] px-[6px] inline-block mt-[6px]">
-        <div className="flex items-center">
-          <Link href="/dashboard/riwayat">
+        <div className="flex items-center gap-[3px]">
+          <Link
+            href="/dashboard/riwayat"
+            className="hover:bg-[#f2f2f2] rounded-box"
+          >
             <Image
               src="/icon/arrow-left.svg"
               width={15}
@@ -28,15 +32,7 @@ const RiwayatDetail = ({params}) => {
       <div className="mt-[11px] py-[13px] pl-[13px] pr-[10px] bg-white border-2 border-primary rounded-xl shadow-xl box-border max-w-[296px] xs:max-w-xs">
         <div className="flex">
           <div className="flex flex-col gap-[6px]">
-            <div className="w-[81px] h-[118px]">
-              <Image
-                src="/dashboard/lapor-image-SILT130505239493.jpg"
-                width={81}
-                height={118}
-                alt="lapor-image-SILT130505239493"
-                className="rounded-[5px]"
-              />
-            </div>
+            <ShowImageRiwayat/>
             <div className="w-[81px] h-[112px]">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15932.454222876064!2d114.57940964671243!3d-3.3221074504762287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de423db2e78adeb%3A0x1bdceb2be507897d!2sTaman%20Kamboja!5e0!3m2!1sid!2sid!4v1688647620789!5m2!1sid!2sid"

@@ -8,6 +8,7 @@ import Dropdown from "@/components/lapor/Dropdown";
 import Navbar from "@/components/home/Navbar";
 import Modal from "@/components/Modal";
 import ImageUpload from "@/components/lapor/ImageUpload";
+import InputLocation from "@/components/lapor/InputLocation";
 
 const Lapor = () => {
   const [nama, setNama] = useState("");
@@ -90,28 +91,7 @@ const Lapor = () => {
               <hr className="w-full h-[2px] bg-primary" />
             </div>
             <ImageUpload />
-            <div className="flex flex-col gap-1">
-              <label className="text-primary font-bold text-sm">
-                Alamat Lokasi
-              </label>
-              <div className="flex">
-                <Image
-                  src="/icon/map.svg"
-                  width={24}
-                  height={24}
-                  alt="user icon"
-                  className="pointer-events-none"
-                />
-                <input
-                  type="text"
-                  required
-                  placeholder="Masukkan/upload alamat lokasi..."
-                  className="input-lapor"
-                  onChange={(e) => setAlamat(e.target.value)}
-                />
-              </div>
-              <hr className="w-full h-[2px] bg-primary" />
-            </div>
+            <InputLocation />
             <div className="flex flex-col gap-1">
               <label className="text-primary font-bold text-sm">
                 Kategori Laporan

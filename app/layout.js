@@ -1,5 +1,5 @@
 import "./globals.css";
-import {Nunito, Poppins} from "next/font/google";
+import {Nunito} from "next/font/google";
 import {UserContextProvider} from "@/contexts/UserContext";
 
 const nunito = Nunito({subsets: ["latin"]});
