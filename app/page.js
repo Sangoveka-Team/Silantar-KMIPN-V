@@ -1,28 +1,21 @@
 import ArrowUp from "@/components/home/ArrowUp";
-import CardLapor from "@/components/home/CardLapor";
 import Footer from "@/components/home/Footer";
 import Navbar from "@/components/home/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 
-const dataIcons = [
+const imgMelapor = [
   {
-    id: 1,
-    img: "icon-1.svg",
-    text: "Anda mendaftar ke laman kami dan membuat laporan.",
-    line: "flex",
+    img: "/home/1.png",
   },
   {
-    id: 2,
-    img: "icon-2.svg",
-    text: "Anda dapat terus memantau status laporan anda.",
-    line: "flex",
+    img: "/home/2.png",
   },
   {
-    id: 3,
-    img: "icon-3.svg",
-    text: "Anda dapat mengakses fitur menarik dari kami.",
-    line: "hidden",
+    img: "/home/3.png",
+  },
+  {
+    img: "/home/4.png",
   },
 ];
 
@@ -35,112 +28,202 @@ export default function Home() {
       {/* arrow up end*/}
       {/* HERO */}
       <section id="hero">
-        <div
-          className="hero h-full lg:bg-cover"
-          style={{
-            backgroundImage: `url("/home/hero-bg.png")`,
-          }}
-        >
-          <div className="hero-overlay bg-opacity-10 bg-[rgba(255,255,255,0.3)]"></div>
-          <div className="w-full mt-11 h-[350px] lg:h-[450px] pt-10 lg:pt-20 pl-8 pb-[46px] pr-7 flex flex-col gap-7">
-            <div className="max-w-[220px] lg:max-w-lg lg:text-center lg:w-full lg:mx-auto">
-              <h1 className="text-shadow-primary shadow-black text-[32px] text-primary font-bold font-outline-2 lg:text-7xl">
-                SILANTAR
-              </h1>
-              <h2 className="text-lg text-white  inline-block -mt-1 font-bold">
-                Sistem Informasi Laporan Lingkungan Sekitar
+        <div className="hero h-full lg:bg-cover bg-primary">
+          <div className="w-full mt-11 h-auto pt-[26px] pl-[29px] pr-[25px] pb-[25px] relative">
+            <Image
+              src="/home/icon-header-mobile.svg"
+              width={167}
+              height={136}
+              alt="icon mobile"
+              className="absolute right-[25px]"
+            />
+            <div className="space-y-[11px]">
+              <h2 className="font-bold text-xl text-white w-[204px]">
+                SISTEM INFORMASI LAPORAN LINGKUNGAN SEKITAR
               </h2>
-              <p className="text-[15px] text-black font-bold">
-                Laporan yang anda buat mengenai segala sesuatu masalah didekat
-                anda dengan mudah dilayani disini!
-              </p>
-            </div>
-            <div className="self-end lg:self-center flex gap-[10px]">
-              <a
-                href="#cara-lapor"
-                className="btn btn-white border-primary hover:border-primary box-border btn-xs w-[123px] h-10 text-[0.938rem]"
-              >
-                Cara melapor?
-              </a>
               <Link
                 href="/lapor"
-                className="btn btn-green btn-xs w-[82px] h-10 text-xl"
+                className="btn btn-white btn-xs h-[37px] font-semibold text-lg px-[13px]"
               >
                 Lapor!
               </Link>
+            </div>
+            <div className="mt-[52px] space-x-[10px]">
+              <a
+                href="#"
+                className="btn btn-white btn-xs h-[34px] bg-transparent border border-white text-white hover:bg-white hover:text-primary font-normal text-[15px]"
+              >
+                Cara melapor?
+              </a>
+              <a
+                href="#"
+                className="btn btn-white btn-xs h-[34px] font-semibold text-[15px]"
+              >
+                Lacak Laporan
+              </a>
             </div>
           </div>
         </div>
       </section>
       {/* HERO END */}
-      {/* SILANTAR Section */}
-      <section id="about">
-        <div className="w-full h-full bg-white">
-          <div className="w-[53%] bg-primary lg:w-1/3">
-            <h2 className="text-end pt-[18px] pl-8 pr-2 pb-05 font-bold text-black text-[0.9rem] sm:text-base lg:text-xl ">
-              Apasih <span className="text-white">SILANTAR</span> itu?
-            </h2>
-          </div>
-          <div className="flex flex-col pt-3 pb-[14px] px-8 sm:px-20 lg:flex lg:flex-row lg:gap-3 lg:pb-5 lg:items-center">
-            <Image
-              src="/home/image-silantar.svg"
-              width={100}
-              height={100}
-              className="w-full lg:w-1/2 sm:w-[90%] self-center"
-              alt="silantar image"
-            />
-            <p className="mt-2 text-black text-xs lg:w-1/2 sm:text-base lg:text-lg">
-              <span className="text-primary font-bold">SILANTAR</span>, platform
-              berupa website sistem informasi yang dibutuhkan masyarakat untuk
-              melaporkan masalah lingkungan sekitar ke pemerintahan yang
-              bersangkutan. Dengan alur masyarakat-petinggi setempat-dinas, kami
-              berusaha membuat website ini dapat membantu komunikasi dua arah
-              antar masyarakat dan pemerintah.
-            </p>
-          </div>
-          <div className="w-[76%] bg-primary lg:w-1/2 sm:w-2/3 sm:text-end">
-            <h2 className="inline-block pl-8 py-1 pr-2 font-bold text-black text-[0.85rem] sm:text-base lg:text-xl">
-              Kami menjamin <span className="text-white">keamanan</span> data
-              anda
-            </h2>
-          </div>
-          <div className="px-8 sm:pt-4 sm:text-center">
-            <p className="mt-2 text-black text-xs sm:text-sm lg:text-base">
-              Data anda yang diperlukan untuk membuat laporan tidak untuk
-              disalahgunakan dalam bentuk apapun.
-            </p>
-            <div className="w-full flex mt-2 pb-8 justify-center items-center">
-              {dataIcons.map((value) => (
-                <>
-                  <div
-                    key={value.id}
-                    className="w1/3 flex flex-col justify-center items-center gap-1 pt-3"
+
+      <div className="pt-[19px] pl-[29px] pr-[25px] pb-[22px]">
+        <div className="space-y-[11px]">
+          <h3 className="text-primary font-semibold text-[15px]">
+            TENTANG KAMI
+          </h3>
+          <p className="text-xs italic font-normal">
+            <span className="text-primary font-semibold">SILANTAR</span>,
+            platform sistem informasi berbasis website yang dibutuhkan
+            masyarakat untuk melaporkan masalah lingkungan sekitar ke
+            pemerintahan yang bersangkutan. Dengan alur
+            masyarakat-kelurahan-dinas, kami berusaha membuat website ini dapat
+            menjadi wadah komunikasi antar masyarakat dan pemerintah.
+          </p>
+        </div>
+        <div className="mt-[11px] space-y-[10px]">
+          <h3 className="font-semibold text-[15px] text-primary">
+            MELAPOR DENGAN SILANTAR
+          </h3>
+          <div className="carousel w-full">
+            {imgMelapor.map((data, index) => (
+              <div
+                key={index}
+                id={`slide${index}`}
+                className="carousel-item relative w-full justify-center"
+              >
+                <Image
+                  src={data.img}
+                  width={221}
+                  height={221}
+                  alt={`image cara melapor ${index + 1}`}
+                  className="shadow-md"
+                />
+                <div className="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2 ">
+                  <a
+                    href={
+                      index === 0
+                        ? `#slide${imgMelapor.length - 1}`
+                        : `#slide${index - 1}`
+                    }
+                    className="btn btn-circle bg-transparent btn-sm w-9 h-9 border-none"
                   >
                     <Image
-                      src={`/icon/${value.img}`}
-                      width={0}
-                      height={0}
-                      className="self-center w-[85px] h-[61px] sm:w-32 lg:w-44 pointer-events-none"
-                      alt={value.img}
+                      src="/icon/chevron-left-green.svg"
+                      width={36}
+                      height={36}
+                      alt="arrow left"
                     />
-                    <p className="text-black text-xs w-[88px] pt-2 lg:w-36 lg:text-base">
-                      {value.text}
-                    </p>
-                  </div>
-                  <hr
-                    className={`self-start mt-12 sm:mt-[75px] lg:mt-[100px] w-16 max-w-[80px] h-0.5 mx-2 sm:mx-4 lg:mx-6 bg-primary ${value.line}`}
-                  />
-                </>
-              ))}
-            </div>
+                  </a>
+                  <a
+                    href={
+                      index === imgMelapor.length - 1
+                        ? `#slide0`
+                        : `#slide${index + 1}`
+                    }
+                    className="btn btn-circle bg-transparent btn-sm w-9 h-9 border-none"
+                  >
+                    <Image
+                      src="/icon/chevron-right-green.svg"
+                      width={36}
+                      height={36}
+                      alt="arrow right"
+                    />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 flex justify-center gap-2">
+            <span className="w-10 h-1 bg-primary block rounded-md"></span>
+            <span className="w-10 h-1 bg-primary block rounded-md opacity-50"></span>
+            <span className="w-10 h-1 bg-primary block rounded-md opacity-50"></span>
+            <span className="w-10 h-1 bg-primary block rounded-md opacity-50"></span>
           </div>
         </div>
-      </section>
-      {/* SILANTAR Section END */}
+        <div className="mt-[23px] flex flex-col">
+          <h3 className="font-semibold text-[15px] text-primary">
+            LAPORAN TERBARU
+          </h3>
+          <div className="flex flex-col gap-[15px] mt-[15px] mb-[6px]">
+            <Link
+              href="#"
+              className="pt-2 px-[13px] pb-[13px] border border-[#808080] rounded-[10px] w-[306px] space-y-[19px]"
+            >
+              <div className="space-y-[6px]">
+                <h4 className="text-primary font-semibold text-[15px]">
+                  Arus Lalu Lintas
+                </h4>
+                <p className="font-normal text-xs">
+                  Kerusakan dijalan Sultan Adam dan terjadinya kemacetan
+                  karenanya, mohon tindak lanjutnya.
+                </p>
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="text-xs font-normal">
+                  2023 - 07 - 17 |{" "}
+                  <span className="text-primary font-bold">Slamet Kopling</span>
+                </div>
+                <span className="bg-[#FFCECE] text-[#FF2222] rounded-xl px-[7px] py-[3px] text-xs font-semibold">
+                  Ditolak
+                </span>
+              </div>
+            </Link>
+            <Link
+              href="#"
+              className="pt-2 px-[13px] pb-[13px] border border-[#808080] rounded-[10px] w-[306px] space-y-[19px]"
+            >
+              <div className="space-y-[6px]">
+                <h4 className="text-primary font-semibold text-[15px]">
+                  Fasilitas Umum
+                </h4>
+                <p className="font-normal text-xs">
+                  halte bus smk 4 banjarmasin sudah berkarat dan hampir rusak,
+                  membahayakan orang-orang yang menumpang duduk bersinggah untuk
+                  istirahat...
+                </p>
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="text-xs font-normal">
+                  2023-07-14 |{" "}
+                  <span className="text-primary font-bold">Honda Mio</span>
+                </div>
+                <span className="bg-[#C6DAFF] text-[#276EF1] rounded-xl px-[7px] py-[3px] text-xs font-semibold">
+                  Belum Diproses
+                </span>
+              </div>
+            </Link>
+          </div>
+          <button className="text-primary font-medium italic text-xs self-end">
+            Lihat semua..
+          </button>
+        </div>
+        <div className="mt-[41px] space-y-[6px]">
+          <h3 className="font-semibold text-[15px] text-primary">
+            LACAK STATUS LAPORAN
+          </h3>
+          <p className="font-medium text-xs">
+            Anda dapat memantau status laporan yang telah anda ajukan dengan
+            fitur “Tiket Laporan”. Silahkan masukkan kode tiket disini.
+          </p>
+          <div className="form-control">
+            <label className="input-group">
+              <input
+                type="text"
+                placeholder="Masukkan tiket laporan..."
+                className="input input-bordered input-md focus:outline-none text-primary"
+              />
+              <Link
+                href="#"
+                className="btn btn-green btn-md h-full font-semibold text-[15px]"
+              >
+                Lacak
+              </Link>
+            </label>
+          </div>
+        </div>
+      </div>
 
-      {/* lapor Section */}
-      <CardLapor />
-      {/* lapor Section END */}
       {/* footer */}
       <Footer />
       {/* footer END */}

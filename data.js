@@ -327,6 +327,18 @@ const adminPejabatRole = [
   },
 ];
 
+const dummyImage = [
+  {
+    img: "/dummy-images/traffic-lights.png",
+  },
+  {
+    img: "/dummy-images/polluted-river.png",
+  },
+  {
+    img: "/dummy-images/scattered-tree-branches.png",
+  },
+];
+
 export {
   listKategori,
   listDaerah,
@@ -335,4 +347,5 @@ export {
   listRole,
   adminInstansiRole,
   adminPejabatRole,
+  dummyImage,
 };

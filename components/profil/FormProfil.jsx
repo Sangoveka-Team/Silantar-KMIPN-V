@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import {useState} from "react";
-import Modal from "../Modal";
 
 const FormProfil = () => {
   const [img, setImg] = useState(null);
@@ -11,20 +10,23 @@ const FormProfil = () => {
   const [email, setEmail] = useState("Aryo.S@gmail.com");
   const [password, setPassword] = useState("barangja");
   const [showModal, setShowModal] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const handleImage = (e) => {
     const data = e.target.files[0];
     setImg(URL.createObjectURL(data));
   };
 
+  const handleSimpan = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
   return (
-    <div className="mt-[49px] py-3 px-[9px] w-[294px] bg-white border border-primary rounded-[5px] xs:mx-auto sm:mx-16">
-      <Modal
-        setShowModal={setShowModal}
-        showModal={showModal}
-        titleChildren="Tersimpan!"
-        textButton="Bagus!"
-      />
+    <form
+      onSubmit={handleSimpan}
+      className="mt-[49px] py-3 px-[9px] w-[294px] bg-white border border-primary rounded-[5px] xs:mx-auto sm:mx-16"
+    >
       <div className="flex justify-center w-full">
         <div className="avatar relative">
           <label className="absolute w-[117px] overflow-hidden z-50 h-full rounded-full flex items-center justify-center cursor-pointer">
@@ -57,14 +59,14 @@ const FormProfil = () => {
       </div>
       <div className="flex flex-col gap-[11px]">
         <div className="flex flex-col">
-          <label className="text-primary font-bold text-xs mb-[5px]">
+          <label className="text-primary font-medium text-[15px] mb-[5px]">
             Nama Lengkap
           </label>
           <div className="flex">
             <input
               type="text"
               required
-              className="w-full text-[10px] border-none focus:outline-none font-bold"
+              className="w-full text-xs border-none focus:outline-none font-medium"
               onChange={(e) => setNama(e.target.value)}
               value={nama}
             />
@@ -72,14 +74,14 @@ const FormProfil = () => {
           <hr className="w-full -mt-[1px] h-[2px] bg-primary" />
         </div>
         <div className="flex flex-col">
-          <label className="text-primary font-bold text-xs mb-[5px]">
+          <label className="text-primary font-medium text-[15px] mb-[5px]">
             Nomor Ponsel
           </label>
           <div className="flex">
             <input
               type="text"
               required
-              className="w-full text-[10px] border-none focus:outline-none font-bold"
+              className="w-full text-xs border-none focus:outline-none font-medium"
               onChange={(e) => setTel(e.target.value)}
               value={tel}
             />
@@ -87,7 +89,7 @@ const FormProfil = () => {
           <hr className="w-full -mt-[1px] h-[2px] bg-primary" />
         </div>
         <div className="flex flex-col">
-          <label className="text-primary font-bold text-xs mb-[5px]">
+          <label className="text-primary font-medium text-[15px] mb-[5px]">
             Akun Email
           </label>
           <div className="flex">
@@ -95,7 +97,7 @@ const FormProfil = () => {
               type="email"
               required
               disabled
-              className="w-full text-[10px] border-none focus:outline-none font-bold input-disabled"
+              className="w-full text-xs border-none focus:outline-none font-medium input-disabled"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
             />
@@ -103,17 +105,43 @@ const FormProfil = () => {
           <hr className="w-full -mt-[1px] h-[2px] bg-primary" />
         </div>
         <div className="flex flex-col">
-          <label className="text-primary font-bold text-xs mb-[5px]">
+          <label className="text-primary font-medium text-[15px] mb-[5px]">
             Kata Sandi
           </label>
-          <div className="flex">
+          <div className="relative w-full">
             <input
-              type="password"
+              id="password"
+              type={!isVisible ? "text" : "password"}
               required
-              className="w-full text-[10px] border-none focus:outline-none font-bold"
+              placeholder="Masukkan kata sandi anda..."
+              className="input-lapor p-0"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
+            <label className="swap absolute right-0 top-0 z-0">
+              <input
+                type="checkbox"
+                onChange={(e) =>
+                  e.target.checked ? setIsVisible(false) : setIsVisible(true)
+                }
+              />
+              {/* password visible */}
+              <Image
+                src="/icon/visible.svg"
+                width={24}
+                height={24}
+                alt="visible icon"
+                className="swap-off"
+              />
+              {/* password invisible*/}
+              <Image
+                src="/icon/invisible.svg"
+                width={24}
+                height={24}
+                alt="invisible icon"
+                className="swap-on"
+              />
+            </label>
           </div>
           <hr className="w-full -mt-[1px] h-[2px] bg-primary" />
         </div>
@@ -121,7 +149,43 @@ const FormProfil = () => {
           Simpan
         </button>
       </div>
-    </div>
+
+      <input
+        type="checkbox"
+        id="my_modal_11"
+        className="modal-toggle"
+        checked={showModal ? true : false}
+      />
+      <div className="modal">
+        <div className="modal-box w-[276px] mx-[42px] flex flex-col justify-center items-center">
+          <label
+            htmlFor="my_modal_11"
+            onClick={() => setShowModal(false)}
+            className="btn btn-sm btn-circle btn-ghost text-black absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          <h3 className="font-bold text-[15px] text-center text-primary">
+            Tersimpan
+          </h3>
+          <Image
+            src="/icon/icon-modal.svg"
+            width={141}
+            height={137}
+            alt="icon modal"
+          />
+          <div className="modal-action">
+            <label
+              htmlFor="my_modal_11"
+              onClick={() => setShowModal(false)}
+              className="btn btn-green btn-sm font-medium text-xs"
+            >
+              Bagus!
+            </label>
+          </div>
+        </div>
+      </div>
+    </form>
   );
 };
 

@@ -1,6 +1,5 @@
 "use client";
 import Dropdown from "@/components/lapor/Dropdown";
-import Modal from "@/components/Modal";
 import Image from "next/image";
 import Link from "next/link";
 import {listDaerah, listRole} from "@/data";
@@ -19,12 +18,6 @@ const AkunDetail = ({params}) => {
   };
   return (
     <div className="mt-[18px] ml-[21px] mr-[31px] max-w-[1059px]">
-      <Modal
-        setShowModal={setShowModal}
-        showModal={showModal}
-        titleChildren="Tersimpan!"
-        textButton="Bagus!"
-      />
       <div className="inline-block">
         <div className="font-bold text-[22px] border border-primary bg-white rounded-2xl w-auto px-4 py-[3px]">
           <Link

@@ -1,11 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import {useState} from "react";
 
-const ImageUpload = () => {
-  const [imgLocation, setImgLocation] = useState([]);
-
+const ImageUpload = ({imgLocation, setImgLocation}) => {
   const handleUploadImage = (e) => {
     const listFiles = e.target.files;
     const listFilesArray = Array.from(listFiles);
@@ -25,7 +22,9 @@ const ImageUpload = () => {
 
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-primary font-bold text-sm">Foto Lokasi</label>
+      <label className="text-primary font-medium text-[15px]">
+        Foto Lokasi
+      </label>
       <div className="flex items-center">
         <Image
           src="/icon/camera-2.svg"
@@ -54,7 +53,7 @@ const ImageUpload = () => {
           )}
         </label>
       </div>
-      <hr className="w-full h-[2px] bg-primary" />
+      <hr id="file-line" className="w-full h-[2px] bg-primary" />
 
       {/* MODAL */}
       <input type="checkbox" id="my_modal_7" className="modal-toggle" />
@@ -159,6 +158,9 @@ const ImageUpload = () => {
             )}
           </div>
         </div>
+        <label className="modal-backdrop" htmlFor="my_modal_7">
+          Close
+        </label>
       </div>
     </div>
   );

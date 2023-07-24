@@ -41,7 +41,7 @@ const Dropdown = ({listDatas, input, setInput, placeholder}) => {
           // datanya masih manual
           <li
             key={index}
-            className="font-bold text-xs text-primary cursor-pointer"
+            className="font-medium text-xs text-primary cursor-pointer"
             onClick={() => {
               setInput(data.value);
               setDropdown(false);
@@ -55,7 +55,11 @@ const Dropdown = ({listDatas, input, setInput, placeholder}) => {
         ))}
       </ul>
       <label className="swap swap-rotate absolute right-0 top-0 z-0 pointer-events-none">
-        <input type="checkbox" checked={checkbox ? true : false} />
+        <input
+          type="checkbox"
+          checked={checkbox ? true : false}
+          onChange={(e) => console.log(e.target.checked)}
+        />
         {/* arrow up */}
         <Image
           src="/icon/chevron-up.svg"

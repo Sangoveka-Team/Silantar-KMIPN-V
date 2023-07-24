@@ -10,9 +10,9 @@ const ProfilUser = () => {
       <div className="w-full relative">
         <details
           id="dropdown-dashboard"
-          className="collapse bg-white flex flex-col items-center border-2 border-primary rounded-xl max-w-[181px] absolute right-0 z-[99]"
+          className="collapse bg-white flex flex-col items-center border-2 border-primary rounded-xl max-w-[235px] absolute right-0 z-[99]"
         >
-          <summary className="collapse-title text-[10px] py-2 px-3 font-bold min-h-[33px] h-auto relative">
+          <summary className="collapse-title text-sm py-2 px-3 font-medium min-h-[33px] h-auto relative">
             Tiba dihalaman profil anda!
             <Image
               src="/icon/dropdown.svg"
@@ -23,7 +23,7 @@ const ProfilUser = () => {
             />
           </summary>
           <div className="collapse-content pt-0 pb-2 px-3">
-            <p className="text-[8px] font-normal">
+            <p className="text-[12px] font-normal">
               Dihalaman ini anda dapat menyunting informasi anda yang dibutuhkan
               untuk website ini.
             </p>

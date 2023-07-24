@@ -16,7 +16,7 @@ const AddButton = () => {
       href="/dashboard/tambah-laporan"
       className={`${
         pathname === "/dashboard/tambah-laporan" ? "hidden" : "flex"
-      } btn btn-green btn-xs fixed bottom-[2.188rem] right-[0.438rem] rounded-3xl items-center font-medium text-[0.938rem] py-2 px-[0.875rem] h-[39px] gap-1 z-50`}
+      } btn btn-green btn-xs fixed bottom-[2.188rem] right-[0.438rem] rounded-3xl items-center font-medium text-[0.938rem] py-2 px-[0.875rem] h-[39px] gap-1 z-[9999]`}
     >
       <Image
         src="/icon/add.svg"

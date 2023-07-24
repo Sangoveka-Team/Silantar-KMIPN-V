@@ -4,16 +4,48 @@ import HeaderAuth from "@/components/HeaderAuth";
 import {useUserContext} from "@/contexts/UserContext";
 import Image from "next/image";
 import Link from "next/link";
-import {redirect} from "next/navigation";
-import {useState} from "react";
+import {redirect, useRouter} from "next/navigation";
+import {useEffect, useState} from "react";
 
 const SignIn = () => {
+  const route = useRouter();
   const [isVisible, setIsVisible] = useState(true);
   const {session, setSession} = useUserContext();
-  console.log(session);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   if (session.isAuth) {
     redirect("/dashboard");
   }
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    if (document.cookie.split("=")[2] === "") {
+      await fetch("http://127.0.0.1:8000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      })
+        .then(async (res) => {
+          const data = await res.json();
+          document.cookie = `token=${data.payload}`;
+          route.push("/dashboard");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      console.log("anda sudah login");
+    }
+  };
+
+  useEffect(() => {
+    console.log(document.cookie.split("=")[2]);
+  }, []);
 
   return (
     <div className="max-w-xl mx-auto w-full h-[640px]">
@@ -22,9 +54,14 @@ const SignIn = () => {
         <h1 className="text-[0.938rem] text-center font-bold">
           Masuk <span className="text-primary block -mt-1">SILANTAR</span>
         </h1>
-        <form className="mx-[2.625rem] mt-[1.625rem] space-y-2 w-fulls">
+        <form
+          className="mx-[2.625rem] mt-[1.625rem] space-y-2 w-fulls"
+          onSubmit={handleLogin}
+        >
           <div className="flex flex-col">
-            <label className="text-primary font-bold text-sm">Akun Email</label>
+            <label className="text-primary font-bold text-sm" htmlFor="email">
+              Akun Email
+            </label>
             <div className="flex relative">
               <Image
                 src="/icon/mail.svg"
@@ -34,16 +71,24 @@ const SignIn = () => {
                 className="absolute left-0"
               />
               <input
+                id="email"
                 type="email"
                 required
                 placeholder="Masukkan email anda..."
                 className="input-lapor pl-[1.688rem]"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
             </div>
             <hr className="w-full h-[2px] bg-primary" />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="text-primary font-bold text-sm">Kata Sandi</label>
+            <label
+              className="text-primary font-bold text-sm"
+              htmlFor="password"
+            >
+              Kata Sandi
+            </label>
             <div className="flex relative">
               <Image
                 src="/icon/lock-close.svg"
@@ -54,10 +99,13 @@ const SignIn = () => {
               />
               <div className="relative w-full pl-[1.688rem]">
                 <input
+                  id="password"
                   type={!isVisible ? "text" : "password"}
                   required
                   placeholder="Masukkan kata sandi anda..."
                   className="input-lapor p-0"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                 />
                 <label className="swap absolute right-0 top-0 z-0">
                   <input
@@ -91,14 +139,14 @@ const SignIn = () => {
           </div>
           <button
             type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-              setSession({
-                isAuth: true,
-                user: false,
-                superAdmin: true,
-              });
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   setSession({
+            //     isAuth: true,
+            //     user: false,
+            //     superAdmin: true,
+            //   });
+            // }}
             className="btn btn-xs btn-green w-full text-xs h-9"
           >
             Masuk

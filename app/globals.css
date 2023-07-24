@@ -24,8 +24,5 @@
   .input-lapor {
     @apply input focus:outline-none input-xs w-full placeholder:text-[#808080] pl-1;
   }
-
-  /*.dropdown-item {
-    @apply pl-[1.688rem] py-1 font-bold text-xs text-primary cursor-pointer hover:bg-slate-100;
-  }*/
 }
+

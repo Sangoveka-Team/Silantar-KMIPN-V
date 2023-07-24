@@ -1,19 +1,20 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const DashboardUser = () => {
   return (
     <div className="px-2 py-[0.375rem] w-full relative sm:max-w-xl sm:mx-auto">
-      <h1 className="font-bold text-[0.938rem] sm:text-2xl">Dashboard</h1>
+      <h1 className="font-bold text-base sm:text-2xl mb-2">Dashboard</h1>
       <div className="w-full relative">
         <details
           id="dropdown-dashboard"
-          className="collapse bg-white flex flex-col items-center border-2 border-primary rounded-xl max-w-[276px] absolute right-0 z-[99]"
+          className="collapse bg-white flex flex-col items-center border-2 border-primary rounded-xl max-w-[355px] absolute right-0 z-[99]"
         >
-          <summary className="collapse-title text-[10px] py-2 px-3 font-bold min-h-[33px] h-auto relative">
+          <summary className="collapse-title text-[12px] py-2 px-3 font-bold min-h-[33px] h-auto relative">
             Selamat datang di dashboard anda,{" "}
-            <span className="text-primary">Aryo Suryono!</span>
+            <span className="text-primary block">Aryo Suryono!</span>
             <Image
               src="/icon/dropdown.svg"
               width={24}
@@ -23,7 +24,7 @@ const DashboardUser = () => {
             />
           </summary>
           <div className="collapse-content pt-0 pb-2 px-3">
-            <p className="text-[8px] font-normal">
+            <p className="text-[10px] font-normal">
               Di Dashboard ini anda dapat memantau status laporan yang anda
               buat, yang sedang diproses, sudah selesai, ataupun tertolak. Anda
               juga dapat mengelola akun anda.
@@ -32,8 +33,8 @@ const DashboardUser = () => {
         </details>
       </div>
       {/* statistik */}
-      <div className="w-full mt-[45px]">
-        <div className="flex items-center sm:gap-1">
+      <div className="w-full mt-20">
+        <div className="flex items-center gap-1">
           <Image
             src="/icon/bar-chart-2.svg"
             width={19}
@@ -41,12 +42,12 @@ const DashboardUser = () => {
             alt="statisik icon"
             className="inline -mt-1"
           />
-          <h2 className="font-bold text-xs self sm:text-base">
+          <h2 className="font-bold text-[15px] self sm:text-lg">
             Statistik <span className="text-primary">Laporan</span> Anda
           </h2>
         </div>
         <div className="mt-2 text-white flex gap-[0.438rem] flex-wrap xs:ml-4">
-          <div className="bg-primary w-36 rounded-xl shadow-xl p-[0.625rem] flex flex-col relative">
+          <div className="bg-primary w-36 rounded-xl shadow-xl p-[0.625rem] flex flex-col relative font-bold">
             <span className="text-[1.563rem] pl-[0.563rem]">3</span>
             <span className="text-[0.938rem]">Tuntas</span>
             <Image
@@ -57,7 +58,7 @@ const DashboardUser = () => {
               className="absolute right-[1.063rem]"
             />
           </div>
-          <div className="bg-primary w-36 rounded-xl shadow-xl p-[0.625rem] flex flex-col relative">
+          <div className="bg-primary w-36 rounded-xl shadow-xl p-[0.625rem] flex flex-col relative font-bold">
             <span className="text-[1.563rem] pl-[0.563rem]">1</span>
             <span className="text-[0.938rem]">Diproses</span>
             <Image
@@ -68,7 +69,7 @@ const DashboardUser = () => {
               className="absolute right-[1.063rem]"
             />
           </div>
-          <div className="bg-primary w-36 rounded-xl shadow-xl p-[0.625rem] flex flex-col relative">
+          <div className="bg-primary w-36 rounded-xl shadow-xl p-[0.625rem] flex flex-col relative font-bold">
             <span className="text-[1.563rem] pl-[0.563rem]">0</span>
             <span className="text-[0.938rem]">Belum Diproses</span>
             <Image
@@ -79,7 +80,7 @@ const DashboardUser = () => {
               className="absolute right-[1.063rem]"
             />
           </div>
-          <div className="bg-primary w-36 rounded-xl shadow-xl p-[0.625rem] flex flex-col relative">
+          <div className="bg-primary w-36 rounded-xl shadow-xl p-[0.625rem] flex flex-col relative font-bold">
             <span className="text-[1.563rem] pl-[0.563rem]">0</span>
             <span className="text-[0.938rem]">Ditolak</span>
             <Image
@@ -136,8 +137,8 @@ const DashboardUser = () => {
       {/* poin end */}
 
       {/* laporan terakhir */}
-      <div className="w-full mt-[0.438rem]">
-        <div className="flex items-center sm:gap-1">
+      <div className="w-full mt-3">
+        <div className="flex items-center gap-1">
           <Image
             src="/icon/clock-green.svg"
             width={15}
@@ -145,63 +146,31 @@ const DashboardUser = () => {
             alt="clock icon"
             className="inline -mt-[2px]"
           />
-          <h2 className="font-bold text-xs pl-[0.125rem] sm:text-base">
+          <h2 className="font-bold text-[15px] pl-[0.125rem] sm:text-xl">
             Laporan <span className="text-primary">Terakhir</span>
           </h2>
         </div>
-        <div className="mt-2 flex py-[0.813rem] pl-[0.813rem] pr-[0.625rem] bg-white border-2 border-primary shadow-xl rounded-xl w-[18.375rem]">
-          <div className="w-[5.063rem] h-[7.375rem] mr-[0.563rem]">
-            <Image
-              src="/dashboard/lapor-image.png"
-              width={81}
-              height={118}
-              alt="Lapor image"
-              className="w-full h-full object-cover"
-            />
+        <div className="mt-2 flex flex-col p-[17px] bg-white border border-primary shadow-xl rounded-[5px] w-[18.375rem]">
+          <div className="flex justify-between w-full">
+            <h3 className="font-semibold text-[15px] text-primary">
+              Arus Lalu Lintas
+            </h3>
+            <Link
+              href="/dashboard/riwayat/SILT130505239493"
+              className="btn btn-green btn-xs text-[10px] rounded-[0.313rem] py-1 px-[6px] w-[85px] font-medium"
+            >
+              Selengkapnya
+            </Link>
           </div>
-          <hr className="w-[0.063rem] h-[7.375rem] bg-[#D9D9D9]" />
-          <div className="ml-[0.563rem] text-[0.5rem]">
-            <p className="line-clamp-1">
-              Kategori Laporan
-              <span className="pl-[0.313rem]">:</span>
-              <span className="pl-[0.438rem] line-clamp-1 text-primary inline ">
-                Pencemaran Lingkungan
-              </span>
-            </p>
-            <p className="line-clamp-1">
-              Alamat Lokasi
-              <span className="pl-[0.938rem]">:</span>
-              <span className="pl-[0.438rem]  text-primary w-[93px]">
-                Komp. Gerilya Cermai Satu no 85
-              </span>
-            </p>
-            <p className="line-clamp-1">
-              Tanggal Laporan
-              <span className="pl-[0.375rem]">:</span>
-              <span className="pl-[0.438rem]  text-primary w-[93px]">
-                06-05-2023
-              </span>
-            </p>
-            <div className="flex">
-              <p className="h-8">Deskripsi Laporan</p>
-              <span className="pl-[0.125rem]">:</span>
-              <span className="pl-[0.438rem]  text-primary w-[93px] line-clamp-3">
-                Sampah menumpuk disungai, tidak adanya palang pemberitahuan
-                bahwa adaa
-              </span>
-            </div>
-            <div className="flex">
-              <p className="font-bold">Status</p>
-              <span className="pl-[2.625rem]">:</span>
-              <span className="ml-[0.438rem] bg-[#C6DAFF] text-[#276EF1] rounded-xl px-[0.375rem] py-[0.188rem] text-[0.313rem] font-bold">
-                Belum Diproses
-              </span>
-            </div>
-            <div className="flex justify-end mt-3">
-              <button className="btn btn-green btn-xs text-[0.5rem] rounded-[0.313rem] py-1 px-[6px] w-[66px]">
-                Selengkapnya
-              </button>
-            </div>
+          <p className="text-xs mt-[7px]">
+            Kerusakan dijalan Sultan Adam dan terjadinya kemacetan karenanya,
+            mohon tindak lanjutnya.
+          </p>
+          <div className="flex justify-between w-full  text-xs mt-2 items-center">
+            <p className="font-normal">2023-07-18</p>
+            <span className="ml-[0.438rem] bg-[#F4F1FA] text-[#276EF1] rounded-xl px-[0.375rem] py-[0.188rem] font-semibold">
+              Belum Diproses
+            </span>
           </div>
         </div>
       </div>
