@@ -1,5 +1,7 @@
+"use client";
 import ArrowUp from "@/components/home/ArrowUp";
 import Footer from "@/components/home/Footer";
+import LacakCard from "@/components/home/LacakCard";
 import Navbar from "@/components/home/Navbar";
 import Image from "next/image";
 import Link from "next/link";
@@ -206,21 +208,7 @@ export default function Home() {
             Anda dapat memantau status laporan yang telah anda ajukan dengan
             fitur “Tiket Laporan”. Silahkan masukkan kode tiket disini.
           </p>
-          <div className="form-control">
-            <label className="input-group">
-              <input
-                type="text"
-                placeholder="Masukkan tiket laporan..."
-                className="input input-bordered input-md focus:outline-none text-primary"
-              />
-              <Link
-                href="#"
-                className="btn btn-green btn-md h-full font-semibold text-[15px]"
-              >
-                Lacak
-              </Link>
-            </label>
-          </div>
+          <LacakCard />
         </div>
       </div>
 
