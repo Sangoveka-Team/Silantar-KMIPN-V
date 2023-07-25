@@ -31,7 +31,7 @@ export default function Home() {
         <div className="hero h-full lg:bg-cover bg-primary">
           <div className="w-full mt-11 h-auto pt-[26px] pl-[29px] pr-[25px] pb-[25px] relative">
             <Image
-              src="/home/icon-header-mobile.svg"
+              src="/home/Icon-header-mobile.svg"
               width={167}
               height={136}
               alt="icon mobile"
