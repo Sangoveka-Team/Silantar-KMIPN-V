@@ -1,7 +1,9 @@
 "use client";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import {useEffect, useState} from "react";
-import Maps from "../Maps";
+
+const MapsDynamic = dynamic(() => import("../Maps"), {ssr: false});
 
 const InputLocation = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -63,7 +65,7 @@ const InputLocation = () => {
               )}
             </div>
           </div>
-          <Maps address={address} setAddress={setAddress} />
+          <MapsDynamic address={address} setAddress={setAddress} />
         </div>
       </div>
     </div>

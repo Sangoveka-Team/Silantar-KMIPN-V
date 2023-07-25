@@ -10,6 +10,7 @@ import ImageUpload from "@/components/lapor/ImageUpload";
 import InputLocation from "@/components/lapor/InputLocation";
 import ModalAddLaporan from "@/components/ModalAddLaporan";
 
+
 const Lapor = () => {
   const [imgLocation, setImgLocation] = useState([]);
   const [nama, setNama] = useState("");
