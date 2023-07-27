@@ -46,12 +46,12 @@ const LacakDetail = ({params}) => {
         <LacakCard id={params.ticket} />
       </div>
       <div className="mt-[13px]">
-        {params.ticket === data.ticket ? (
-          <CardDetailLaporan data={dummyDataLaporan} />
+        {/* {params.ticket === data.ticket ? (
+          <CardDetailLaporan data={dummyDataLaporan} backUrl="/" />
         ) : (
           <h3 className="font-bold text-center text-xl">Laporan Tidak Ada</h3>
-        )}
-        {/* <div className="flex items-center my-[7px] font-medium text-[15px]">
+        )} */}
+        <div className="flex items-center my-[7px] font-medium text-[15px]">
           <Link href="/dashboard/riwayat">
             <Image
               src="/icon/arrow-left-black.svg"
@@ -197,7 +197,7 @@ const LacakDetail = ({params}) => {
           </div>
         </div>
 
-        <ShowImage datas={dummyDataLaporan.img} /> */}
+        <ShowImage datas={dummyDataLaporan.img} />
       </div>
     </div>
   );

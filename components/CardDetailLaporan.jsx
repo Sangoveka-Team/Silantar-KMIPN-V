@@ -7,7 +7,7 @@ import {MapContainer, Marker, Popup, TileLayer, useMap} from "react-leaflet";
 import {customIcon} from "./Marker";
 import ShowImage from "./ShowImage";
 
-const CardDetailLaporan = ({data}) => {
+const CardDetailLaporan = ({data, backUrl}) => {
   const [showMap, setShowMap] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -17,7 +17,7 @@ const CardDetailLaporan = ({data}) => {
   return (
     <>
       <div className="flex items-center my-[7px] font-medium text-[15px]">
-        <Link href="/dashboard/riwayat">
+        <Link href={backUrl}>
           <Image
             src="/icon/arrow-left-black.svg"
             width={24}

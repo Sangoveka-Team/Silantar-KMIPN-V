@@ -2,7 +2,7 @@
 import Image from "next/image";
 import {useState} from "react";
 
-const CardDetailLaporan = ({params}) => {
+const CardDetailLaporanSuperAdmin = ({params}) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="mt-4 bg-white rounded-md max-w-[1063px]">
@@ -140,4 +140,4 @@ const CardDetailLaporan = ({params}) => {
   );
 };
 
-export default CardDetailLaporan;
+export default CardDetailLaporanSuperAdmin;

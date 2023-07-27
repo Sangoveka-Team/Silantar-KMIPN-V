@@ -1,6 +1,6 @@
 "use client";
 
-import CardDetailLaporan from "@/components/dashboard/super-admin/CardDetailLaporan";
+import CardDetailLaporanSuperAdmin from "@/components/dashboard/super-admin/CardDetailLaporanSuperAdmin";
 import {useUserContext} from "@/contexts/UserContext";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,7 +39,7 @@ const LaporanDetail = ({params}) => {
         </div>
       </div>
 
-      <CardDetailLaporan params={params} />
+      <CardDetailLaporanSuperAdmin params={params} />
     </div>
   );
 };

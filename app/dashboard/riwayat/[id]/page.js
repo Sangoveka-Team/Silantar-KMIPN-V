@@ -35,7 +35,7 @@ const RiwayatDetail = ({params}) => {
       <h1 className="text-[15px] font-semibold sm:text-2xl">
         Riwayat <span className="text-primary">Laporan</span>
       </h1>
-      <CardDetailLaporan data={dummyDataLaporan} />
+      <CardDetailLaporan data={dummyDataLaporan} backUrl="/dashboard/riwayat" />
     </div>
   );
 };
