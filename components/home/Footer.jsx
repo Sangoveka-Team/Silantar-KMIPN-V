@@ -1,78 +1,38 @@
 import Image from "next/image";
-import FooterCopyright from "./FooterCopyright";
+import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#cdebda]">
-      <div className="pt-3 px-[64px] sm:px-[84px] pb-[15px] sm:flex sm:justify-center sm:pt-8">
-        <div className="flex flex-col">
-          <div className="flex items-center justify-center gap-1">
-            <Image
-              src="/icon/logo.svg"
-              width={35}
-              height={36}
-              alt="logo footer"
-              className="w-[35px] h-[36px] -mb-[7px]"
-            />
-            <h1 className="text-shadow-primary shadow-black text-[32px] text-primary font-bold font-outline-2">
-              SILANTAR
-            </h1>
-          </div>
-          <h3 className="mt-[13px] mb-[26px] text-center text-primary font-bold text-[15px]">
-            Hubungi Kami
-          </h3>
-        </div>
-
-        <div className="pl-12 text-black sm:pt-5">
-          <div className="flex items-center gap-1">
-            <Image
-              src="/icon/internet.svg"
-              width={19}
-              height={17}
-              className="text-primary w-[19px] h-[17px]"
-              alt="alamat icon"
-            />
-            <p className="text-[10px] font-bold">
-              Kalimantan Selatan, Indonesia.
-            </p>
-          </div>
-          <div className="flex items-center gap-1">
-            <Image
-              src="/icon/mail.svg"
-              width={19}
-              height={17}
-              className="w-[19px] h-[17px]"
-              alt="email icon"
-            />
-            <p className="text-[10px] font-bold underline underline-offset-2">
-              silantar@gmail.com
-            </p>
-          </div>
-          <div className="flex items-center gap-1">
-            <Image
-              src="/icon/support.svg"
-              width={19}
-              height={17}
-              className="w-[19px] h-[17px]"
-              alt="telp icon"
-            />
-            <p className="text-[10px] font-bold">+62 8963228323</p>
-          </div>
+    <footer className="bg-primary flex flex-col pt-[10px] px-[29px] pb-[15px]">
+      <div className="flex flex-col text-white">
+        <h3 className="font-semibold text-[15px] mb-[2px]">
+          Terhubung dengan Kami
+        </h3>
+        <p className="font-medium italic text-[10px]">
+          Bergabung bersama kami untuk membantu meningkatkan kualitas lingkungan
+          sekitar kita!
+        </p>
+        <Link
+          href="/sign-up"
+          className="btn btn-white btn-xs h-[27px] w-[92px] text-xs font-semibold p-0 mt-[7px]"
+        >
+          Daftar Disini
+        </Link>
+      </div>
+      <hr className="w-full bg-white h-[2px] mt-[13px] mb-[7px]" />
+      <div className="text-white font-medium">
+        <h3 className="text-[15px] font-semibold">Hubungi Kami</h3>
+        <p className="italic text-[10px] mb-[6px]">Berikan kami masukan.</p>
+        <div className="space-y-[2px]">
+          <p className="text-[10px]">Call | +62 896-322-8323</p>
+          <p className="text-[10px]">Email | silantar@gmail.com</p>
+          <p className="text-[10px]">Kalimantan Selatan, Indonesia.</p>
         </div>
       </div>
-      <div className="bg-[#a6b7ad] px-10 py-[9px] box-border text-white flex gap-1 items-center w-full justify-center flex-wrap">
-        <label className="font-bold text-[0.85rem] sm:text-[0.94rem]">
-          Berikan Masukan:
-        </label>
-        <input
-          type="text"
-          className="input w-[101px] h-5 bg-white text-black text-xs"
-        />
-        <button className="btn btn-green btn-xs w-[48px] h-5 text-[0.625rem]">
-          Kirim
-        </button>
-      </div>
-      <FooterCopyright />
+      <hr className="w-full bg-white h-[2px] mt-[11px] mb-[13px]" />
+      <p className="font-bold text-[8px] text-white">
+        Copyright SILANTAR 2023-2023 © All Rights Reserved.
+      </p>
     </footer>
   );
 };

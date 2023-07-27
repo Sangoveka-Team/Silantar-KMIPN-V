@@ -3,6 +3,8 @@ import ArrowUp from "@/components/home/ArrowUp";
 import Footer from "@/components/home/Footer";
 import LacakCard from "@/components/home/LacakCard";
 import Navbar from "@/components/home/Navbar";
+import WhatsappBox from "@/components/home/WhatsappBox";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,6 +22,10 @@ const imgMelapor = [
     img: "/home/4.png",
   },
 ];
+const WhatsappBoxDynamic = dynamic(
+  () => import("../components/home/WhatsappBox"),
+  {ssr: false}
+);
 
 export default function Home() {
   return (
@@ -28,6 +34,10 @@ export default function Home() {
       {/* arrow up */}
       <ArrowUp />
       {/* arrow up end*/}
+      {/* whatsapp icon */}
+      <WhatsappBoxDynamic />
+      {/* whatsapp icon */}
+
       {/* HERO */}
       <section id="hero">
         <div className="hero h-full lg:bg-cover bg-primary">
@@ -37,7 +47,7 @@ export default function Home() {
               width={167}
               height={136}
               alt="icon mobile"
-              className="absolute right-[25px]"
+              className="absolute right-[25px] top-[80px]"
             />
             <div className="space-y-[11px]">
               <h2 className="font-bold text-xl text-white w-[204px]">
@@ -52,13 +62,13 @@ export default function Home() {
             </div>
             <div className="mt-[52px] space-x-[10px]">
               <a
-                href="#"
+                href="#cara-melapor"
                 className="btn btn-white btn-xs h-[34px] bg-transparent border border-white text-white hover:bg-white hover:text-primary font-normal text-[15px]"
               >
                 Cara melapor?
               </a>
               <a
-                href="#"
+                href="#lacak-laporan"
                 className="btn btn-white btn-xs h-[34px] font-semibold text-[15px]"
               >
                 Lacak Laporan
@@ -83,7 +93,7 @@ export default function Home() {
             menjadi wadah komunikasi antar masyarakat dan pemerintah.
           </p>
         </div>
-        <div className="mt-[11px] space-y-[10px]">
+        <div id="cara-melapor" className="mt-[11px] space-y-[10px]">
           <h3 className="font-semibold text-[15px] text-primary">
             MELAPOR DENGAN SILANTAR
           </h3>
@@ -200,7 +210,7 @@ export default function Home() {
             Lihat semua..
           </button>
         </div>
-        <div className="mt-[41px] space-y-[6px]">
+        <div id="lacak-laporan" className="mt-[41px] space-y-[6px]">
           <h3 className="font-semibold text-[15px] text-primary">
             LACAK STATUS LAPORAN
           </h3>

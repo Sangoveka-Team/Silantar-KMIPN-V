@@ -2,8 +2,8 @@
 import Link from "next/link";
 import {useState} from "react";
 
-const LacakCard = () => {
-  const [ticket, setTicket] = useState("");
+const LacakCard = ({id}) => {
+  const [ticket, setTicket] = useState(id !== undefined ? id : "");
   return (
     <div className="form-control">
       <label className="input-group">

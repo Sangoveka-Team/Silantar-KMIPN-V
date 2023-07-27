@@ -24,11 +24,11 @@ const ArrowUp = () => {
       <button
         className={`btn btn-green btn-xs ${
           position > 100 ? "fixed" : "hidden"
-        } bottom-20 right-7 bg-primary w-[45px] h-[44px] rounded-full flex items-center justify-center shadow-[3px_3px_5px_#b3b3b3] hover:-translate-y-2 p-0 animate-bounce`}
+        } bottom-[105px] right-7 bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:-translate-y-2 p-0 animate-bounce hover:bg-[#cacaca]`}
         onClick={handleScrollToTop}
       >
         <Image
-          src="/icon/chevrons-up.svg"
+          src="/icon/chevrons-up-green.svg"
           width={24}
           height={24}
           alt="chevrons image"

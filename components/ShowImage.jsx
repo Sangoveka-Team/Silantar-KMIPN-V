@@ -23,7 +23,7 @@ const ShowImage = ({datas}) => {
                   className="carousel-item relative w-full"
                 >
                   <Image
-                    src={data.img}
+                    src={data}
                     width={0}
                     height={0}
                     alt={`gambar ke ${index + 1}`}
