@@ -1,13 +1,46 @@
 "use client";
+import ColorStatus from "@/components/ColorStatus";
 import DropdownStatus from "@/components/dashboard/DropdownStatus";
 import Image from "next/image";
 import Link from "next/link";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const Riwayat = () => {
   const [search, setSearch] = useState("");
+  const [dataRiwayat, setDataRiwayat] = useState(null);
+  const getDataRiwayat = async () => {
+    if (typeof window !== "undefined") {
+      await fetch("https://api.silantar.my.id/api/riwayat-lapor", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+        .then(async (res) => {
+          const data = await res.json();
+          setDataRiwayat(data.payload);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  useEffect(() => {
+    getDataRiwayat();
+  }, []);
+
+  if (dataRiwayat === null) {
+    return (
+      <p className="animate-pulse text-3xl font-bold text-center mt-10">
+        Loading...
+      </p>
+    );
+  }
+
   return (
-    <div className="py-[0.375rem] px-2 relative sm:max-w-xl sm:mx-auto">
+    <div className="py-[0.375rem] px-2 relative sm:max-w-xl sm:mx-auto h-auto mb-10">
       <h1 className="text-[0.938rem] font-bold sm:text-2xl">
         Riwayat <span className="text-primary">Laporan</span>
       </h1>
@@ -35,21 +68,7 @@ const Riwayat = () => {
         </details>
       </div>
       <div className="mt-[50px] w-full flex flex-col">
-        <h3 className="text-[15px] font-semibold sm:text-xl mb-2">Terbaru</h3>
         <DropdownStatus />
-        {/* <div className="ml-36 flex items-center w-[84px] text-[8px] py-[0.125rem] pl-[5px] pr-1 bg-white rounded-md border border-[#808080] sm:h-[18px] sm:mt-1">
-          <input
-            type="text"
-            placeholder="Cari laporan"
-            className="bg-transparent focus:border-none focus:outline-none w-full"
-          />
-          <Image
-            src="/icon/search.svg"
-            width={10}
-            height={10}
-            alt="search icon"
-          />
-        </div> */}
         <div className="ml-36">
           <div className="input input-sm input-bordered w-[150px] max-w-xs focus:outline-none text-xs relative  border border-[#808080]">
             <input
@@ -70,32 +89,131 @@ const Riwayat = () => {
           </div>
         </div>
       </div>
-      {/* laporan */}
-      <div className="mt-5">
-        <div className="mt-2 flex flex-col p-[17px] bg-white border border-primary shadow-xl rounded-[5px] w-[18.375rem]">
-          <div className="flex justify-between w-full">
-            <h3 className="font-semibold text-[15px] text-primary">
-              Arus Lalu Lintas
-            </h3>
-            <Link
-              href="/dashboard/riwayat/SILT130505239493"
-              className="btn btn-green btn-xs text-[10px] rounded-[0.313rem] py-1 px-[6px] w-[85px] font-medium"
-            >
-              Selengkapnya
-            </Link>
-          </div>
-          <p className="text-xs mt-[7px]">
-            Kerusakan dijalan Sultan Adam dan terjadinya kemacetan karenanya,
-            mohon tindak lanjutnya.
-          </p>
-          <div className="flex justify-between w-full  text-xs mt-2 items-center">
-            <p className="font-normal">2023-07-18</p>
-            <span className="ml-[0.438rem] bg-[#F4F1FA] text-[#276EF1] rounded-xl px-[0.375rem] py-[0.188rem] font-semibold">
-              Belum Diproses
-            </span>
-          </div>
+      {dataRiwayat.laporanHariIni.length !== 0 && (
+        <div className="mt-5 flex flex-col gap-1">
+          <h3 className="text-[15px] font-semibold sm:text-xl">Hari ini</h3>
+          {dataRiwayat.laporanHariIni.map((data) => (
+            <div className="flex flex-col p-[17px] bg-white border border-primary shadow-xl rounded-[5px] w-[18.375rem]">
+              <div className="flex justify-between w-full">
+                <h3 className="font-semibold text-[15px] text-primary">
+                  {data.kategori_lapor}
+                </h3>
+                <Link
+                  href={`/dashboard/riwayat/${data.id}`}
+                  className="btn btn-green btn-xs text-[10px] rounded-[0.313rem] py-1 px-[6px] w-[85px] font-medium"
+                >
+                  Selengkapnya
+                </Link>
+              </div>
+              <p className="text-xs mt-[7px]">{data.deskripsi}</p>
+              <div className="flex justify-between w-full  text-xs mt-2 items-center">
+                <p className="font-normal">{data.tanggal}</p>
+                <ColorStatus title={data.status_lapor} />
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+      )}
+      {dataRiwayat.laporanKemarin.length !== 0 && (
+        <div className="mt-5 flex flex-col gap-1">
+          <h3 className="text-[15px] font-semibold sm:text-xl">Kemarin</h3>
+          {dataRiwayat.laporanKemarin.map((data) => (
+            <div className="flex flex-col p-[17px] bg-white border border-primary shadow-xl rounded-[5px] w-[18.375rem]">
+              <div className="flex justify-between w-full">
+                <h3 className="font-semibold text-[15px] text-primary">
+                  {data.kategori_lapor}
+                </h3>
+                <Link
+                  href={`/dashboard/riwayat/${data.id}`}
+                  className="btn btn-green btn-xs text-[10px] rounded-[0.313rem] py-1 px-[6px] w-[85px] font-medium"
+                >
+                  Selengkapnya
+                </Link>
+              </div>
+              <p className="text-xs mt-[7px]">{data.deskripsi}</p>
+              <div className="flex justify-between w-full  text-xs mt-2 items-center">
+                <p className="font-normal">{data.tanggal}</p>
+                <ColorStatus title={data.status_lapor} />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {dataRiwayat.laporanMingguIni.length !== 0 && (
+        <div className="mt-5 flex flex-col gap-1">
+          <h3 className="text-[15px] font-semibold sm:text-xl">Minggu ini</h3>
+          {dataRiwayat.laporanMingguIni.map((data) => (
+            <div className="flex flex-col p-[17px] bg-white border border-primary shadow-xl rounded-[5px] w-[18.375rem]">
+              <div className="flex justify-between w-full">
+                <h3 className="font-semibold text-[15px] text-primary">
+                  {data.kategori_lapor}
+                </h3>
+                <Link
+                  href={`/dashboard/riwayat/${data.id}`}
+                  className="btn btn-green btn-xs text-[10px] rounded-[0.313rem] py-1 px-[6px] w-[85px] font-medium"
+                >
+                  Selengkapnya
+                </Link>
+              </div>
+              <p className="text-xs mt-[7px]">{data.deskripsi}</p>
+              <div className="flex justify-between w-full  text-xs mt-2 items-center">
+                <p className="font-normal">{data.tanggal}</p>
+                <ColorStatus title={data.status_lapor} />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {dataRiwayat.laporanBulanIni.length !== 0 && (
+        <div className="mt-5 flex flex-col gap-1">
+          <h3 className="text-[15px] font-semibold sm:text-xl">Bulan ini</h3>
+          {dataRiwayat.laporanBulanIni.map((data) => (
+            <div className="flex flex-col p-[17px] bg-white border border-primary shadow-xl rounded-[5px] w-[18.375rem]">
+              <div className="flex justify-between w-full">
+                <h3 className="font-semibold text-[15px] text-primary">
+                  {data.kategori_lapor}
+                </h3>
+                <Link
+                  href={`/dashboard/riwayat/${data.id}`}
+                  className="btn btn-green btn-xs text-[10px] rounded-[0.313rem] py-1 px-[6px] w-[85px] font-medium"
+                >
+                  Selengkapnya
+                </Link>
+              </div>
+              <p className="text-xs mt-[7px]">{data.deskripsi}</p>
+              <div className="flex justify-between w-full  text-xs mt-2 items-center">
+                <p className="font-normal">{data.tanggal}</p>
+                <ColorStatus title={data.status_lapor} />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {dataRiwayat.laporanLebihLama.length !== 0 && (
+        <div className="mt-5 flex flex-col gap-1">
+          <h3 className="text-[15px] font-semibold sm:text-xl">Lebih Lama</h3>
+          {dataRiwayat.laporanLebihLama.map((data) => (
+            <div className="flex flex-col p-[17px] bg-white border border-primary shadow-xl rounded-[5px] w-[18.375rem]">
+              <div className="flex justify-between w-full">
+                <h3 className="font-semibold text-[15px] text-primary">
+                  {data.kategori_lapor}
+                </h3>
+                <Link
+                  href={`/dashboard/riwayat/${data.id}`}
+                  className="btn btn-green btn-xs text-[10px] rounded-[0.313rem] py-1 px-[6px] w-[85px] font-medium"
+                >
+                  Selengkapnya
+                </Link>
+              </div>
+              <p className="text-xs mt-[7px]">{data.deskripsi}</p>
+              <div className="flex justify-between w-full  text-xs mt-2 items-center">
+                <p className="font-normal">{data.tanggal}</p>
+                <ColorStatus title={data.status_lapor} />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

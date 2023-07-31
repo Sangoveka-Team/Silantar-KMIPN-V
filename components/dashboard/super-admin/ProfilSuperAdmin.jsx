@@ -34,7 +34,7 @@ const ProfilSuperAdmin = () => {
               </label>
               <div className="w-[228px] h-[228px] border-2 border-primary rounded-full relative">
                 <Image
-                  src={img ? img : "/dashboard/3.jpg"}
+                  src={img ? img : "/default-image.png"}
                   width={228}
                   height={228}
                   alt="user profile"

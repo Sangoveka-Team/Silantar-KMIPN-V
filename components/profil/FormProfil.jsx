@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const FormProfil = () => {
   const [img, setImg] = useState(null);
-  const [nama, setNama] = useState("Aryo Suryono");
-  const [tel, setTel] = useState("083982478246");
-  const [email, setEmail] = useState("Aryo.S@gmail.com");
-  const [password, setPassword] = useState("barangja");
+  const [nama, setNama] = useState("");
+  const [tel, setTel] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
@@ -17,11 +17,53 @@ const FormProfil = () => {
     setImg(URL.createObjectURL(data));
   };
 
-  const handleSimpan = (e) => {
+  const handleSimpan = async (e) => {
     e.preventDefault();
-    setShowModal(true);
+    await fetch("https://api.silantar.my.id/api/update-profile-pelapor", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: {
+        nama: nama,
+        nomor: tel,
+        password: password,
+        image: null,
+      },
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        setShowModal(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
+  const getDataProfil = async () => {
+    if (typeof window !== "undefined") {
+      await fetch("https://api.silantar.my.id/api/profile-pelapor", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }).then(async (res) => {
+        const data = await res.json();
+        setImg(data.payload.image);
+        setNama(data.payload.nama);
+        setTel(data.payload.nomor);
+        setEmail(data.payload.email);
+      });
+    }
+  };
+
+  useEffect(() => {
+    getDataProfil();
+  }, []);
+
+  console.log(img);
   return (
     <form
       onSubmit={handleSimpan}
@@ -39,7 +81,11 @@ const FormProfil = () => {
           </label>
           <div className="w-[117px] border-2 border-primary rounded-full relative">
             <Image
-              src={img ? img : "/dashboard/3.jpg"}
+              src={`${
+                img === null
+                  ? "/default-image.png"
+                  : `https://media.istockphoto.com/id/1298747290/id/foto/penanaman-pohon-dan-penanaman-pohon-termasuk-penanaman-pohon-oleh-petani-dengan-tangan-ide.jpg?s=1024x1024&w=is&k=20&c=HyKeysUTLWwMIOTp2KTdDWCDD8OGdsXbCXtuqlfZwR0=`
+              }`}
               width={117}
               height={118}
               alt="user profile"

@@ -4,8 +4,7 @@ import {useEffect, useState} from "react";
 import {MapContainer, Marker, Popup, TileLayer, useMap} from "react-leaflet";
 import {customIcon} from "./Marker";
 
-const LocationMarker = ({address, setAddress}) => {
-  const [position, setPosition] = useState(null);
+const LocationMarker = ({address, setAddress, position, setPosition}) => {
   const map = useMap();
   const fetchUrl = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&";
 
@@ -25,10 +24,11 @@ const LocationMarker = ({address, setAddress}) => {
         });
     });
     map.on("locationerror", (location) => {
-      alert("aktifkan lokasi anda!");
+      alert("tidak dapat menemukan lokasi\naktifkan lokasi anda!");
     });
     map.on("click", async (location) => {
       setPosition(location.latlng);
+      console.log(location.latlng);
       await fetch(
         `${fetchUrl}lat=${location.latlng.lat}&lon=${location.latlng.lng}`
       )
@@ -49,10 +49,10 @@ const LocationMarker = ({address, setAddress}) => {
   );
 };
 
-const Maps = ({address, setAddress}) => {
+const Maps = ({address, setAddress, position, setPosition}) => {
   return (
     <MapContainer
-      center={[-3.332249229667519, 114.57975208843413]}
+      center={[-3.332062, 114.580431]}
       zoom={13}
       style={{height: "100vh"}}
     >
@@ -60,7 +60,12 @@ const Maps = ({address, setAddress}) => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <LocationMarker address={address} setAddress={setAddress} />
+      <LocationMarker
+        address={address}
+        setAddress={setAddress}
+        position={position}
+        setPosition={setPosition}
+      />
     </MapContainer>
   );
 };

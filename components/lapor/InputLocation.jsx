@@ -5,10 +5,14 @@ import {useEffect, useState} from "react";
 
 const MapsDynamic = dynamic(() => import("../Maps"), {ssr: false});
 
-const InputLocation = () => {
+const InputLocation = ({
+  position,
+  setPosition,
+  addressChange,
+  setAddressChange,
+}) => {
   const [isChecked, setIsChecked] = useState(false);
   const [address, setAddress] = useState([]);
-  const [addressChange, setAddressChange] = useState("");
 
   useEffect(() => {
     address.map((data) => setAddressChange(data.display_name));
@@ -31,7 +35,20 @@ const InputLocation = () => {
           htmlFor="my_modal_8"
           className="w-full text-xs text-[#808080] cursor-pointer pl-1"
         >
-          Masukkan/upload alamat lokasi...
+          {addressChange === "" ? (
+            "Masukkan/upload alamat lokasi..."
+          ) : (
+            <>
+              {addressChange}
+              {/* <Image
+                src="/icon/check.svg"
+                width={24}
+                height={24}
+                alt="check icon"
+                className="pointer-events-none inline"
+              /> */}
+            </>
+          )}
         </label>
       </div>
       <hr className="w-full h-[2px] bg-primary" />
@@ -65,7 +82,13 @@ const InputLocation = () => {
               )}
             </div>
           </div>
-          <MapsDynamic address={address} setAddress={setAddress} />
+          <MapsDynamic
+            address={address}
+            setAddress={setAddress}
+            isChecked={isChecked}
+            position={position}
+            setPosition={setPosition}
+          />
         </div>
       </div>
     </div>

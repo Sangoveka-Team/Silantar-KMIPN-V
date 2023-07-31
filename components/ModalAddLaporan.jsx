@@ -1,8 +1,10 @@
 "use client";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
 import React from "react";
 
-const ModalAddLaporan = ({showModal, setShowModal}) => {
+const ModalAddLaporan = ({showModal, setShowModal, ticket}) => {
+  const route = useRouter();
   return (
     <>
       <input
@@ -38,7 +40,7 @@ const ModalAddLaporan = ({showModal, setShowModal}) => {
                 type="text"
                 placeholder="0.01"
                 className="input input-bordered input-sm focus:outline-none border-primary text-primary"
-                value={"2348748247623423"}
+                value={ticket}
               />
               <button
                 id="salin-button"
@@ -56,7 +58,10 @@ const ModalAddLaporan = ({showModal, setShowModal}) => {
           <label
             htmlFor="my_modal_10"
             className="btn btn-green btn-sm font-medium text-[15px] px-4"
-            onClick={() => setShowModal(false)}
+            onClick={() => {
+              setShowModal(false);
+              route.push(`/lacak/${ticket}`);
+            }}
           >
             Oke
           </label>

@@ -1,9 +1,8 @@
 import "../globals.css";
 import FooterCopyright from "@/components/home/FooterCopyright";
-import {redirect} from "next/navigation";
 
 export const metadata = {
-  title: "Sign-Up",
+  title: "SILANTAR | Sign-Up",
   description: "Sistem Informasi Laporan Masyarakat",
 };
 

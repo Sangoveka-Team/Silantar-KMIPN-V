@@ -1,19 +1,43 @@
 "use client";
 
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const ProfilAdminInstansi = () => {
   const [img, setImg] = useState(null);
-  const [nama, setNama] = useState("Mohammad Ricko Aprilianto");
-  const [email, setEmail] = useState("superzzadminsilantar@gmail.com");
-  const [password, setPassword] = useState("passwordsaja");
+  const [nama, setNama] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isVisible, setIsVisible] = useState(true);
+  const [jabatan, setJabatan] = useState("");
 
   const handleImage = (e) => {
     const data = e.target.files[0];
     setImg(URL.createObjectURL(data));
   };
+
+  const getDataProfil = async () => {
+    if (typeof window !== "undefined") {
+      await fetch("https://api.silantar.my.id/api/profile-dinas", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }).then(async (res) => {
+        const data = await res.json();
+        console.log(data);
+        // setImg(data.payload.image);
+        setNama(data.payload.nama);
+        setEmail(data.payload.email);
+        setJabatan(data.payload.jabatan);
+      });
+    }
+  };
+
+  useEffect(() => {
+    getDataProfil();
+  }, []);
   return (
     <div className="my-[18px] ml-[25px] mr-[31px] max-w-[1059px]">
       <h1 className="font-bold text-[22px]">Profil</h1>
@@ -61,7 +85,7 @@ const ProfilAdminInstansi = () => {
                     type="text"
                     required
                     className="input-lapor pl-0 text-[15px] input-disabled disabled:bg-transparent disabled:border-none"
-                    value="Operator Dinas Kehutanan"
+                    value={jabatan}
                     disabled
                   />
                 </div>
@@ -87,14 +111,30 @@ const ProfilAdminInstansi = () => {
                 <label className="text-primary font-medium text-xl">
                   Akun Email
                 </label>
-                <div className="flex relative">
+                <div className="flex">
                   <input
-                    type={!isVisible ? "text" : "password"}
+                    type="email"
                     required
                     placeholder="email..."
                     className="input-lapor pl-0 text-[15px] input-disabled disabled:bg-transparent disabled:border-none"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
+                  />
+                </div>
+                <hr className="w-[269px] h-[2px] bg-primary" />
+              </div>
+              <div className="flex flex-col gap-[5px] w-1/2">
+                <label className="text-primary font-medium text-xl">
+                  Kata sandi
+                </label>
+                <div className="flex relative">
+                  <input
+                    type={!isVisible ? "text" : "password"}
+                    required
+                    placeholder="kata sandi.."
+                    className="input-lapor pl-0 text-[15px]"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
                     disabled
                   />
                   <label className="swap absolute right-2 top-0 z-0">
@@ -126,22 +166,7 @@ const ProfilAdminInstansi = () => {
                 </div>
                 <hr className="w-[269px] h-[2px] bg-primary" />
               </div>
-              <div className="flex flex-col gap-[5px] w-1/2">
-                <label className="text-primary font-medium text-xl">
-                  Kata Sandi
-                </label>
-                <div className="flex">
-                  <input
-                    type="password"
-                    required
-                    placeholder="password..."
-                    className="input-lapor pl-0 text-[15px]"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                  />
-                </div>
-                <hr className="w-[269px] h-[2px] bg-primary" />
-              </div>
+
               <div className="w-full mt-[2px] text-end">
                 <button
                   type="button"

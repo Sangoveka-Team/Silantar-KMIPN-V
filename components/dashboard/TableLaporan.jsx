@@ -3,63 +3,35 @@ import {listDaerah, listKategori} from "@/data";
 import Image from "next/image";
 import Link from "next/link";
 import {useEffect, useState} from "react";
+import ColorStatus from "../ColorStatus";
 
-const dummyDataLaporan = [
-  {
-    id: 1,
-    image: "/dashboard/3.jpg",
-    namaPelapor: "Bhakti Ramadhani",
-    kategori: "Pencemaran Lingkungan",
-    daerah: "Kuripan",
-    statusLaporan: "Belum Diproses",
-  },
-  {
-    id: 2,
-    image: "/dashboard/3.jpg",
-    namaPelapor: "Inna Darmayanti",
-    kategori: "Pencemaran Lingkungan",
-    daerah: "Basirih",
-    statusLaporan: "Diproses",
-  },
-  {
-    id: 3,
-    image: "/dashboard/3.jpg",
-    namaPelapor: "Raj Surya Ajie Perkasa",
-    kategori: "Arus Lalu Lintas",
-    daerah: "Telawang",
-    statusLaporan: "Tuntas",
-  },
-  {
-    id: 4,
-    image: "/dashboard/3.jpg",
-    namaPelapor: "Simon Izzacus Nababan",
-    kategori: "Arus Lalu Lintas",
-    daerah: "Pekauman",
-    statusLaporan: "Ditolak",
-  },
-];
-
-const TableLaporan = () => {
+const TableLaporan = ({data}) => {
   const [search, setSearch] = useState("");
   const [dataLaporan, setDataLaporan] = useState([]);
 
   const handleFilterKategori = (e) => {
-    let filtering = dummyDataLaporan.filter((filter) =>
+    let filtering = data.filter((filter) =>
       e.target.value.includes(filter.kategori)
     );
     setDataLaporan(filtering);
   };
 
   const handleFilterStatus = (e) => {
-    let filtering = dummyDataLaporan.filter((filter) =>
+    let filtering = data.filter((filter) =>
       e.target.value.includes(filter.statusLaporan)
     );
     setDataLaporan(filtering);
   };
 
   useEffect(() => {
-    setDataLaporan(dummyDataLaporan);
+    setDataLaporan(data);
   }, []);
+
+  if (data === null) {
+    <p className="animate-pulse text-3xl font-bold text-center mt-10">
+      Loading...
+    </p>;
+  }
 
   return (
     <div className="mt-[17px] bg-white rounded-xl">
@@ -144,41 +116,20 @@ const TableLaporan = () => {
                     <th className="flex gap-[15px] items-center max-w-[282px]">
                       <div className="avatar">
                         <div className="w-[50px] h-[50px] rounded-lg">
-                          <Image
-                            src={data.image}
+                          {/* <Image
+                            src={""}
                             width={50}
                             height={50}
                             alt="avatar icon"
-                          />
+                          /> */}
                         </div>
                       </div>
-                      <span className="font-semibold text-sm">
-                        {data.namaPelapor}
-                      </span>
+                      <span className="font-semibold text-sm">{data.nama}</span>
                     </th>
-                    <td className="max-w-[131px]">{data.kategori}</td>
-                    <td className="max-w-[131px]">{data.daerah}</td>
+                    <td className="max-w-[131px]">{data.kategori_lapor}</td>
+                    <td className="max-w-[131px]">{data.daerah_kelurahan}</td>
                     <td>
-                      {data.statusLaporan === "Belum Diproses" && (
-                        <span className="bg-[#C6DAFF] text-[#276EF1] rounded-xl px-[7px] py-[3px] text-xs font-semibold">
-                          Belum Diproses
-                        </span>
-                      )}
-                      {data.statusLaporan === "Diproses" && (
-                        <span className="bg-[#FEFFCE] text-[#FFCE22] rounded-xl px-[7px] py-[3px] text-xs font-semibold">
-                          Diproses
-                        </span>
-                      )}
-                      {data.statusLaporan === "Tuntas" && (
-                        <span className="bg-[#F0F9F4] text-[#3AA76D] rounded-xl px-[7px] py-[3px] text-xs font-semibold">
-                          Tuntas
-                        </span>
-                      )}
-                      {data.statusLaporan === "Ditolak" && (
-                        <span className="bg-[#FFCECE] text-[#FF2222] rounded-xl px-[7px] py-[3px] text-xs font-semibold">
-                          Ditolak
-                        </span>
-                      )}
+                      <ColorStatus title={data.status_lapor} />
                     </td>
                     <td className="text-center">
                       <Link

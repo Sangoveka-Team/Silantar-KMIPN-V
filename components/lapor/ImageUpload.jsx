@@ -1,17 +1,29 @@
 "use client";
 
 import Image from "next/image";
+import {useEffect} from "react";
 
-const ImageUpload = ({imgLocation, setImgLocation}) => {
+const ImageUpload = ({imgLocation, setImgLocation, imgFiles, setImgFiles}) => {
   const handleUploadImage = (e) => {
     const listFiles = e.target.files;
+    // setImgFiles(e.target.files[0]);
+
     const listFilesArray = Array.from(listFiles);
 
     const URLImageArray = listFilesArray.map((file) =>
       URL.createObjectURL(file)
     );
-
     setImgLocation((prev) => prev.concat(URLImageArray));
+    setImgFiles((prev) => prev.concat(listFilesArray));
+
+    // const reader = new FileReader();
+    // reader.readAsDataURL(e.target.files[0]);
+    // reader.onload = () => {
+    //   setImgFiles(reader.result.split(",")[1]);
+    // };
+    // console.log(imgFiles);
+    // let formData = new FormData();
+    // formData.append("image", e.target.files);
   };
 
   const handleResetImage = () => {
@@ -19,6 +31,8 @@ const ImageUpload = ({imgLocation, setImgLocation}) => {
     input.value = "";
     setImgLocation([]);
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div className="flex flex-col gap-1">

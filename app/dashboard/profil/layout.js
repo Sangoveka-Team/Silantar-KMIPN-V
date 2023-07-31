@@ -1,7 +1,7 @@
 import "../../globals.css";
 
 export const metadata = {
-  title: "Profil",
+  title: "SILANTAR | Profil",
   description: "Sistem Informasi Laporan Masyarakat",
 };
 

@@ -3,19 +3,41 @@ import Dropdown from "@/components/lapor/Dropdown";
 import Image from "next/image";
 import Link from "next/link";
 import {listDaerah, listRole} from "@/data";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {usePathname} from "next/navigation";
 
 const AkunDetail = ({params}) => {
+  const pathname = usePathname();
   const [img, setImg] = useState(null);
   const [daerah, setDaerah] = useState("");
   const [role, setRole] = useState("");
   const [showModal, setShowModal] = useState(false);
+
+  const getDetailAkun = async () => {
+    await fetch("https://api.silantar.my.id/api/dashboard-superadmin", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }).then(async (res) => {
+      const data = await res.json();
+      const array = data.payload.allUser.filter((user) => {
+        user.id == pathname.charAt(pathname.length - 1);
+      });
+      console.log(array);
+    });
+  };
 
   const handleImage = (e) => {
     const data = e.target.files[0];
     setImg(URL.createObjectURL(data));
     setShowModal(true);
   };
+
+  useEffect(() => {
+    getDetailAkun();
+  }, []);
   return (
     <div className="mt-[18px] ml-[21px] mr-[31px] max-w-[1059px]">
       <div className="inline-block">

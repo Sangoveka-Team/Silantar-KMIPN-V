@@ -5,7 +5,7 @@ const ShowImage = ({datas}) => {
     <>
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="my_modal_5" className="modal-toggle" />
-      <div className="modal">
+      <div className="modal z-[9999]">
         <div className="modal-box">
           <label
             htmlFor="my_modal_5"
@@ -23,7 +23,7 @@ const ShowImage = ({datas}) => {
                   className="carousel-item relative w-full"
                 >
                   <Image
-                    src={data}
+                    src={`https://api.silantar.my.id/${data.image_name}`}
                     width={0}
                     height={0}
                     alt={`gambar ke ${index + 1}`}

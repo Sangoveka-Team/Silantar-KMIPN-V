@@ -3,20 +3,44 @@
 import Dropdown from "@/components/lapor/Dropdown";
 import {listDaerah} from "@/data";
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const ProfilAdminPejabat = () => {
   const [img, setImg] = useState(null);
-  const [nama, setNama] = useState("Mohammad Ricko Aprilianto");
-  const [email, setEmail] = useState("superzzadminsilantar@gmail.com");
-  const [password, setPassword] = useState("passwordsaja");
+  const [nama, setNama] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [daerah, setDaerah] = useState("");
+  const [jabatan, setJabatan] = useState("");
   const [isVisible, setIsVisible] = useState(true);
 
   const handleImage = (e) => {
     const data = e.target.files[0];
     setImg(URL.createObjectURL(data));
   };
+
+  const getDataProfil = async () => {
+    if (typeof window !== "undefined") {
+      await fetch("https://api.silantar.my.id/api/profile-lurah", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }).then(async (res) => {
+        const data = await res.json();
+        // setImg(data.payload.image);
+        setNama(data.payload.nama);
+        setEmail(data.payload.email);
+        setJabatan(data.payload.jabatan);
+        setDaerah(data.payload.daerah);
+      });
+    }
+  };
+
+  useEffect(() => {
+    getDataProfil();
+  }, []);
   return (
     <div className="my-[18px] ml-[25px] mr-[31px] max-w-[1059px]">
       <h1 className="font-bold text-[22px]">Profil</h1>
@@ -64,7 +88,7 @@ const ProfilAdminPejabat = () => {
                     type="text"
                     required
                     className="input-lapor pl-0 text-[15px] input-disabled disabled:bg-transparent disabled:border-none"
-                    value="Developer SILANTAR"
+                    value={jabatan}
                     disabled
                   />
                 </div>
@@ -150,12 +174,14 @@ const ProfilAdminPejabat = () => {
                 <label className="text-primary font-medium text-xl">
                   Daerah
                 </label>
-                <div className="flex [&>.dropdown]:pl-0 [&>.dropdown_.dropdown-content]:ml-0">
-                  <Dropdown
-                    listDatas={listDaerah}
-                    input={daerah}
-                    setInput={setDaerah}
-                    placeholder={"daerah..."}
+                <div className="flex">
+                  <input
+                    type="text"
+                    required
+                    placeholder="daerah..."
+                    className="input-lapor pl-0 text-[15px] input-disabled disabled:bg-transparent disabled:border-none"
+                    value={daerah}
+                    disabled
                   />
                 </div>
                 <hr className="w-full h-[2px] bg-primary" />

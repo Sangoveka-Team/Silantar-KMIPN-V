@@ -1,19 +1,25 @@
 "use client";
 
-import CardDetailLaporanSuperAdmin from "@/components/dashboard/super-admin/CardDetailLaporanSuperAdmin";
-import {useUserContext} from "@/contexts/UserContext";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 
-const LaporanDetail = ({params}) => {
-  const {session, setSession} = useUserContext();
+const DetailLaporanDynamic = dynamic(
+  () => import("../../../../components/dashboard/DetailLaporan"),
+  {ssr: false}
+);
 
+const LaporanDetail = ({params}) => {
   return (
     <div className="my-5 ml-[23px] mr-[31px]">
       <div className="inline-block">
         <div className="font-bold text-[22px] border border-primary bg-white rounded-2xl w-auto px-[23px] py-[3px]">
           <Link
-            href={session.superAdmin ? "/dashboard/laporan" : "/dashboard"}
+            href={
+              localStorage.getItem("userLevel") === "Superadmin"
+                ? "/dashboard/laporan"
+                : "/dashboard"
+            }
             className="hover:underline underline-offset-2"
           >
             <Image
@@ -24,7 +30,7 @@ const LaporanDetail = ({params}) => {
               className="inline -mt-1 mr-2"
             />
             <span>
-              {!session.superAdmin ? (
+              {localStorage.getItem("userLevel") !== "Superadmin" ? (
                 "Dashboard"
               ) : (
                 <>
@@ -34,12 +40,12 @@ const LaporanDetail = ({params}) => {
             </span>
           </Link>
           <span className="ml-[6px]">
-            / Detail Laporan <span className="text-primary">{params.id}</span>
+            / Detail Laporan - <span className="text-primary">{params.id}</span>
           </span>
         </div>
       </div>
 
-      <CardDetailLaporanSuperAdmin params={params} />
+      <DetailLaporanDynamic id={params.id} />
     </div>
   );
 };

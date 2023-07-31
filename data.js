@@ -15,6 +15,7 @@ const listKategori = [
     id: 4,
     value: "Arus Lalu Lintas",
   },
+  {id: 5, value: "Lainnya"},
 ];
 
 // datanya masih manual

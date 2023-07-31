@@ -14,25 +14,40 @@ import {useEffect, useState} from "react";
 
 const Sidebar = () => {
   const pathname = usePathname();
-  const router = useRouter();
+  const {push} = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [role, setRole] = useState([]);
-  const {session, setSession} = useUserContext();
+
+  const handleLogout = async () => {
+    if (typeof window !== "undefined") {
+      await fetch("https://api.silantar.my.id/api/logout", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+        .then(async (res) => {
+          const data = await res.json();
+          localStorage.setItem("token", "");
+          push("/sign-in");
+        })
+        .catch((err) => console.log(err));
+    }
+  };
 
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
   useEffect(() => {
-    session.superAdmin && setRole(superAdminRole);
-    session.user && setRole(userRole);
-    session.adminInstansi && setRole(adminInstansiRole);
-    session.adminPejabat && setRole(adminPejabatRole);
+    localStorage.getItem("userLevel") === "Pelapor" && setRole(userRole);
+    localStorage.getItem("userLevel") === "Superadmin" &&
+      setRole(superAdminRole);
+    localStorage.getItem("userLevel") === "Dinas" && setRole(adminInstansiRole);
+    localStorage.getItem("userLevel") === "Kelurahan" &&
+      setRole(adminPejabatRole);
   }, []);
-
-  if (!session.isAuth) {
-    redirect("/sign-in");
-  }
 
   return (
     <div
@@ -75,14 +90,7 @@ const Sidebar = () => {
         <li>
           <button
             className="flex items-center gap-[0.313rem]"
-            onClick={() => {
-              setSession({
-                isAuth: false,
-                user: false,
-                superAdmin: false,
-                adminInstansi: false,
-              });
-            }}
+            onClick={handleLogout}
           >
             <Image
               src="/icon/fold.svg"

@@ -16,7 +16,9 @@ const LacakCard = ({id}) => {
         />
         <Link
           href={`/lacak/${ticket}`}
-          className="btn btn-green btn-md h-full font-semibold text-[15px]"
+          className={`btn btn-green btn-md shadow-md h-full font-semibold text-[15px] ${
+            ticket === "" && "btn-disabled bg-[#d5d6d9]"
+          }`}
         >
           Lacak
         </Link>

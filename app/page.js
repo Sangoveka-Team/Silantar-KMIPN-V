@@ -2,11 +2,12 @@
 import ArrowUp from "@/components/home/ArrowUp";
 import Footer from "@/components/home/Footer";
 import LacakCard from "@/components/home/LacakCard";
+import LaporanTerbaruCard from "@/components/home/LaporanTerbaruCard";
 import Navbar from "@/components/home/Navbar";
-import WhatsappBox from "@/components/home/WhatsappBox";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import {useEffect, useState} from "react";
 
 const imgMelapor = [
   {
@@ -22,12 +23,81 @@ const imgMelapor = [
     img: "/home/4.png",
   },
 ];
+
+const dummyDataLaporan = [
+  {
+    category: "Arus Lalu Lintas",
+    gl: {
+      lat: -3.332062,
+      lng: 114.580431,
+    },
+    img: [
+      "/dummy-images/traffic-lights.png",
+      "/dummy-images/polluted-river.png",
+      "/dummy-images/scattered-tree-branches.png",
+    ],
+    status: "Ditolak",
+    ticket: "2348748247623423",
+    catatan: "lorem Ipsum dolor sit amet, consectetur adipiscing el",
+    date: "17-07-2023",
+    address: "Jl. kayu tangi 2",
+    deskripsi:
+      "Kerusakan lampu lalu lintas didaerah kayutangi, alur pengendara jadi terganggujkadkjawdawdiub",
+    namaPelapor: "Slamet Kopling",
+  },
+  {
+    category: "Fasilitas Umum",
+    gl: {
+      lat: -3.332062,
+      lng: 114.580431,
+    },
+    img: [
+      "/dummy-images/traffic-lights.png",
+      "/dummy-images/polluted-river.png",
+      "/dummy-images/scattered-tree-branches.png",
+    ],
+    status: "Belum Diproses",
+    ticket: "2348748249012830",
+    catatan: "lorem Ipsum dolor sit amet, consectetur adipiscing el",
+    date: "14-07-2023",
+    address: "Jl. kayu tangi 3",
+    deskripsi:
+      "halte bus smk 4 banjarmasin sudah berkarat dan hampir rusak, membahayakan orang-orang yang menumpang duduk bersinggah untuk istirahat...",
+    namaPelapor: "Honda Mio",
+  },
+];
 const WhatsappBoxDynamic = dynamic(
   () => import("../components/home/WhatsappBox"),
   {ssr: false}
 );
 
 export default function Home() {
+  const [dataTerbaru, setDataTerbaru] = useState(null);
+
+  const getDataTerbaru = async () => {
+    await fetch("https://api.silantar.my.id/api/laporan-terbaru", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(async (res) => {
+      const data = await res.json();
+      setDataTerbaru(data.payload);
+    });
+  };
+
+  useEffect(() => {
+    getDataTerbaru();
+  }, []);
+
+  if (dataTerbaru === null) {
+    return (
+      <p className="animate-pulse text-3xl font-bold text-center mt-10">
+        Loading...
+      </p>
+    );
+  }
+
   return (
     <div>
       <Navbar />
@@ -158,57 +228,14 @@ export default function Home() {
             LAPORAN TERBARU
           </h3>
           <div className="flex flex-col gap-[15px] mt-[15px] mb-[6px]">
-            <Link
-              href="#"
-              className="pt-2 px-[13px] pb-[13px] border border-[#808080] rounded-[10px] w-[306px] space-y-[19px]"
-            >
-              <div className="space-y-[6px]">
-                <h4 className="text-primary font-semibold text-[15px]">
-                  Arus Lalu Lintas
-                </h4>
-                <p className="font-normal text-xs">
-                  Kerusakan dijalan Sultan Adam dan terjadinya kemacetan
-                  karenanya, mohon tindak lanjutnya.
-                </p>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="text-xs font-normal">
-                  2023 - 07 - 17 |{" "}
-                  <span className="text-primary font-bold">Slamet Kopling</span>
-                </div>
-                <span className="bg-[#FFCECE] text-[#FF2222] rounded-xl px-[7px] py-[3px] text-xs font-semibold">
-                  Ditolak
-                </span>
-              </div>
-            </Link>
-            <Link
-              href="#"
-              className="pt-2 px-[13px] pb-[13px] border border-[#808080] rounded-[10px] w-[306px] space-y-[19px]"
-            >
-              <div className="space-y-[6px]">
-                <h4 className="text-primary font-semibold text-[15px]">
-                  Fasilitas Umum
-                </h4>
-                <p className="font-normal text-xs">
-                  halte bus smk 4 banjarmasin sudah berkarat dan hampir rusak,
-                  membahayakan orang-orang yang menumpang duduk bersinggah untuk
-                  istirahat...
-                </p>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="text-xs font-normal">
-                  2023-07-14 |{" "}
-                  <span className="text-primary font-bold">Honda Mio</span>
-                </div>
-                <span className="bg-[#C6DAFF] text-[#276EF1] rounded-xl px-[7px] py-[3px] text-xs font-semibold">
-                  Belum Diproses
-                </span>
-              </div>
-            </Link>
+            <LaporanTerbaruCard datas={dataTerbaru} />
           </div>
-          <button className="text-primary font-medium italic text-xs self-end">
+          <Link
+            href="/laporan"
+            className="text-primary font-medium italic text-xs self-end"
+          >
             Lihat semua..
-          </button>
+          </Link>
         </div>
         <div id="lacak-laporan" className="mt-[41px] space-y-[6px]">
           <h3 className="font-semibold text-[15px] text-primary">

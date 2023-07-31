@@ -1,6 +1,7 @@
 "use client";
 import CardDetailLaporan from "@/components/CardDetailLaporan";
 import LacakCard from "@/components/home/LacakCard";
+import dynamic from "next/dynamic";
 import {useEffect, useState} from "react";
 
 const dummyDataLaporan = {
@@ -23,15 +24,43 @@ const dummyDataLaporan = {
     "Kerusakan lampu lalu lintas didaerah kayutangi, alur pengendara jadi terganggujkadkjawdawdiub",
 };
 
+const CardDetailLaporanDynamic = dynamic(
+  () => import("../../../components/CardDetailLaporan"),
+  {ssr: false}
+);
+
 const LacakDetail = ({params}) => {
   const [data, setData] = useState({});
-  const [showMap, setShowMap] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [images, setImages] = useState([]);
+
+  const getDataAll = async () => {
+    await fetch("https://api.silantar.my.id/api/get-laporan", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(async (res) => {
+      const datas = await res.json();
+      const filtering = datas.payload.semuaLaporan.filter(
+        (e) => e.id_laporan === params.ticket
+      );
+      filtering.map((e) => {
+        setData(e);
+        const gambar = datas.payload.semuaGambar.filter(
+          (image) => image.laporan_id === e.id
+        );
+        setImages(gambar);
+      });
+    });
+  };
 
   useEffect(() => {
-    console.log(dummyDataLaporan);
-    setData(dummyDataLaporan);
+    getDataAll();
   }, []);
+
+  if (images.length === 0) {
+    return <p></p>;
+  }
   return (
     <div className="mt-2 mx-[20px]">
       <div className="space-y-[15px]">
@@ -41,8 +70,8 @@ const LacakDetail = ({params}) => {
         <LacakCard id={params.ticket} />
       </div>
       <div className="mt-[13px]">
-        {params.ticket === data.ticket ? (
-          <CardDetailLaporan data={dummyDataLaporan} backUrl="/" />
+        {params.ticket === data.id_laporan ? (
+          <CardDetailLaporanDynamic data={data} images={images} backUrl="/" />
         ) : (
           <h3 className="font-bold text-center text-xl">Laporan Tidak Ada</h3>
         )}

@@ -1,36 +1,21 @@
 "use client";
 
+import {listDaerah} from "@/data";
 import Image from "next/image";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 
-const dummyDataAkun = [
-  {
-    id: "SILT0910390",
-    image: "/dashboard/3.jpg",
-    nama: "Bhakti Ramadhani",
-    level: "Super Admin",
-    jabatan: "Developer SILANTAR",
-    daerah: "-",
-  },
-  {
-    id: "SILT09125124",
-    image: "/dashboard/3.jpg",
-    nama: "Ricko",
-    level: "User",
-    jabatan: "Pelapor",
-    daerah: "-",
-  },
-];
-
-const TableAccount = () => {
+const TableAccount = ({data}) => {
+  const {refresh} = useRouter();
   const [search, setSearch] = useState("");
-  const [listAkun, setListAkun] = useState([]);
   const [email, setEmail] = useState("");
   const [nama, setNama] = useState("");
   const [level, setLevel] = useState("Pilih level pengguna");
   const [jabatan, setJabatan] = useState("");
   const [password, setPassword] = useState("");
+  const [daerah, setDaerah] = useState("");
+  const [nomor, setNomor] = useState("");
 
   const handleFilterLevel = (e) => {
     let filtering = dummyDataAkun.filter((filter) =>
@@ -41,40 +26,46 @@ const TableAccount = () => {
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    // console.log(dummyDataAkun);
-    // let filtering = dummyDataAkun.filter((filter) => {
-    //   e.target.value.includes(filter.nama.toLowerCase());
-    // });
-    // if (search.length !== 0) {
-    //   setListAkun(filtering);
-    // }
-    // setListAkun(dummyDataAkun);
   };
 
-  useEffect(() => {
-    setListAkun(dummyDataAkun);
-  }, []);
+  useEffect(() => {}, []);
 
-  const handleTambahAkun = (e) => {
+  const handleTambahAkun = async (e) => {
     e.preventDefault();
-    setListAkun([
-      ...listAkun,
-      {
-        id: "SILT0193",
-        image: "/dashboard/3.jpg",
-        nama: nama,
-        level: level,
-        jabatan: jabatan,
-        daerah: "-",
+    await fetch("https://api.silantar.my.id/api/create-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    ]);
-    setEmail("");
-    setNama("");
-    setLevel("Pilih level pengguna");
-    setJabatan("");
-    setPassword("");
-    const modal = document.querySelector(".modal-toggle");
-    modal.checked = false;
+      body: JSON.stringify({
+        nama: nama,
+        email: email,
+        daerah: daerah,
+        jabatan: jabatan,
+        level: level,
+        password: password,
+        nomor: nomor,
+      }),
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        if (data?.payload.errorInfo[2].includes("Duplicate")) {
+          alert("akun sudah ada!");
+        } else {
+          alert("berhasil membuat akun");
+          refresh();
+        }
+      })
+      .catch((err) => console.log(err));
+
+    // setEmail("");
+    // setNama("");
+    // setLevel("Pilih level pengguna");
+    // setJabatan("");
+    // setPassword("");
+    // const modal = document.querySelector(".modal-toggle");
+    // modal.checked = false;
   };
 
   return (
@@ -117,6 +108,17 @@ const TableAccount = () => {
               />
             </div>
             <div className="flex flex-col">
+              <label className="font-bold text-black text-xl">Nomor</label>
+              <input
+                type="tel"
+                placeholder="Masukkan nomor..."
+                required
+                className="input input-xs px-3 py-[7px] h-[42px] text-lg border-[#808080] placeholder:text-lg placeholder:font-medium focus:outline-none focus:border-primary"
+                onChange={(e) => setNomor(e.target.value)}
+                value={nomor}
+              />
+            </div>
+            <div className="flex flex-col">
               <label className="font-bold text-black text-xl">
                 Akun <span className="text-primary">Level</span>
               </label>
@@ -127,7 +129,7 @@ const TableAccount = () => {
                 <option disabled selected>
                   Pilih level pengguna
                 </option>
-                <option>User</option>
+                <option>Pelapor</option>
                 <option>Super Admin</option>
                 <option>Admin Instansi</option>
                 <option>Admin Pejabat</option>
@@ -145,6 +147,22 @@ const TableAccount = () => {
                 onChange={(e) => setJabatan(e.target.value)}
                 value={jabatan}
               />
+            </div>
+            <div className="flex flex-col">
+              <label className="font-bold text-black text-xl">
+                Nama <span className="text-primary">Daerah</span>
+              </label>
+              <select
+                className="select select-xs select-bordered w-full px-3 py-[7px] h-[42px] text-lg border-[#808080] focus:outline-none focus:border-primary"
+                onChange={(e) => setDaerah(e.target.value)}
+              >
+                <option disabled selected>
+                  Pilih daerah pengguna
+                </option>
+                {listDaerah.map((daerah) => (
+                  <option key={daerah.id}>{daerah.value}</option>
+                ))}
+              </select>
             </div>
             <div className="flex flex-col">
               <label className="font-bold text-black text-xl">
@@ -200,6 +218,7 @@ const TableAccount = () => {
                 <option disabled selected>
                   Level
                 </option>
+                <option>Pelapor</option>
                 <option>Super Admin</option>
                 <option>Admin Instansi</option>
                 <option>Admin Pejabat</option>
@@ -240,13 +259,13 @@ const TableAccount = () => {
               </thead>
               <tbody>
                 {/* row 1 */}
-                {listAkun.map((data, index) => (
+                {data.map((data, index) => (
                   <tr key={index}>
                     <th className="flex gap-[15px] items-center">
                       <div className="avatar">
                         <div className="w-[50px] h-[50px] rounded-lg">
                           <Image
-                            src={data.image}
+                            src={`https://api.silantar.my.id/${data.image}`}
                             width={50}
                             height={50}
                             alt="avatar icon"

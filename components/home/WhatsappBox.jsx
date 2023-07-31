@@ -61,7 +61,7 @@ const WhatsappBox = () => {
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="my_modal_whatsapp" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box box-border absolute bottom-[53px] right-7 w-[341px] h-[295px] py-4 px-[22px] flex flex-col">
+        <div className="modal-box box-border absolute bottom-[53px] right-7 w-[310px] h-[295px] py-4 px-[22px] flex flex-col">
           <div className="flex justify-between w-full">
             <div className="flex gap-[5px]">
               <div className="w-[27px] h-[27px] bg-[#25D366] rounded-full flex items-center justify-center">
@@ -117,10 +117,6 @@ const WhatsappBox = () => {
               </a>
             </div>
           </div>
-          <hr className="w-full h-[2px] bg-[#AAAAAA] mb-2" />
-          <p className="w-full inline-block text-[15px] font-normal italic text-center px-[14px]">
-            Hubungi kami untuk segala keluhan dan pertanyaan anda.
-          </p>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import Navbar from "@/components/home/Navbar";
 import "../../../app/globals.css";
 
 export const metadata = {
-  title: "Lapor",
+  title: "SILANTAR | Lacak Laporan",
   description: "Sistem Informasi Laporan Masyarakat",
 };
 

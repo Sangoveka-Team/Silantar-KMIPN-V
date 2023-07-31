@@ -6,6 +6,10 @@ import Image from "next/image";
 import {useState} from "react";
 import ImageUpload from "@/components/lapor/ImageUpload";
 import ModalAddLaporan from "@/components/ModalAddLaporan";
+import InputLocation from "@/components/lapor/InputLocation";
+import {useUserContext} from "@/contexts/UserContext";
+import {useRouter} from "next/navigation";
+import axios from "axios";
 
 const TambahLaporan = () => {
   const [alamat, setAlamat] = useState("");
@@ -14,15 +18,56 @@ const TambahLaporan = () => {
   const [deskripsi, setDeskripsi] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [imgLocation, setImgLocation] = useState([]);
+  const [imgFiles, setImgFiles] = useState([]);
+  const [position, setPosition] = useState(null);
+  const [addressChange, setAddressChange] = useState("");
+  const [ticket, setTicket] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setShowModal(true);
-    setAlamat("");
-    setKategori("");
-    setDaerah("");
-    setDeskripsi("");
+    let formData = new FormData();
+
+    formData.append("alamat", addressChange);
+    formData.append("kategori_lapor", kategori);
+    formData.append("daerah_kelurahan", daerah);
+    formData.append("deskripsi", deskripsi);
+    formData.append("maps", position.lat + "," + position.lng);
+    imgFiles.forEach((image) => {
+      formData.append("image[]", image);
+    });
+
+    await axios
+      .post("https://api.silantar.my.id/api/post-lapor", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          setTicket(res.data.payload.laporan.id_laporan);
+          setShowModal(true);
+        }
+      });
+    // const response = await fetch("http://127.0.0.1:8000/api/post-lapor", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //   },
+    //   body: JSON.stringify({
+    //     alamat: addressChange,
+    //     kategori_lapor: kategori,
+    //     daerah_kelurahan: daerah,
+    //     deskripsi: deskripsi,
+    //     maps: maps,
+    //     image: [imgFiles],
+    //   }),
+    // });
+    // const data = await response.json();
   };
+  console.log(imgFiles[0]);
+  console.log(addressChange);
 
   return (
     <div className="pt-[0.375rem] pl-2 pr-[0.375rem] relative sm:max-w-xl sm:mx-auto">
@@ -46,7 +91,7 @@ const TambahLaporan = () => {
           </summary>
           <div className="collapse-content pt-0 pb-2 px-3">
             <p className="text-[10px] font-normal">
-              lorem ipsum dolor sit amet, consectetur adip
+              Anda dapat membuat laporan disini. Isikan dengan jelas ya!
             </p>
           </div>
         </details>
@@ -71,29 +116,15 @@ const TambahLaporan = () => {
           <ImageUpload
             imgLocation={imgLocation}
             setImgLocation={setImgLocation}
+            imgFiles={imgFiles}
+            setImgFiles={setImgFiles}
           />
-          <div className="flex flex-col gap-1">
-            <label className="text-primary font-medium text-[15px]">
-              Alamat Lokasi
-            </label>
-            <div className="flex">
-              <Image
-                src="/icon/map.svg"
-                width={24}
-                height={24}
-                alt="user icon"
-              />
-              <input
-                type="text"
-                required
-                placeholder="Masukkan/upload alamat lokasi..."
-                className="input-lapor"
-                onChange={(e) => setAlamat(e.target.value)}
-                value={alamat}
-              />
-            </div>
-            <hr className="w-full h-[2px] bg-primary" />
-          </div>
+          <InputLocation
+            position={position}
+            setPosition={setPosition}
+            addressChange={addressChange}
+            setAddressChange={setAddressChange}
+          />
           <div className="flex flex-col gap-1">
             <label className="text-primary font-medium text-[15px]">
               Kategori Laporan
@@ -168,7 +199,11 @@ const TambahLaporan = () => {
         </form>
       </div>
 
-      <ModalAddLaporan showModal={showModal} setShowModal={setShowModal} />
+      <ModalAddLaporan
+        showModal={showModal}
+        setShowModal={setShowModal}
+        ticket={ticket}
+      />
     </div>
   );
 };
