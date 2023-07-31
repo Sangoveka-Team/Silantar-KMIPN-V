@@ -33,7 +33,7 @@ const DashboardSuperAdmin = () => {
     <div className="my-5 ml-[23px] mr-[31px]">
       <h1 className="font-bold text-[22px]">Dashboard</h1>
       <CardInfo data={data} />
-      <TableAccount data={data.allUser} />
+      {/* <TableAccount data={data.allUser} /> */}
     </div>
   );
 };
