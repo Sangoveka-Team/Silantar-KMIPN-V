@@ -5,6 +5,9 @@ import Logo from "@/public/icon/logo.svg";
 import copy from "copy-to-clipboard";
 
 const Navbar = () => {
+  if (typeof window !== "undefined") {
+    return <></>;
+  }
   return (
     <nav className="flex bg-white items-center justify-between px-5 py-[10px] shadow-md fixed w-full z-20">
       <Link href={"/"} className="flex items-center gap-[5px]">
