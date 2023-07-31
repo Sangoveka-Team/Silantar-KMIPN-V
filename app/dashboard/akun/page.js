@@ -10,7 +10,7 @@ const Akun = () => {
       <h1 className="font-bold text-[22px]">
         Semua <span className="text-primary">Akun</span>
       </h1>
-      <TableAccount />
+      {/* <TableAccount /> */}
     </div>
   );
 };
