@@ -5,7 +5,7 @@ import Logo from "@/public/icon/logo.svg";
 import copy from "copy-to-clipboard";
 
 const Navbar = () => {
-  if (typeof window !== "undefined") {
+  if (typeof window === "undefined") {
     return <></>;
   }
   return (
