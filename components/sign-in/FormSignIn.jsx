@@ -33,6 +33,7 @@ const FormSignIn = () => {
           if (typeof window !== "undefined") {
             localStorage.setItem("token", data.payload.token);
             localStorage.setItem("userLevel", data.payload.userLevel);
+            push("/dashboard");
           }
         }
       })
@@ -46,10 +47,6 @@ const FormSignIn = () => {
         }
       });
   };
-
-  if (typeof window !== "undefined") {
-    if (localStorage.getItem("token") !== "") redirect("/dashboard");
-  }
 
   return (
     <>
