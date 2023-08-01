@@ -46,14 +46,19 @@ const LacakDetail = ({params}) => {
       );
       filtering.map((e) => {
         setData(e);
+        console.log(e);
         const gambar = datas.payload.semuaGambar.filter(
-          (image) => image.laporan_id === e.id
+          (image) => e.id === parseInt(image.laporan_id)
         );
+        console.log(gambar);
         setImages(gambar);
+        console.log(datas.payload.semuaGambar);
       });
     });
   };
 
+  // console.log(data);
+  // console.log(images);
   useEffect(() => {
     getDataAll();
   }, []);

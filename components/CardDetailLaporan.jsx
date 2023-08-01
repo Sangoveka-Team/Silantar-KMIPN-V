@@ -176,8 +176,16 @@ const CardDetailLaporan = ({data, images, backUrl}) => {
           )}
         </label>
         <div className="mt-[7px]">
+          <h2 className="text-primary font-medium text-lg">Kelurahan</h2>
+          <p className="text-[15px] font-normal text-[#808080]">
+            {data.daerah_kelurahan}
+          </p>
+        </div>
+        <div className="mt-[7px]">
           <h2 className="text-primary font-medium text-lg">Nama Pelapor</h2>
-          <p className="text-[15px] font-normal text-[#808080]">{data.nama}</p>
+          <p className="text-[15px] font-normal text-[#808080]">
+            {pathname.includes("/dashboard/riwayat") ? data.nama : "Anonim"}
+          </p>
         </div>
         <div className="mt-[7px]">
           <h2 className="text-primary font-medium text-lg">

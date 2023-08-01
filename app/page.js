@@ -80,10 +80,12 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(async (res) => {
-      const data = await res.json();
-      setDataTerbaru(data.payload);
-    });
+    })
+      .then(async (res) => {
+        const data = await res.json();
+        setDataTerbaru(data.payload);
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {

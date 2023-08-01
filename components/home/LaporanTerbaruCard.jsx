@@ -19,7 +19,7 @@ const LaporanTerbaruCard = ({datas}) => {
           <div className="flex items-center justify-between">
             <div className="text-xs font-normal">
               {data.tanggal} |{" "}
-              <span className="text-primary font-bold">{data.nama}</span>
+              <span className="text-primary font-bold">Anonim</span>
             </div>
             <ColorStatus title={data.status_lapor} />
           </div>

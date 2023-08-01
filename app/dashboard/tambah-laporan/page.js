@@ -49,6 +49,16 @@ const TambahLaporan = () => {
           setShowModal(true);
         }
       });
+    // await fetch("https://api.silantar.my.id/api/post-lapor", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //     Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //   },
+    //   body: formData,
+    // }).then((res) => {
+    //   console.log(res);
+    // });
     // const response = await fetch("http://127.0.0.1:8000/api/post-lapor", {
     //   method: "POST",
     //   headers: {
@@ -66,8 +76,6 @@ const TambahLaporan = () => {
     // });
     // const data = await response.json();
   };
-  console.log(imgFiles[0]);
-  console.log(addressChange);
 
   return (
     <div className="pt-[0.375rem] pl-2 pr-[0.375rem] relative sm:max-w-xl sm:mx-auto">

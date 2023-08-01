@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import React from "react";
 
 const ModalAddLaporan = ({showModal, setShowModal, ticket}) => {
   const route = useRouter();
+  const pathname = usePathname();
   return (
     <>
       <input
@@ -60,7 +61,11 @@ const ModalAddLaporan = ({showModal, setShowModal, ticket}) => {
             className="btn btn-green btn-sm font-medium text-[15px] px-4"
             onClick={() => {
               setShowModal(false);
-              route.push(`/lacak/${ticket}`);
+              if (pathname !== "/dashboard/tambah-laporan") {
+                route.push(`/lacak/${ticket}`);
+              } else {
+                route.push("/dashboard/riwayat");
+              }
             }}
           >
             Oke

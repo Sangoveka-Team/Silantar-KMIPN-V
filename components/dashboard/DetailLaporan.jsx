@@ -135,7 +135,7 @@ const DetailLaporan = ({id}) => {
               width={0}
               height={0}
               alt="gambar image"
-              className="w-[253px] h-[215px] object-contain mx-auto"
+              className="w-[300px] h-[215px] object-contain mx-auto"
               unoptimized
             />
           </label>
