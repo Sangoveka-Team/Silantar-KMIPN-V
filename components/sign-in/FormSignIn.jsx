@@ -47,7 +47,9 @@ const FormSignIn = () => {
       });
   };
 
-  if (localStorage.getItem("token") !== "") redirect("/dashboard");
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("token") !== "") redirect("/dashboard");
+  }
 
   return (
     <>
