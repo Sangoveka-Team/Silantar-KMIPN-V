@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const ShowImage = ({datas}) => {
   return (
@@ -22,14 +23,19 @@ const ShowImage = ({datas}) => {
                   id={`slide${index}`}
                   className="carousel-item relative w-full"
                 >
-                  <Image
-                    src={`https://api.silantar.my.id/${data.image_name}`}
-                    width={0}
-                    height={0}
-                    alt={`gambar ke ${index + 1}`}
-                    className="w-full h-[400px] object-contain"
-                    unoptimized
-                  />
+                  <Link
+                    href={`https://api.silantar.my.id/${data.image_name}`}
+                    target="_blank"
+                  >
+                    <Image
+                      src={`https://api.silantar.my.id/${data.image_name}`}
+                      width={0}
+                      height={0}
+                      alt={`gambar ke ${index + 1}`}
+                      className="w-full h-[400px] object-contain"
+                      unoptimized
+                    />
+                  </Link>
                   <div className="absolute flex justify-between transform -translate-y-1/2 left-2 right-2 top-1/2">
                     <a
                       href={

@@ -233,19 +233,19 @@ const listDaerah = [
 const listRole = [
   {
     id: 1,
-    value: "User",
+    value: "Pelapor",
   },
   {
     id: 2,
-    value: "Super Admin",
+    value: "Superadmin",
   },
   {
     id: 3,
-    value: "Admin Instansi",
+    value: "Dinas",
   },
   {
     id: 4,
-    value: "Admin Pejabat",
+    value: "Kelurahan",
   },
 ];
 

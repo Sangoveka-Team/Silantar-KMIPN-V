@@ -428,7 +428,7 @@ const DetailLaporan = ({id}) => {
               >
                 ✕
               </label>
-              {data.catatan.length !== 0 ? (
+              {/* {data.catatan.length !== 0 ? (
                 data.catatan.map((catatan) => (
                   <div className="mb-[14px]">
                     <h3 className="font-bold text-lg">{catatan.penulis}</h3>
@@ -438,7 +438,7 @@ const DetailLaporan = ({id}) => {
                 ))
               ) : (
                 <p>Tidak ada catatan</p>
-              )}
+              )} */}
             </div>
           </div>
         </div>

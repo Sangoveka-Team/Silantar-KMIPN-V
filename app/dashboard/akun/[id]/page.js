@@ -4,14 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import {listDaerah, listRole} from "@/data";
 import {useEffect, useState} from "react";
-import {usePathname} from "next/navigation";
+import {data} from "autoprefixer";
 
 const AkunDetail = ({params}) => {
-  const pathname = usePathname();
   const [img, setImg] = useState(null);
   const [daerah, setDaerah] = useState("");
   const [role, setRole] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [dataUser, setDataUser] = useState(null);
 
   const getDetailAkun = async () => {
     await fetch("https://api.silantar.my.id/api/dashboard-superadmin", {
@@ -22,10 +22,11 @@ const AkunDetail = ({params}) => {
       },
     }).then(async (res) => {
       const data = await res.json();
-      const array = data.payload.allUser.filter((user) => {
-        user.id == pathname.charAt(pathname.length - 1);
-      });
-      console.log(array);
+      const array = data.payload.allUser.filter(
+        (user) => user.id === Number(params.id)
+      );
+      setDataUser(array[0]);
+      setRole(array[0].level);
     });
   };
 
@@ -38,6 +39,14 @@ const AkunDetail = ({params}) => {
   useEffect(() => {
     getDetailAkun();
   }, []);
+
+  if (dataUser === null) {
+    return (
+      <p className="animate-pulse text-3xl font-bold text-center mt-10">
+        Loading...
+      </p>
+    );
+  }
   return (
     <div className="mt-[18px] ml-[21px] mr-[31px] max-w-[1059px]">
       <div className="inline-block">
@@ -56,7 +65,7 @@ const AkunDetail = ({params}) => {
             <span>Dashboard</span>
           </Link>
           <span className="ml-[6px]">
-            / <span className="text-primary">Simon Izzacus Nababan </span>
+            / <span className="text-primary">{dataUser.nama}</span>
           </span>
         </div>
       </div>
@@ -105,6 +114,7 @@ const AkunDetail = ({params}) => {
                     required
                     placeholder="nama lengkap..."
                     className="input-lapor pl-0 text-[15px]"
+                    value={dataUser.nama}
                   />
                 </div>
                 <hr className="w-[269px] h-[2px] bg-primary" />
@@ -119,6 +129,7 @@ const AkunDetail = ({params}) => {
                     required
                     placeholder="nomor ponsel..."
                     className="input-lapor pl-0 text-[15px]"
+                    value={dataUser.nomor}
                   />
                 </div>
                 <hr className="w-[269px] h-[2px] bg-primary" />
@@ -131,8 +142,10 @@ const AkunDetail = ({params}) => {
                   <input
                     type="email"
                     required
+                    disabled
                     placeholder="email..."
-                    className="input-lapor pl-0 text-[15px]"
+                    className="input-lapor pl-0 text-[15px] input-disabled"
+                    value={dataUser.email}
                   />
                 </div>
                 <hr className="w-[269px] h-[2px] bg-primary" />
@@ -162,18 +175,6 @@ const AkunDetail = ({params}) => {
                   />
                 </div>
                 <hr className="w-[269px] h-[2px] bg-primary" />
-              </div>
-              <div className="flex flex-col gap-[5px] w-1/2">
-                <label className="text-primary font-bold text-sm">Daerah</label>
-                <div className="flex [&>.dropdown]:pl-0 [&>.dropdown_.dropdown-content]:ml-0">
-                  <Dropdown
-                    listDatas={listDaerah}
-                    input={daerah}
-                    setInput={setDaerah}
-                    placeholder={"daerah..."}
-                  />
-                </div>
-                <hr className="w-full h-[2px] bg-primary" />
               </div>
               <div className="mt-[19px] flex justify-between w-full">
                 <div className="text-primary font-semibold text-xl self-center">

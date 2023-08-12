@@ -2,21 +2,48 @@
 
 import Dropdown from "@/components/lapor/Dropdown";
 import {listRole} from "@/data";
+import axios from "axios";
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 const ProfilSuperAdmin = () => {
   const [img, setImg] = useState(null);
-  const [role, setRole] = useState("Super Admin");
-  const [nama, setNama] = useState("Mohammad Ricko Aprilianto");
-  const [email, setEmail] = useState("superzzadminsilantar@gmail.com");
-  const [password, setPassword] = useState("passwordsaja");
+  const [dataProfil, setDataProfil] = useState(null);
+  const [role, setRole] = useState("");
+  const [nama, setNama] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [jabatan, setJabatan] = useState("");
   const [isVisible, setIsVisible] = useState(true);
 
   const handleImage = (e) => {
     const data = e.target.files[0];
     setImg(URL.createObjectURL(data));
   };
+
+  const getDataProfil = async () => {
+    await axios
+      .get("https://api.silantar.my.id/api/profile-superadmin", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          const data = res.data.payload;
+          setDataProfil(data);
+          setNama(data.nama);
+          setEmail(data.email);
+          setJabatan(data.jabatan);
+          setRole(data.level);
+        }
+      });
+  };
+
+  useEffect(() => {
+    getDataProfil();
+  }, []);
   return (
     <div className="my-[18px] ml-[25px] mr-[31px] max-w-[1059px]">
       <h1 className="font-bold text-[22px]">Profil</h1>
@@ -79,9 +106,8 @@ const ProfilSuperAdmin = () => {
                   <input
                     type="text"
                     required
-                    className="input-lapor pl-0 text-[15px] input-disabled disabled:bg-transparent disabled:border-none"
-                    value="Developer SILANTAR"
-                    disabled
+                    className="input-lapor pl-0 text-[15px]"
+                    value={jabatan}
                   />
                 </div>
                 <hr className="w-[269px] h-[2px] bg-primary" />
@@ -94,8 +120,9 @@ const ProfilSuperAdmin = () => {
                   <input
                     type="email"
                     required
+                    disabled
                     placeholder="email..."
-                    className="input-lapor pl-0 text-[15px]"
+                    className="input-lapor pl-0 text-[15px] input-disabled disabled:bg-transparent disabled:border-none"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                   />
