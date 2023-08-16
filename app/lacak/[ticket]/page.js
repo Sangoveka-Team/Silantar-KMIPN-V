@@ -4,26 +4,6 @@ import LacakCard from "@/components/home/LacakCard";
 import dynamic from "next/dynamic";
 import {useEffect, useState} from "react";
 
-const dummyDataLaporan = {
-  category: "Arus Lalu Lintas",
-  gl: {
-    lat: -3.332062,
-    lng: 114.580431,
-  },
-  img: [
-    "/dummy-images/traffic-lights.png",
-    "/dummy-images/polluted-river.png",
-    "/dummy-images/scattered-tree-branches.png",
-  ],
-  status: "Ditolak",
-  ticket: "2348748247623423",
-  catatan: "lorem Ipsum dolor sit amet, consectetur adipiscing el",
-  date: "17-07-2023",
-  address: "Jl. kayu tangi 2",
-  deskripsi:
-    "Kerusakan lampu lalu lintas didaerah kayutangi, alur pengendara jadi terganggujkadkjawdawdiub",
-};
-
 const CardDetailLaporanDynamic = dynamic(
   () => import("../../../components/CardDetailLaporan"),
   {ssr: false}
@@ -32,6 +12,7 @@ const CardDetailLaporanDynamic = dynamic(
 const LacakDetail = ({params}) => {
   const [data, setData] = useState({});
   const [images, setImages] = useState([]);
+  const [isClient, setIsClient] = useState(false);
 
   const getDataAll = async () => {
     await fetch("https://api.silantar.my.id/api/get-laporan", {
@@ -57,14 +38,19 @@ const LacakDetail = ({params}) => {
     });
   };
 
-  // console.log(data);
-  // console.log(images);
   useEffect(() => {
-    getDataAll();
+    if (typeof window !== "undefined") {
+      setIsClient(true);
+      getDataAll();
+    }
   }, []);
 
-  if (images.length === 0) {
-    return <p></p>;
+  if (!isClient) {
+    return (
+      <p className="animate-pulse text-3xl font-bold text-center mt-10">
+        Loading...
+      </p>
+    );
   }
   return (
     <div className="mt-2 mx-[20px]">
