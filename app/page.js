@@ -92,13 +92,13 @@ export default function Home() {
     getDataTerbaru();
   }, []);
 
-  if (dataTerbaru === null) {
-    return (
-      <p className="animate-pulse text-3xl font-bold text-center mt-10">
-        Loading...
-      </p>
-    );
-  }
+  // if (dataTerbaru === null) {
+  //   return (
+  //     <p className="animate-pulse text-3xl font-bold text-center mt-10">
+  //       Loading...
+  //     </p>
+  //   );
+  // }
 
   return (
     <div>
@@ -230,7 +230,12 @@ export default function Home() {
             LAPORAN TERBARU
           </h3>
           <div className="flex flex-col gap-[15px] mt-[15px] mb-[6px]">
-            <LaporanTerbaruCard datas={dataTerbaru} />
+            {/* {dataTerbaru === null && (
+              <p className="animate-pulse text-3xl font-bold text-center mt-10">
+                Loading...
+              </p>
+            )} */}
+            {dataTerbaru !== null && <LaporanTerbaruCard datas={dataTerbaru} />}
           </div>
           <Link
             href="/laporan"

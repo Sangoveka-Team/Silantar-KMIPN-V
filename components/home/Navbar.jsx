@@ -3,9 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/public/icon/logo.svg";
 import copy from "copy-to-clipboard";
+import {useEffect, useState} from "react";
 
 const Navbar = () => {
-  if (typeof window === "undefined") {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsClient(true);
+    }
+  }, []);
+
+  if (!isClient) {
     return <></>;
   }
   return (
@@ -38,7 +47,7 @@ const Navbar = () => {
             <hr className="w-full h-[2px] bg-[#808080] mt-[11px] mb-[14px]" />
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-[11px] ">
+                <div className="flex items-center gap-[11px]">
                   <div className="tooltip" data-tip="Salin Ticket">
                     <Image
                       src="/icon/clipboard.svg"

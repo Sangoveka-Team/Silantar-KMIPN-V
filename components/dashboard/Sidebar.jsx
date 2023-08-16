@@ -30,6 +30,8 @@ const Sidebar = () => {
         .then(async (res) => {
           const data = await res.json();
           localStorage.setItem("token", "");
+          localStorage.setItem("userLevel", "");
+
           push("/sign-in");
         })
         .catch((err) => console.log(err));

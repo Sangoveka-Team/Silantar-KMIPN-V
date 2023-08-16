@@ -12,30 +12,24 @@ import {customIcon} from "./Marker";
 import ShowImage from "./ShowImage";
 
 const CardDetailLaporan = ({data, images, backUrl}) => {
-  // const fetchUrl = "https://nominatim.openstreetmap.org/reverse?format=jsonv2&";
   const pathname = usePathname();
   const [showMap, setShowMap] = useState(false);
-  // const [image, setImage] = useState(images[0]);
-  // const [address, setAddress] = useState("");
+  const [isClient, setIsClient] = useState(false);
 
-  // const getAddress = async () => {
-  //   await fetch(`${fetchUrl}lat=${data.gl.lat}&lon=${data.gl.lng}`)
-  //     .then(async (res) => {
-  //       const datas = await res.json();
-  //       setAddress(datas.display_name);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsClient(true);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   getAddress();
-  // }, []);
+  if (!isClient) {
+    return (
+      <p className="animate-pulse text-3xl font-bold text-center mt-10">
+        Loading...
+      </p>
+    );
+  }
 
-  // console.log(data);
-
-  console.log(data);
   return (
     <>
       {/* Put this part before </body> tag */}
