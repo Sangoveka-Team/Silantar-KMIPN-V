@@ -26,8 +26,6 @@ const ProfilAdminInstansi = () => {
         },
       }).then(async (res) => {
         const data = await res.json();
-        console.log(data);
-        // setImg(data.payload.image);
         setNama(data.payload.nama);
         setEmail(data.payload.email);
         setJabatan(data.payload.jabatan);

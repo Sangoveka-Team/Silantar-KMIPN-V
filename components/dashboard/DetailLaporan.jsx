@@ -49,7 +49,6 @@ const DetailLaporan = ({id}) => {
         }
       ).then(async (res) => {
         const data = await res.json();
-        console.log(data);
         setData(data.payload);
         setStatus(data.payload.dataLaporan.status_lapor);
       });
@@ -84,7 +83,6 @@ const DetailLaporan = ({id}) => {
         })
         .catch((err) => console.log(err));
     }
-    console.log(status, catatan);
   };
 
   const handleAjuan = async (id) => {
@@ -102,7 +100,6 @@ const DetailLaporan = ({id}) => {
         }),
       }).then(async (res) => {
         const data = await res.json();
-        console.log(data);
         setCatatan("");
         setCatatanTambah("");
         alert("success");
@@ -113,7 +110,6 @@ const DetailLaporan = ({id}) => {
   useEffect(() => {
     getDataDetail(id);
   }, []);
-  console.log(data);
 
   if (data === null) {
     return (

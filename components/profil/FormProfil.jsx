@@ -63,7 +63,6 @@ const FormProfil = () => {
     getDataProfil();
   }, []);
 
-  console.log(img);
   return (
     <form
       onSubmit={handleSimpan}

@@ -28,7 +28,6 @@ const LocationMarker = ({address, setAddress, position, setPosition}) => {
     });
     map.on("click", async (location) => {
       setPosition(location.latlng);
-      console.log(location.latlng);
       await fetch(
         `${fetchUrl}lat=${location.latlng.lat}&lon=${location.latlng.lng}`
       )

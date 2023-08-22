@@ -22,7 +22,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     setUserLevel(localStorage.getItem("userLevel"));
-    console.log(localStorage.getItem("token"));
   }, []);
 
   if (userLevel === null)

@@ -21,7 +21,6 @@ const Laporan = () => {
       }
     ).then(async (res) => {
       const data = await res.json();
-      // console.log(data);
       setData(data.payload);
     });
   };

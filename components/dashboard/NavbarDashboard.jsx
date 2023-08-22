@@ -50,7 +50,9 @@ const NavbarDashboard = () => {
   };
 
   useEffect(() => {
-    getDataProfil();
+    if (localStorage.getItem("token") !== "") {
+      getDataProfil();
+    }
   }, []);
 
   return (

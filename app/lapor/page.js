@@ -45,9 +45,7 @@ const Lapor = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
-          console.log(res);
           localStorage.setItem("ticket", res.data.payload.laporan.id_laporan);
           localStorage.setItem(
             "tanggal-ticket",

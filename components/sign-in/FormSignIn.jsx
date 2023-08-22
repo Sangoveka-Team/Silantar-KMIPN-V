@@ -28,6 +28,8 @@ const FormSignIn = () => {
         const data = await res.json();
         if (data.message === "Login Failed") {
           setMessageErr("Email atau Password anda salah");
+        } else if (data.message === "invalid") {
+          setMessageErr("Periksa Email anda lagi");
         } else {
           setMessageErr("Berhasil login....");
           if (typeof window !== "undefined") {

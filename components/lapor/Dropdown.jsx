@@ -55,11 +55,7 @@ const Dropdown = ({listDatas, input, setInput, placeholder}) => {
         ))}
       </ul>
       <label className="swap swap-rotate absolute right-0 top-0 z-0 pointer-events-none">
-        <input
-          type="checkbox"
-          checked={checkbox ? true : false}
-          onChange={(e) => console.log(e.target.checked)}
-        />
+        <input type="checkbox" checked={checkbox ? true : false} />
         {/* arrow up */}
         <Image
           src="/icon/chevron-up.svg"

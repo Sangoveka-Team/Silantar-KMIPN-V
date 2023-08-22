@@ -1,6 +1,8 @@
+"use client";
 import HeaderAuth from "@/components/HeaderAuth";
-import FormSignIn from "@/components/sign-in/FormSignIn";
 import dynamic from "next/dynamic";
+import {redirect} from "next/navigation";
+import {useEffect} from "react";
 
 const FormSignInDynamic = dynamic(
   () => import("../../components/sign-in/FormSignIn"),
@@ -8,6 +10,11 @@ const FormSignInDynamic = dynamic(
 );
 
 const SignIn = () => {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (localStorage.getItem("token") !== "") redirect("/dashboard");
+    }
+  }, []);
   return (
     <div className="max-w-xl mx-auto w-full h-[640px]">
       <HeaderAuth />
